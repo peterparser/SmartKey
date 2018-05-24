@@ -15,6 +15,7 @@ namespace SmartKey.ModelGestione.Tests
         [TestCase]
         public void TestSingleton()
         {
+        
             Utente me = Utente.GetUtente();
             Utente you = Utente.GetUtente();
             Assert.AreSame(me, you);
