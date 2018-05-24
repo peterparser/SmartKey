@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione
 {
-    interface IDispositivo
+    public interface IDispositivo
     {
         string NomeDispositivo();
         string PathLocation();
