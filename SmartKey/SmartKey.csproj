@@ -58,6 +58,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelGestione.Tests\UtenteTest.cs" />
+    <Compile Include="ModelGestione\Blacklist.cs" />
+    <Compile Include="ModelGestione\IDispositivo.cs" />
     <Compile Include="ModelGestione\Utente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

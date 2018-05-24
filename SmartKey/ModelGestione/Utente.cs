@@ -10,7 +10,9 @@ namespace SmartKey.ModelGestione
     {
         private static Utente _instance;
         private string nomeHost = WindowsIdentity.GetCurrent().Name.ToString();
-        private string nomeUtente =WindowsIdentity.GetCurrent().User.ToString();
+        private string nomeUtente = WindowsIdentity.GetCurrent().User.ToString();
+        private IDispositivo device;
+
         private Utente()
         {
 
@@ -21,6 +23,7 @@ namespace SmartKey.ModelGestione
             if(_instance == null)
             {
                 _instance = new Utente();
+
             }
             return _instance;
         }
@@ -41,5 +44,6 @@ namespace SmartKey.ModelGestione
             }
         }
 
+    
     }
 }
