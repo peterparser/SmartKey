@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.ModelLog
+namespace SmartKey.ModelGestione
 {
-   abstract class Entry
+    class ChiaveUSB
     {
-        private DateTime _dataOra;
     }
 }

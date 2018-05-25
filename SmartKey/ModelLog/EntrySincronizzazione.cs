@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelLog
 {
-   abstract class Entry
+    class EntrySincronizzazione : Entry
     {
-        private DateTime _dataOra;
     }
 }

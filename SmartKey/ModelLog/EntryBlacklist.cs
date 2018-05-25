@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelLog
 {
-   abstract class Entry
+    class EntryBlacklist : Entry
     {
-        private DateTime _dataOra;
     }
 }

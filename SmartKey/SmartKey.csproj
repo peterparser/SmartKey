@@ -57,7 +57,22 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelGestione\ChiaveUSB.cs" />
+    <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
+    <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\CartellaTest.cs" />
+    <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\FileWrapperTest.cs" />
+    <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\TextFixtureAttribute.cs" />
+    <Compile Include="ModelGestione\Filesystem\FilesystemElement.cs" />
+    <Compile Include="ModelGestione\Filesystem\FileWrapper.cs" />
+    <Compile Include="ModelGestione\ModelGestione.Tests\ChiaveUSBTest.cs" />
+    <Compile Include="ModelGestione\Sincronizzatore.cs" />
+    <Compile Include="ModelGestione\ImpostazioneTrasferimento.cs" />
+    <Compile Include="ModelGestione\ModelGestione.Tests\ImpostazioneTrasferimentoTest.cs" />
     <Compile Include="ModelLog\Entry.cs" />
+    <Compile Include="ModelLog\EntryAnalisi.cs" />
+    <Compile Include="ModelLog\EntryBlacklist.cs" />
+    <Compile Include="ModelLog\EntrySincronizzazione.cs" />
+    <Compile Include="ModelLog\EntrySistema.cs" />
     <Compile Include="ModelLog\Log.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\BlacklistTest.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\UtenteTest.cs" />

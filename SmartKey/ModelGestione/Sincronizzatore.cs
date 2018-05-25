@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.ModelLog
+namespace SmartKey.ModelGestione
 {
-   abstract class Entry
+    class Sincronizzatore
     {
-        private DateTime _dataOra;
+
     }
 }
