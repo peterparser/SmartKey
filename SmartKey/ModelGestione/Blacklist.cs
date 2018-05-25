@@ -8,31 +8,31 @@ namespace SmartKey.ModelGestione
 {
     class Blacklist
     {
-        private ISet<string> blacklist;
+        private ISet<string> _blacklist;
 
         public Blacklist()
         {
-            blacklist = new HashSet<string>();
+            _blacklist = new HashSet<string>();
         }
 
         public Blacklist(ISet<string> blacklist)
         {
-            this.blacklist = blacklist;
+            this._blacklist = blacklist;
         }
 
         public bool AggiungiUtenteCattivo(string nomeUtente)
         {
-            return blacklist.Add(nomeUtente);
+            return _blacklist.Add(nomeUtente);
         }
         
         public bool EliminaUtenteCattivo(string nomeUtente)
         {
-            return blacklist.Remove(nomeUtente);
+            return _blacklist.Remove(nomeUtente);
         }
 
         public bool IsInBlacklist(string nomeUtente)
         {
-            return blacklist.Contains(nomeUtente);
+            return _blacklist.Contains(nomeUtente);
         }
     }
 }

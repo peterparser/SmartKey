@@ -8,6 +8,6 @@ namespace SmartKey.ModelGestione
 {
    abstract class Entry
     {
-        private DateTime dataOra;
+        private DateTime _dataOra;
     }
 }

@@ -9,9 +9,9 @@ namespace SmartKey.ModelGestione
     public sealed class Utente
     {
         private static Utente _instance;
-        private string nomeHost = WindowsIdentity.GetCurrent().Name.ToString();
-        private string nomeUtente = WindowsIdentity.GetCurrent().User.ToString();
-        private IDispositivo dispositivo;
+        private string _nomeHost = WindowsIdentity.GetCurrent().Name.ToString();
+        private string _nomeUtente = WindowsIdentity.GetCurrent().User.ToString();
+        private IDispositivo _dispositivo;
 
         private Utente()
         {
@@ -32,7 +32,7 @@ namespace SmartKey.ModelGestione
         {
             get
             {
-                return nomeUtente;
+                return _nomeUtente;
             }
         }
 
@@ -40,7 +40,7 @@ namespace SmartKey.ModelGestione
         {
             get
             {
-                return nomeHost;
+                return _nomeHost;
             }
         }
 
@@ -48,11 +48,11 @@ namespace SmartKey.ModelGestione
         {
             get
             {
-                return dispositivo;
+                return _dispositivo;
             }
             set
             {
-                dispositivo = value;
+                _dispositivo = value;
             }
         }
 
