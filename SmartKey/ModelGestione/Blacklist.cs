@@ -10,14 +10,24 @@ namespace SmartKey.ModelGestione
     {
         private ISet<string> blacklist;
 
+        public Blacklist()
+        {
+            blacklist = new HashSet<string>();
+        }
+
+        public Blacklist(ISet<string> blacklist)
+        {
+            this.blacklist = blacklist;
+        }
+
         public bool AggiungiUtenteCattivo(string nomeUtente)
         {
-            return false;
+            return blacklist.Add(nomeUtente);
         }
         
         public bool EliminaUtenteCattivo(string nomeUtente)
         {
-            return false;
+            return blacklist.Remove(nomeUtente);
         }
 
         public bool IsInBlacklist(string nomeUtente)
