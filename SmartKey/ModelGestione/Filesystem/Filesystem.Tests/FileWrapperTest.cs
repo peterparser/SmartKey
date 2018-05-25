@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace SmartKey.ModelGestione.Filesystem.Filesystem.Tests
 {
-    [TextFixture]
+    [TestFixture]
     class FileWrapperTest
     {
         [TestCase]

@@ -61,7 +61,6 @@
     <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\CartellaTest.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\FileWrapperTest.cs" />
-    <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\TextFixtureAttribute.cs" />
     <Compile Include="ModelGestione\Filesystem\FilesystemElement.cs" />
     <Compile Include="ModelGestione\Filesystem\FileWrapper.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\ChiaveUSBTest.cs" />
