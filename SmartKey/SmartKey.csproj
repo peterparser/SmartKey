@@ -57,6 +57,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelLog\Entry.cs" />
+    <Compile Include="ModelLog\Log.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\BlacklistTest.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\UtenteTest.cs" />
     <Compile Include="ModelGestione\Blacklist.cs" />

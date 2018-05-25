@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione
 {
-    public interface IDispositivo
+    class Log
     {
-        string NomeDispositivo();
-        string NomePercorso();
     }
 }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione
 {
-    public interface IDispositivo
+   abstract class Entry
     {
-        string NomeDispositivo();
-        string NomePercorso();
+        private DateTime dataOra;
     }
 }
