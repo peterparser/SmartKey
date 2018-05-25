@@ -16,5 +16,10 @@ namespace SmartKey
         {
             InitializeComponent();
         }
+
+        private void bottone_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("PORCO");
+        }
     }
 }

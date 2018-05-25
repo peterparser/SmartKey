@@ -16,7 +16,7 @@ namespace SmartKey.ModelGestione.Filesystem
         public string Path
         {
             get { return _path; }
-            set { _path = value}
+            set { _path = value; }
         }
     }
 }

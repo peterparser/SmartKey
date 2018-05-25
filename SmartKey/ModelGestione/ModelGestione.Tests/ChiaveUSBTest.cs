@@ -6,16 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione.ModelGestione.Tests
 {
-    class ChiaveUSBTest : IDispositivo
+    class ChiaveUSBTest
     {
-        string IDispositivo.NomeDispositivo()
-        {
-            throw new NotImplementedException();
-        }
-
-        string IDispositivo.NomePercorso()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
