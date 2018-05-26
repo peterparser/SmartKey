@@ -11,20 +11,17 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
     class ImpostazioneTrasferimentoTest
     {
         [TestCase]
-        public void TestConstructor()
-        {
-            Assert.True(false);
-        }
-        [TestCase]
         public void TestSetter()
         {
-            Assert.True(false);
+           
         }
 
         [TestCase]
         public void TestGetter()
         {
-            Assert.True(false);
+            ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("myDir", "yourDir");
+            Assert.AreEqual(impostazione.CartellaSorgente, "myDir");
+            Assert.AreEqual(impostazione.CartellaDestinazione, "yourDir");
         }
 
         [TestCase]
