@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="ModelGestione\ChiaveUSB.cs" />
     <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
+    <Compile Include="ModelGestione\Filesystem\Filesystem.Exceptions\PathNotValidException.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\CartellaTest.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\FileWrapperTest.cs" />
     <Compile Include="ModelGestione\Filesystem\FilesystemElement.cs" />

@@ -37,7 +37,7 @@
             this.bottone.Name = "bottone";
             this.bottone.Size = new System.Drawing.Size(75, 23);
             this.bottone.TabIndex = 0;
-            this.bottone.Text = "Cazzo";
+            this.bottone.Text = "Wella";
             this.bottone.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.bottone.UseVisualStyleBackColor = true;
             this.bottone.Click += new System.EventHandler(this.bottone_Click);

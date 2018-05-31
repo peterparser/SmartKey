@@ -10,7 +10,7 @@ namespace SmartKey.ModelGestione.Filesystem
     {
         public FileWrapper(string path)
         {
-            base.Path = path;
+            Path = path;
         }
     }
 }

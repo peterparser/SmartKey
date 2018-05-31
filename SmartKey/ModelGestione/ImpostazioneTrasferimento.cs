@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione
 {
-    class ImpostazioneTrasferimento
+   public  class ImpostazioneTrasferimento
     {
         private string _verso;
         private Utente _utente = Utente.GetUtente();
@@ -14,10 +15,38 @@ namespace SmartKey.ModelGestione
         private string _cartellaDestinazione;
 
 
-        public ImpostazioneTrasferimento(string cartellaSorgente, string CartellaDestinazione)
+        public ImpostazioneTrasferimento(string cartellaSorgente, string cartellaDestinazione)
         {
-            _cartellaSorgente = cartellaSorgente;
-            _cartellaDestinazione = CartellaDestinazione;
+            if(cartellaSorgente != null)
+            {
+                if(cartellaSorgente.Length < 261)
+                {
+                    _cartellaSorgente = cartellaSorgente;
+                }
+                else
+                {
+                    throw new PathNotValidException("Il path della cartella sorgente è troppo lungo");
+                }
+            }
+            else
+            {
+                throw new PathNotValidException("Il path sorgente è nullo");
+            }
+            if (cartellaDestinazione != null)
+            {
+                if (cartellaDestinazione.Length < 261)
+                {
+                    _cartellaDestinazione = cartellaDestinazione;
+                }
+                else
+                {
+                    throw new PathNotValidException("Il path della cartella destinazione è troppo lungo");
+                }
+            }
+            else
+            {
+                throw new PathNotValidException("Il path destinazione è nullo");
+            }
         }
 
         public string Verso
@@ -28,6 +57,7 @@ namespace SmartKey.ModelGestione
             }
             set
             {
+
                 _verso = value;
             }
         }
@@ -37,12 +67,50 @@ namespace SmartKey.ModelGestione
             {
                 return _cartellaSorgente;
             }
+            set
+            {
+                if(value == null)
+                {
+                    throw new PathNotValidException("Il path inserito come cartella sorgente è nullo");
+
+                }
+                else
+                {
+                    if(value.Length > 260)
+                    {
+                        throw new PathNotValidException("Il path inserito è troppo lungo");
+                    }
+                    else
+                    {
+                        _cartellaSorgente = value;
+                    }
+                }
+            }
         }
         public string CartellaDestinazione
         {
             get
             {
                 return _cartellaDestinazione;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new PathNotValidException("Il path inserito come cartella destinazione è nullo");
+
+                }
+                else
+                {
+                    if (value.Length > 260)
+                    {
+                        throw new PathNotValidException("Il path inserito come cartella destinazione troppo lungo");
+                    }
+                    else
+                    {
+                        _cartellaDestinazione = value;
+                    }
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,17 @@ namespace SmartKey.ModelGestione.Filesystem
         public string Path
         {
             get { return _path; }
-            set { _path = value; }
+            set
+            {
+                if(value.Length > 260)
+                {
+                    throw new PathNotValidException("Path inserito troppo lungo");
+                }
+                else
+                {
+                    _path = value;
+                }
+            }
         }
     }
 }

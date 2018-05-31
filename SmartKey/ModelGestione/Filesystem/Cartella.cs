@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,14 @@ namespace SmartKey.ModelGestione.Filesystem
 
         public Cartella(string path)
         {
-            Path = path;
+            if(path != null)
+            {
+                Path = path;
+            }
+            else
+            {
+                throw new PathNotValidException("Path della cartella non valido");
+            }
             _children = new List<FilesystemElement>();
         }
         
@@ -25,11 +33,12 @@ namespace SmartKey.ModelGestione.Filesystem
         {
             //Se directory si aggiugne una cartella
             //Se file si aggiunge un file
+            _children.Add(e);
         }
         
         public void RemoveChild(FilesystemElement e)
         {
-            //Optional
+            _children.Remove(e);
         }
 
         public FilesystemElement GetChild(string path)
