@@ -27,7 +27,7 @@ namespace SmartKey.ModelGestione.Filesystem.Filesystem.Tests
 
         //Test del costruttore dell'oggetto cartella
         [TestCase]
-        public void TestConstructor()
+        public void TestCartellaConstructor()
         {
             Cartella c = new Cartella("ABC");
             Assert.AreNotEqual(c, null);
@@ -35,7 +35,7 @@ namespace SmartKey.ModelGestione.Filesystem.Filesystem.Tests
         }
         //Test che controlla che se il path supera 260 caratteri viene lanciata eccezione
         [TestCase]
-        public void TestPathLength()
+        public void TestCartellaPathLength()
         {
             Cartella c = new Cartella("ABC");
             Assert.Throws<PathNotValidException>(() => c.Path = _veryLongPath);
@@ -45,7 +45,7 @@ namespace SmartKey.ModelGestione.Filesystem.Filesystem.Tests
         //Test che controlla che la funzione removechild funzioni correttamente
         //e rimuova l'elemento specificato dalla lista
         [TestCase]
-        public void TestRemoveChild()
+        public void TestCartellaRemoveChild()
         {
             Cartella home = new Cartella("ABC");
             Cartella subHome = new Cartella("KDE");
@@ -60,7 +60,7 @@ namespace SmartKey.ModelGestione.Filesystem.Filesystem.Tests
         //Test che controlla che venga aggiunto l'elemento specificato alla
         //Lista di figli di quella cartella.
         [TestCase]
-        public void TestAddChild()
+        public void TestCartellaAddChild()
         {
             Cartella home = new Cartella("ABC");
             Cartella subHome = new Cartella("KDE");
