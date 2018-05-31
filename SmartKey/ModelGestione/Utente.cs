@@ -8,7 +8,7 @@ namespace SmartKey.ModelGestione
 {
     public sealed class Utente
     {
-        private static Utente _instance;
+        private static Utente _instance = null;
         private string _nomeHost = WindowsIdentity.GetCurrent().Name.ToString();
         private string _nomeUtente = WindowsIdentity.GetCurrent().User.ToString();
         private IDispositivo _dispositivo;

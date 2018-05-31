@@ -6,18 +6,39 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione
 {
-    class Blacklist
+    public sealed class Blacklist
     {
         private ISet<string> _blacklist;
+        //Serve per un implementazione thread safe di un singleton
+        private static readonly object padlock = new object();
+        private static Blacklist _instance;
 
-        public Blacklist()
+        private Blacklist()
         {
             _blacklist = new HashSet<string>();
         }
 
-        public Blacklist(ISet<string> blacklist)
+        public static Blacklist Instance
         {
-            this._blacklist = blacklist;
+            get
+            {
+                lock (padlock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Blacklist();
+                    }
+                    return _instance;
+                }
+            }
+        }
+        //Serve per settare al vol
+        public ISet<String> SetUtenti
+        {
+            set
+            {
+                _blacklist = value;
+            }
         }
 
         public bool AggiungiUtenteCattivo(string nomeUtente)
