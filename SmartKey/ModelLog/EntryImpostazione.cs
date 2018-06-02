@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,10 @@ namespace SmartKey.ModelLog
             {
                 return _destinatario;
             }
+        }
+        public override string ToString()
+        {
+            return "" + base.DataOra.ToLongTimeString() + " " + Utente.GetUtente().NomeHost + " "+Sorgente+" "+Destinatario;
         }
     }
 }

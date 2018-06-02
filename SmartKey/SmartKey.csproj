@@ -61,7 +61,7 @@
     <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
     <Compile Include="Controller\IObserver.cs" />
     <Compile Include="Controller\LogController.cs" />
-    <Compile Include="Controller\TestController\TestControllerImpostazione.cs" />
+    <Compile Include="Controller\TestController\TestImpostazioniController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

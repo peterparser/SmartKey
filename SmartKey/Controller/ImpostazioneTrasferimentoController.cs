@@ -8,7 +8,7 @@ using SmartKey.ModelLog;
 
 namespace SmartKey.Controller
 {
-    class ImpostazioneTrasferimentoController : IGestoreImpostazione
+    public class ImpostazioneTrasferimentoController : IGestoreImpostazione
     {
         IList<ImpostazioneTrasferimento> _impostazioni;
         public event EventHandler<ActionCompletedEvent> ToLog;

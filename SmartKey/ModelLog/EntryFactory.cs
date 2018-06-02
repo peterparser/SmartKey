@@ -11,17 +11,17 @@ namespace SmartKey.ModelLog
         public static Entry GetEntry(Controller.IController controller, string operazione, string sorgente="", string destinazione="")
         {
             
+            Type tipo = controller.GetType();
+            switch (tipo.Name)
             {
-                Type tipo = controller.GetType();
-                switch (tipo.Name)
-                {
-                    case ("ImpostazioneTrasferimentoController"):
-                        return new EntryImpostazione(operazione, sorgente, destinazione);
-                    default:
-                        return null;
-                }
-               
+                case ("ImpostazioneTrasferimentoController"):
+                    return new EntryImpostazione(operazione, sorgente, destinazione);
+                default:
+                    return null;
             }
+            //TODO bisogna implementare le altre entry
+               
+            
         }
     }
 }
