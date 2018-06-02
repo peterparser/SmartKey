@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione.Filesystem
 {
-    class Cartella : FilesystemElement
+   public class Cartella : FilesystemElement
     {
         private List<FilesystemElement> _children;
-
+      
         public Cartella(string path)
         {
+
             if(path != null)
             {
                 Path = path;
@@ -45,7 +46,6 @@ namespace SmartKey.ModelGestione.Filesystem
         {
             return _children.Find(x => x.Path.Equals(path));
         }
-
 
     }
 }

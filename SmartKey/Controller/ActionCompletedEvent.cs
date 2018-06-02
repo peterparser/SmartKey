@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.ModelLog
+namespace SmartKey.Controller
 {
-   public abstract class Entry
+   public class ActionCompletedEvent : EventArgs
     {
-        private DateTime _dataOra;
+        public string Action { get; set; }
     }
 }

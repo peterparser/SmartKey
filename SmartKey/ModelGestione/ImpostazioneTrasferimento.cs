@@ -1,4 +1,5 @@
-﻿using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
+﻿using SmartKey.ModelGestione.Filesystem;
+using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace SmartKey.ModelGestione
     {
         private string _verso;
         private Utente _utente = Utente.GetUtente();
-        private string _cartellaSorgente;
-        private string _cartellaDestinazione;
+        private Cartella _cartellaSorgente;
+        private Cartella _cartellaDestinazione;
 
 
         public ImpostazioneTrasferimento(string cartellaSorgente, string cartellaDestinazione)
@@ -21,7 +22,7 @@ namespace SmartKey.ModelGestione
             {
                 if(cartellaSorgente.Length < 261)
                 {
-                    _cartellaSorgente = cartellaSorgente;
+                    _cartellaSorgente = new Cartella(cartellaSorgente);
                 }
                 else
                 {
@@ -36,7 +37,7 @@ namespace SmartKey.ModelGestione
             {
                 if (cartellaDestinazione.Length < 261)
                 {
-                    _cartellaDestinazione = cartellaDestinazione;
+                    _cartellaDestinazione = new Cartella(cartellaDestinazione);
                 }
                 else
                 {
@@ -61,7 +62,7 @@ namespace SmartKey.ModelGestione
                 _verso = value;
             }
         }
-        public string CartellaSorgente
+        public Cartella CartellaSorgente
         {
             get
             {
@@ -76,7 +77,7 @@ namespace SmartKey.ModelGestione
                 }
                 else
                 {
-                    if(value.Length > 260)
+                    if(value.Path.Length > 260)
                     {
                         throw new PathNotValidException("Il path inserito è troppo lungo");
                     }
@@ -87,7 +88,7 @@ namespace SmartKey.ModelGestione
                 }
             }
         }
-        public string CartellaDestinazione
+        public Cartella CartellaDestinazione
         {
             get
             {
@@ -102,7 +103,7 @@ namespace SmartKey.ModelGestione
                 }
                 else
                 {
-                    if (value.Length > 260)
+                    if (value.Path.Length > 260)
                     {
                         throw new PathNotValidException("Il path inserito come cartella destinazione troppo lungo");
                     }

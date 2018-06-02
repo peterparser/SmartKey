@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione.Filesystem
 {
-    abstract class FilesystemElement
+    public abstract class FilesystemElement
     {
         private string _path;
 

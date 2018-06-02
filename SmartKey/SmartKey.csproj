@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ActionCompletedEvent.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\IGestoreImpostazione.cs" />
+    <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
+    <Compile Include="Controller\IObserver.cs" />
+    <Compile Include="Controller\LogController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

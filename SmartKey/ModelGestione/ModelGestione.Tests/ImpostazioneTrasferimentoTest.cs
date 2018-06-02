@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SmartKey.ModelGestione;
+using SmartKey.ModelGestione.Filesystem;
 
 namespace SmartKey.ModelGestione.ModelGestione.Tests
 {
@@ -48,27 +49,18 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         public void TestImpostazioneThrowLengthSetter()
         {
             ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("folderS", "folderD");
-            Assert.Throws<PathNotValidException>(() => impostazione.CartellaDestinazione = _veryLongElement);
-            Assert.Throws<PathNotValidException>(() => impostazione.CartellaSorgente = _veryLongElement);
+            Assert.Throws<PathNotValidException>(() => impostazione.CartellaDestinazione = new Cartella(_veryLongElement));
+            Assert.Throws<PathNotValidException>(() => impostazione.CartellaSorgente = new Cartella( _veryLongElement));
         }
         [TestCase]
         public void TestImpostazioneSetter()
         {
             ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("myDir", "yourDir");
-            impostazione.CartellaDestinazione = "CambiamentoDestinazione";
-            impostazione.CartellaSorgente = "CambiamentoSorgente";
-            Assert.AreEqual(impostazione.CartellaDestinazione, "CambiamentoDestinazione");
-            Assert.AreEqual(impostazione.CartellaSorgente, "CambiamentoSorgente");
+            impostazione.CartellaDestinazione = new Cartella("CambiamentoDestinazione");
+            impostazione.CartellaSorgente =  new Cartella("CambiamentoSorgente");
+            Assert.AreEqual(impostazione.CartellaDestinazione.Path, new Cartella("CambiamentoDestinazione").Path);
+            Assert.AreEqual(impostazione.CartellaSorgente.Path, new Cartella("CambiamentoSorgente").Path);
         }
-
-        [TestCase]
-        public void TestImpostazioneGetter()
-        {
-            ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("myDir", "yourDir");
-            Assert.AreEqual(impostazione.CartellaSorgente, "myDir");
-            Assert.AreEqual(impostazione.CartellaDestinazione, "yourDir");
-        }
-
        
     }
 }
