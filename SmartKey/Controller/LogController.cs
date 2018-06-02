@@ -10,7 +10,6 @@ namespace SmartKey.Controller
     class LogController : IObserver
     {
         private ILogPersistence _logPersistence;
-
         public LogController()
         {
             _logPersistence = new ConcreteLogPersistence();

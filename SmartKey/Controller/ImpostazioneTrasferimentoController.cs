@@ -18,8 +18,6 @@ namespace SmartKey.Controller
             _impostazioni = new List<ImpostazioneTrasferimento>();
         }
 
-        
-
         void IGestoreImpostazione.AddImpostazione(ImpostazioneTrasferimento impostazione)
         {
             _impostazioni.Add(impostazione);
