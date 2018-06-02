@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelGestione
 {
-    class Log
+    public class Log
     {
     }
 }

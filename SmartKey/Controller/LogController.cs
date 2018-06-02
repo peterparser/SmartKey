@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.LogPersistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,17 @@ namespace SmartKey.Controller
 {
     class LogController : IObserver
     {
-        //Test
-        public int Count { get; set; }
+        private ILogPersistence _logPersistence;
+
+        public LogController()
+        {
+            _logPersistence = new ConcreteLogPersistence();
+        }
+
         public void UpdateLog(object sender, EventArgs e)
         {
             ActionCompletedEvent param = (ActionCompletedEvent)e;
-            Console.WriteLine(param.Action);
-            Count = 10;
+            Console.WriteLine(param.ToEntry);
         }
     }
 }

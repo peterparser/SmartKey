@@ -67,6 +67,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogPersistence\ILogPersistence.cs" />
+    <Compile Include="LogPersistence\ConcreteLogPersistence.cs" />
     <Compile Include="ModelGestione\ChiaveUSB.cs" />
     <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Exceptions\PathNotValidException.cs" />
@@ -81,8 +83,9 @@
     <Compile Include="ModelLog\Entry.cs" />
     <Compile Include="ModelLog\EntryAnalisi.cs" />
     <Compile Include="ModelLog\EntryBlacklist.cs" />
+    <Compile Include="ModelLog\EntryFactory.cs" />
+    <Compile Include="ModelLog\EntryImpostazione.cs" />
     <Compile Include="ModelLog\EntrySincronizzazione.cs" />
-    <Compile Include="ModelLog\EntrySistema.cs" />
     <Compile Include="ModelLog\Log.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\BlacklistTest.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\UtenteTest.cs" />
@@ -119,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\TestController\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

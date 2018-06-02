@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelLog
 {
-    class EntrySincronizzazione : Entry
+    public class EntryImpostazione : Entry
     {
         private string _sorgente;
         private string _destinatario;
 
-        public EntrySincronizzazione(string operazione, string sorgente, string destinatario) : base (operazione)
+        public EntryImpostazione(string operazione, string sorgente, string destinatario) : base(operazione)
         {
             _sorgente = sorgente;
             _destinatario = destinatario;
@@ -32,4 +32,5 @@ namespace SmartKey.ModelLog
             }
         }
     }
+}
 }
