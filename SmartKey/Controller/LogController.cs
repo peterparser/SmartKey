@@ -16,15 +16,15 @@ namespace SmartKey.Controller
         public LogController()
         {
             _log = new Log();
-            _logPersistence = new ConcreteLogPersistence("log.xml",true);
+            _logPersistence = new ConcreteLogPersistence("log.txt",true);
         }
 
         public void UpdateLog(object sender, EventArgs e)
         {
           
             ActionCompletedEvent param = (ActionCompletedEvent)e;
-            Console.WriteLine(param.ToEntry);
-            ScriviEntry(param.ToEntry);
+            _log.AddEntry(param.ToEntry);
+            _logPersistence.ScriviLog(_log);
         }
         private void ScriviEntry(Entry e)
         {

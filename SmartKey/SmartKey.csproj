@@ -56,7 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ActionCompletedEvent.cs" />
+    <Compile Include="Controller\BlackListController.cs" />
     <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\IGestoreBlacklist.cs" />
     <Compile Include="Controller\IGestoreImpostazione.cs" />
     <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
     <Compile Include="Controller\IObserver.cs" />
