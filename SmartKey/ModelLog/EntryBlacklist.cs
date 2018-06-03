@@ -31,5 +31,9 @@ namespace SmartKey.ModelLog
                 return _utenteMalevolo;
             }
         }
+        public override string ToString()
+        {
+            return "" + base.DataOra + "\t" + UtenteMalevolo + "\t" + UtenteProprietario;
+        }
     }
 }

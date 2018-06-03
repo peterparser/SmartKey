@@ -34,7 +34,7 @@ namespace SmartKey.ModelLog
         }
         public override string ToString()
         {
-            return "" + base.DataOra.ToLongTimeString() + " " + Utente.GetUtente().NomeHost + " "+Sorgente+" "+Destinatario;
+            return "" + base.DataOra.ToLongTimeString() + "\t" + Utente.GetUtente().NomeHost + "\t"+Sorgente+"\t"+Destinatario;
         }
     }
 }

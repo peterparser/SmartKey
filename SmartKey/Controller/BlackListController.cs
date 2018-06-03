@@ -1,4 +1,5 @@
 ﻿using SmartKey.ModelGestione;
+using SmartKey.ModelLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,35 @@ namespace SmartKey.Controller
         {
             if (_blacklist.AggiungiUtenteCattivo(utente))
             {
-                //TODO EVENTO INSERITO
+                if (ToLog != null)
+                {
+                    //Creazione del parametro da passare quando scateno l'evento
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.GetEntry(this, "aggiunto", utente)
+                    };
+                    //scateno gli handler registrati all'evento
+                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    {
+                        completed(this, args);
+                    }
+                }
             }
             else
             {
-                // TODO EVENTO NON INSERITO
+                if (ToLog != null)
+                {
+                    //Creazione del parametro da passare quando scateno l'evento
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.GetEntry(this, "non aggiunto", utente)
+                    };
+                    //scateno gli handler registrati all'evento
+                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    {
+                        completed(this, args);
+                    }
+                }
             }
         }
 
