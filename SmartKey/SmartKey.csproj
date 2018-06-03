@@ -57,11 +57,11 @@
   <ItemGroup>
     <Compile Include="Controller\ActionCompletedEvent.cs" />
     <Compile Include="Controller\BlackListController.cs" />
-    <Compile Include="Controller\IController.cs" />
-    <Compile Include="Controller\IGestoreBlacklist.cs" />
-    <Compile Include="Controller\IGestoreImpostazione.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IController.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IGestoreBlacklist.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IGestoreImpostazione.cs" />
     <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
-    <Compile Include="Controller\IObserver.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IObserver.cs" />
     <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\TestController\TestImpostazioniController.cs" />
     <Compile Include="Form1.cs">
