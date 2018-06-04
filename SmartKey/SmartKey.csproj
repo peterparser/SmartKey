@@ -64,6 +64,11 @@
     <Compile Include="Controller\Controller.Interfaces\IObserver.cs" />
     <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\TestController\TestImpostazioniController.cs" />
+    <Compile Include="DataPersistence\BlacklistPersistenceTest.cs" />
+    <Compile Include="DataPersistence\IDataPersistence.cs" />
+    <Compile Include="DataPersistence\PersistenceException.cs" />
+    <Compile Include="DataPersistence\XMLBlacklistPersistence.cs" />
+    <Compile Include="DataPersistence\XMLDataPersistence.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

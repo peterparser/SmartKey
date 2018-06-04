@@ -55,24 +55,51 @@ namespace SmartKey.Controller
 
         public bool IsBlackListed(string utente)
         {
-            throw new NotImplementedException();
+            return _blacklist.IsInBlacklist(utente);
         }
 
         public void RimuoviUtente(string utente)
         {
             if (_blacklist.EliminaUtenteCattivo(utente))
             {
-                //TODO EVENTO RIMOSSO
+                if (ToLog != null)
+                {
+                    //Creazione del parametro da passare quando scateno l'evento
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.GetEntry(this, "rimosso", utente)
+                    };
+                    //scateno gli handler registrati all'evento
+                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    {
+                        completed(this, args);
+                    }
+                }
             }
             else
             {
-                //TODO EVENTO NON RIMOSSSOO
+                if (ToLog != null)
+                {
+                    //Creazione del parametro da passare quando scateno l'evento
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.GetEntry(this, "non rimosso", utente)
+                    };
+                    //scateno gli handler registrati all'evento
+                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    {
+                        completed(this, args);
+                    }
+                }
             }
         }
-
         public void SetBlackList(ISet<string> blacklist)
         {
             _blacklist.SetUtenti = blacklist;
+        }
+        public ISet<String> GetUtentiInBlackList()
+        {
+            return _blacklist.SetUtenti;
         }
     }
 }

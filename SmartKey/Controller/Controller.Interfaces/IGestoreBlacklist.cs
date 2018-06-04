@@ -11,7 +11,8 @@ namespace SmartKey.Controller
         void SetBlackList(ISet<string> blacklist);
         void AggiungiUtente(string utente);
         void RimuoviUtente(string utente);
-        bool IsBlackListed(string utente);  
+        bool IsBlackListed(string utente);
+        ISet<String> GetUtentiInBlackList();
 
     }
 }
