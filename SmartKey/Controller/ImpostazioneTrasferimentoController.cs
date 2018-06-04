@@ -8,7 +8,7 @@ using SmartKey.ModelLog;
 
 namespace SmartKey.Controller
 {
-    class ImpostazioneTrasferimentoController : IGestoreImpostazione
+    public class ImpostazioneTrasferimentoController : IGestoreImpostazione
     {
         IList<ImpostazioneTrasferimento> _impostazioni;
         public event EventHandler<ActionCompletedEvent> ToLog;
@@ -18,17 +18,18 @@ namespace SmartKey.Controller
             _impostazioni = new List<ImpostazioneTrasferimento>();
         }
 
-        
-
         void IGestoreImpostazione.AddImpostazione(ImpostazioneTrasferimento impostazione)
         {
             _impostazioni.Add(impostazione);
            if(ToLog != null)
             {
+                //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    Action = "Aggiunta Impostazione"
+                    ToEntry = EntryFactory.GetEntry(this, "aggiunta", impostazione.CartellaSorgente.Path,
+                    impostazione.CartellaDestinazione.Path)
                 };
+                //scateno gli handler registrati all'evento
                 foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
                 {
                     completed(this, args);
@@ -43,7 +44,26 @@ namespace SmartKey.Controller
 
         bool IGestoreImpostazione.RemoveImpostazione(ImpostazioneTrasferimento impostazione)
         {
-            return _impostazioni.Remove(impostazione);
+            bool toOut = _impostazioni.Remove(impostazione);
+            if (toOut)
+            {
+                if (ToLog != null)
+                {
+                    //Creazione dei parametri da passare agli handler dell'evento
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.GetEntry(this, "rimossa", impostazione.CartellaSorgente.Path,
+                    impostazione.CartellaDestinazione.Path)
+                    };
+
+                    //Scateno l'evento
+                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    {
+                        completed(this, args);
+                    }
+                }
+            }
+            return toOut;
         }
 
         void IGestoreImpostazione.SetImpostazioni(IList<ImpostazioneTrasferimento> impostazioni)

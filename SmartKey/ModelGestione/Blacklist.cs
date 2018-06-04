@@ -39,6 +39,10 @@ namespace SmartKey.ModelGestione
             {
                 _blacklist = value;
             }
+            get
+            {
+                return _blacklist;
+            }
         }
 
         public bool AggiungiUtenteCattivo(string nomeUtente)

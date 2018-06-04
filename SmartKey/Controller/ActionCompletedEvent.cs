@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace SmartKey.Controller
 {
    public class ActionCompletedEvent : EventArgs
     {
-        public string Action { get; set; }
+       public Entry ToEntry { get; set; }
     }
 }

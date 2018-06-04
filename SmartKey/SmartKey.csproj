@@ -56,17 +56,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ActionCompletedEvent.cs" />
-    <Compile Include="Controller\IController.cs" />
-    <Compile Include="Controller\IGestoreImpostazione.cs" />
+    <Compile Include="Controller\BlackListController.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IController.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IGestoreBlacklist.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IGestoreImpostazione.cs" />
     <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
-    <Compile Include="Controller\IObserver.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IObserver.cs" />
     <Compile Include="Controller\LogController.cs" />
+    <Compile Include="Controller\TestController\TestImpostazioniController.cs" />
+    <Compile Include="DataPersistence\BlacklistPersistenceTest.cs" />
+    <Compile Include="DataPersistence\IDataPersistence.cs" />
+    <Compile Include="DataPersistence\PersistenceException.cs" />
+    <Compile Include="DataPersistence\XMLBlacklistPersistence.cs" />
+    <Compile Include="DataPersistence\XMLDataPersistence.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogPersistence\ILogPersistence.cs" />
+    <Compile Include="LogPersistence\ConcreteLogPersistence.cs" />
     <Compile Include="ModelGestione\ChiaveUSB.cs" />
     <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Exceptions\PathNotValidException.cs" />
@@ -81,14 +91,16 @@
     <Compile Include="ModelLog\Entry.cs" />
     <Compile Include="ModelLog\EntryAnalisi.cs" />
     <Compile Include="ModelLog\EntryBlacklist.cs" />
+    <Compile Include="ModelLog\EntryFactory.cs" />
+    <Compile Include="ModelLog\EntryImpostazione.cs" />
     <Compile Include="ModelLog\EntrySincronizzazione.cs" />
-    <Compile Include="ModelLog\EntrySistema.cs" />
     <Compile Include="ModelLog\Log.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\BlacklistTest.cs" />
     <Compile Include="ModelGestione\ModelGestione.Tests\UtenteTest.cs" />
     <Compile Include="ModelGestione\Blacklist.cs" />
     <Compile Include="ModelGestione\IDispositivo.cs" />
     <Compile Include="ModelGestione\Utente.cs" />
+    <Compile Include="ModelLog\TestLog\TestFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -120,6 +132,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

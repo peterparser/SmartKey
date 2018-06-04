@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ModelLog
 {
-    class EntryAnalisi : Entry
+    public class EntryAnalisi : Entry
     {
+        public EntryAnalisi(string operazione): base(operazione)
+        {
+           
+        }
     }
 }
