@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Controller.Controller.Interfaces
 {
-    interface IPersistable
+    public interface IPersistActions
     {
-        event EventHandler<PersistEvent> Persist;
+         event EventHandler<PersistEvent> Persist;
     }
 }

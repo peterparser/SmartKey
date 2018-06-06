@@ -60,7 +60,7 @@
     <Compile Include="Controller\Controller.Interfaces\IController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IGestoreBlacklist.cs" />
     <Compile Include="Controller\Controller.Interfaces\IGestoreImpostazione.cs" />
-    <Compile Include="Controller\Controller.Interfaces\IPersistable.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IPersistActions.cs" />
     <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IObserver.cs" />
     <Compile Include="Controller\LogController.cs" />

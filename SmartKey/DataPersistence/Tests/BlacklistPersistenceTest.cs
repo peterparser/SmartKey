@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SmartKey.Controller;
+using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.ModelGestione;
 using System;
 using System.Collections.Generic;
@@ -13,41 +14,34 @@ namespace SmartKey.DataPersistence
     class BlacklistPersistenceTest
     {
         private const string PATH = @"C:\Users\massi\Desktop\blacklist.xml";
-        [TestCase(Category ="BlacklistPersistence")]
-        public void TestWriteXMLBlacklist()
+        [TestCase(Category = "BlacklistPersistence")]
+        public void TestReadWriteXMLBlacklist()
         {
+            //Crea correttamente le entry, precaricando la blacklist non inserisce duplicati
             XMLDataPersistence bpers = new XMLBlacklistPersistence(PATH);
             IGestoreBlacklist bcontr = new BlackListController();
-            bcontr.AggiungiUtente("AlCapone");
-            bcontr.AggiungiUtente("Anonymous");
-            bcontr.AggiungiUtente("NotMySelf");
-            bpers.Salva(bcontr.GetUtentiInBlackList());
+            try
+            {
+                ISet<String> black = (ISet<string>)bpers.Carica();
+                bcontr.SetBlackList(black);
+            }
+            catch (PersistenceException e)
+            {
 
-        }
-
-        [TestCase(Category = "BlacklistPersistence")]
-        public void TestReadXMLBlacklist()
-        {
-            XMLDataPersistence bPers = new XMLBlacklistPersistence(PATH);
-            IGestoreBlacklist bcontr = new BlackListController();
-            ISet<String> mySet = (ISet<String>)bPers.Carica(Utente.GetUtente());
-            Assert.IsTrue(mySet.Contains("AlCapone"));
-            Assert.IsTrue(mySet.Contains("Anonymous"));
-            Assert.IsTrue(mySet.Contains("NotMySelf"));
-            Assert.IsFalse(mySet.Contains("Miciomao"));
-        }
-
-        [TestCase(Category = "BlacklistPersistence")]
-        public void TestModifyXMLBlacklist()
-        {
-            XMLDataPersistence bPers = new XMLBlacklistPersistence(PATH);
-            IGestoreBlacklist bcontr = new BlackListController();
-            ISet<String> mySet = (ISet<String>)bPers.Carica(Utente.GetUtente());
-            bcontr.SetBlackList(mySet);
-            bcontr.AggiungiUtente("MIAO");
-            bPers.Salva(bcontr.GetUtentiInBlackList());
-            mySet = (ISet<String>)bPers.Carica(Utente.GetUtente());
-            Assert.IsTrue(mySet.Contains("MIAO"));
+            }
+            finally
+            {
+                ((IPersistActions)bcontr).Persist += bpers.Salva;
+                bcontr.AggiungiUtente("AlCapone");
+                bcontr.AggiungiUtente("Anonymous");
+                bcontr.AggiungiUtente("NotMySelf");
+                bcontr.RimuoviUtente("AlCapone");
+                //Teoricamente il file dovrebbe esistere, lo leggo e testo che abbia effettivamente le entry giuste
+                bcontr.SetBlackList((ISet<string>)bpers.Carica());
+                Assert.IsTrue(bcontr.IsBlackListed("Anonymous"));
+                Assert.IsTrue(bcontr.IsBlackListed("NotMySelf"));
+                Assert.IsFalse(bcontr.IsBlackListed("AlCapone"));
+            }
         }
     }
 }

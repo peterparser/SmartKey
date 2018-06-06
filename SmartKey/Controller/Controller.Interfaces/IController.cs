@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.Controller
+namespace SmartKey.Controller.Controller.Interfaces
 {
     public interface IController
     {

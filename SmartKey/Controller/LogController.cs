@@ -1,4 +1,5 @@
-﻿using SmartKey.LogPersistence;
+﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.LogPersistence;
 using SmartKey.ModelGestione;
 using SmartKey.ModelLog;
 using System;

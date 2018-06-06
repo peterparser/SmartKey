@@ -14,7 +14,7 @@ namespace SmartKey.DataPersistence
         {
         }
 
-        public override object Carica(Utente utente)
+        public override object Carica()
         {
             XmlDocument xdocument = new XmlDocument();
             try
@@ -24,7 +24,7 @@ namespace SmartKey.DataPersistence
                 IList<ImpostazioneTrasferimento> settings = new List<ImpostazioneTrasferimento>();
                 foreach(XmlNode node in nodelist)
                 {
-                    if (node.Attributes.GetNamedItem("utente").Value.Equals(utente.NomeHost))
+                    if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
                     {
                         string cartellaSorgente, cartellaDestinazione;
                         cartellaSorgente = null;
@@ -48,9 +48,9 @@ namespace SmartKey.DataPersistence
 
         //Si suppone che object o sia una impostazione trasferimento
 
-        public override void Salva(object o)
+        public override void Salva(object o, PersistEvent param)
         {
-            
+            //
         }
     }
 }

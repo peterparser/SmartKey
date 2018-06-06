@@ -48,7 +48,7 @@ namespace SmartKey.DataPersistence
 
         public override void Salva(object o, PersistEvent param)
         {
-            ISet<string> set = (ISet<String>)o;
+            string badUser = (string)param.ToPersist;
             //Questo metodo riceverà un set di stringhe quindi effettuo il cast
             //prima il documento andrà letto
             XmlDocument xdocument = new XmlDocument();
@@ -59,25 +59,37 @@ namespace SmartKey.DataPersistence
                 //Flusso normale il file esiste
                 //Prendo tutti i nodi blacklist
                 XmlNodeList blacklists = xdocument.SelectNodes("/blacklists/blacklist");
-                //Itero sui nodi
-                foreach(XmlNode blacklist in blacklists)
-                {
-                    //Cerco la blacklist che mi appartiene
-                    if(blacklist.Attributes.GetNamedItem("proprietario").Value
-                        .Equals(Utente.GetUtente().NomeHost))
-                    {
-                        //Rimuovo tutti gli utenti dalla blacklist
-                        blacklist.RemoveAll();
-                        ((XmlElement)blacklist).SetAttribute("proprietario", Utente.GetUtente().NomeHost);
-                        
-                        //Reinserisco tutti per evitare duplicati
-                        foreach (string utente in set)
-                        {
-                            var utentexml = xdocument.CreateElement("utente");
-                            utentexml.InnerText = utente;
-                            blacklist.AppendChild(utentexml);
-                        }
+                /*DA LEGGERE PER CAPIRE IL FLUSSO*/
 
+                //Da inserire cosa fare dipendentemente dall'azione
+                //se l'aggiunta va a buon fine aggiungo senza controllare
+                //Dato che il set mi ha dato true nel controller
+                //Questa voce è univoca
+
+                //Idem per la delete, se lo tolgo e l'operazione ha dato true
+                //Cerco la entry e la tolgo a colpo sicuro
+                //Per prima cosa trovo la mia blacklist
+                foreach (XmlNode blacklist in blacklists)
+                {
+                    if (blacklist.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetUtente().NomeHost))
+                    {
+                        //Se l'operazione era di aggiunta appendo l'elemento
+                        if (param.Action.Equals("aggiungi"))
+                        {
+                            var xutente = xdocument.CreateElement("utente");
+                            xutente.InnerText = badUser;
+                            blacklist.AppendChild(xutente);
+                        //Se era rimuovi -> rimuovo like pino la lavatrice
+                        }else if(param.Action.Equals("rimuovi"))
+                        {
+                            foreach(XmlNode user in blacklist.ChildNodes)
+                            {
+                                if (user.InnerText.Equals(badUser))
+                                {
+                                    blacklist.RemoveChild(user);
+                                }
+                            }
+                        }
                     }
                 }
                 XmlWriterSettings settings = new XmlWriterSettings
@@ -92,6 +104,9 @@ namespace SmartKey.DataPersistence
             }
             catch (Exception e)
             {
+                //Tutto da fare solamente in caso di add,
+                //Dato che il file è vuoto, non esistono regole
+                //La remove non avrebbe senso
                 xdocument = new XmlDocument();
                 //flusso anormale il file non esiste
                 //creo il tag blacklists
@@ -100,13 +115,12 @@ namespace SmartKey.DataPersistence
                 XmlElement blacklist = xdocument.CreateElement("blacklist");
                 //metto l'attributo per il proprietario
                 blacklist.SetAttribute("proprietario", Utente.GetUtente().NomeHost);
-                //Aggiungo tutti i vari utenti al dom
-                foreach (string utente in set)
-                {
-                    var utentexml = xdocument.CreateElement("utente");
-                    utentexml.InnerText = utente;
-                    blacklist.AppendChild(utentexml);
-                }
+                //Aggiungo l'utente al dom
+
+                var utentexml = xdocument.CreateElement("utente");
+                utentexml.InnerText = badUser;
+                blacklist.AppendChild(utentexml);
+
                 //Aggangio la blacklist al nostro contenitore blacklists
                 blacklists.AppendChild(blacklist);
                 //Solfa per creare il documento xml
