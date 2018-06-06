@@ -33,8 +33,8 @@ namespace SmartKey.DataPersistence
                         {
                             if (settingNode.Name.Equals("cartella-sorgente")) cartellaSorgente = settingNode.InnerText;
                             if (settingNode.Name.Equals("cartella-destinazione")) cartellaDestinazione = settingNode.InnerText;
-                            settings.Add(new ImpostazioneTrasferimento(cartellaSorgente, cartellaDestinazione));
                         }
+                        settings.Add(new ImpostazioneTrasferimento(cartellaSorgente, cartellaDestinazione));
                     }
                 }
                 return settings;
@@ -58,7 +58,7 @@ namespace SmartKey.DataPersistence
                 xdocument.Load(Filename);
                 //Dato che sono stato chiamato e il file esiste, si suppone che ci sia da fare un inserimento consono
                 //Mi ri-permetto di andare liscio (a spade)
-                XmlNode impostazioniMainNode = xdocument.DocumentElement.FirstChild;
+                XmlNode impostazioniMainNode = xdocument.DocumentElement;
                 if (param.Action.Equals("aggiungi"))
                 {
                     //Caso di aggiunta si veda sotto nel catch per commenti dettagliati
@@ -85,9 +85,10 @@ namespace SmartKey.DataPersistence
                         if (impostazioneNode.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
                         {
                             //Controllo il contenuto
-                            bool found = false;
+                            bool found = true;
                             foreach(XmlNode valueImpostazione in impostazioneNode.ChildNodes)
                             {
+                                if(!valueImpostazione.Name.Equals("verso"))
                                 found = found && (
                                     ((valueImpostazione.Name.Equals("cartella-sorgente") &&
                                     valueImpostazione.InnerText.Equals(toPut.CartellaSorgente.Path)) )||
@@ -98,9 +99,15 @@ namespace SmartKey.DataPersistence
                         }
                     }
                 }
-
-
-
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true
+                };
+                //Scrivo il file
+                XmlWriter writer = XmlWriter.Create(Filename, settings);
+                xdocument.Save(writer);
+                //Ricordarsi la close sennò si hanno vari problemi
+                writer.Close();
             }
             catch
             {

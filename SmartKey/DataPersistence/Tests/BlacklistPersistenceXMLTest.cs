@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SmartKey.DataPersistence
 {
     [TestFixture]
-    class BlacklistPersistenceTest
+    class BlacklistPersistenceXMLTest
     {
         private const string PATH = @"C:\Users\massi\Desktop\blacklist.xml";
         [TestCase(Category = "BlacklistPersistence")]

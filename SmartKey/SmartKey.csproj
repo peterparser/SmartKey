@@ -66,9 +66,10 @@
     <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\TestController\TestImpostazioniController.cs" />
     <Compile Include="DataPersistence\PersistEvent.cs" />
-    <Compile Include="DataPersistence\Tests\BlacklistPersistenceTest.cs" />
+    <Compile Include="DataPersistence\Tests\BlacklistPersistenceXMLTest.cs" />
     <Compile Include="DataPersistence\IDataPersistence.cs" />
     <Compile Include="DataPersistence\PersistenceException.cs" />
+    <Compile Include="DataPersistence\Tests\ImpostazioniTrasfermientoPersistenceXMLTest.cs" />
     <Compile Include="DataPersistence\XMLBlacklistPersistence.cs" />
     <Compile Include="DataPersistence\XMLDataPersistence.cs" />
     <Compile Include="DataPersistence\XMLImpostazioniPersistence.cs" />
