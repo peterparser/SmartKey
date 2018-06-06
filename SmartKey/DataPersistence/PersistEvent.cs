@@ -1,5 +1,4 @@
-﻿using SmartKey.ModelGestione;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SmartKey.DataPersistence
 {
-    interface IDataPersistence
+    public class PersistEvent : EventArgs
+  
     {
-       object Carica();
-       void Salva(object o, PersistEvent e);
+        public object ToPersist { get; set; }
+        public string Action { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace SmartKey.DataPersistence
     {
         public XMLBlacklistPersistence(string filename) : base(filename) { }
         
-        public override object Carica(Utente utente)
+        public override object Carica()
         {
             XmlDocument xdocument = new XmlDocument();
             try
@@ -30,7 +30,7 @@ namespace SmartKey.DataPersistence
                 foreach (XmlNode node in nodelist)
                 {
                     //Se quell'elemento blacklist ha "me" come proprietario allora è la mia blacklist
-                    if (node.Attributes.GetNamedItem("proprietario").Value.Equals(utente.NomeHost)){
+                    if (node.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetUtente().NomeHost)){
                         //Itero sui figli di quel nodo per prendere tutti gli utenti nella mia blacklist
                         foreach(XmlNode utenti in node.ChildNodes)
                         {
@@ -46,7 +46,7 @@ namespace SmartKey.DataPersistence
             }
         }
 
-        public override void Salva(object o)
+        public override void Salva(object o, PersistEvent param)
         {
             ISet<string> set = (ISet<String>)o;
             //Questo metodo riceverà un set di stringhe quindi effettuo il cast
@@ -56,6 +56,7 @@ namespace SmartKey.DataPersistence
             {
                 //Carico il documento xml
                 xdocument.Load(Filename);
+                //Flusso normale il file esiste
                 //Prendo tutti i nodi blacklist
                 XmlNodeList blacklists = xdocument.SelectNodes("/blacklists/blacklist");
                 //Itero sui nodi
@@ -79,14 +80,14 @@ namespace SmartKey.DataPersistence
 
                     }
                 }
-                //Flusso normale il file esiste
-                //TODO MODIFICA FILE XML
                 XmlWriterSettings settings = new XmlWriterSettings
                 {
                     Indent = true
                 };
+                //Scrivo il file
                 XmlWriter writer = XmlWriter.Create(Filename, settings);
                 xdocument.Save(writer);
+                //Ricordarsi la close sennò si hanno vari problemi
                 writer.Close();
             }
             catch (Exception e)
@@ -99,21 +100,26 @@ namespace SmartKey.DataPersistence
                 XmlElement blacklist = xdocument.CreateElement("blacklist");
                 //metto l'attributo per il proprietario
                 blacklist.SetAttribute("proprietario", Utente.GetUtente().NomeHost);
+                //Aggiungo tutti i vari utenti al dom
                 foreach (string utente in set)
                 {
                     var utentexml = xdocument.CreateElement("utente");
                     utentexml.InnerText = utente;
                     blacklist.AppendChild(utentexml);
                 }
+                //Aggangio la blacklist al nostro contenitore blacklists
                 blacklists.AppendChild(blacklist);
+                //Solfa per creare il documento xml
                 XmlDeclaration xmlDeclaration = xdocument.CreateXmlDeclaration("1.0", "UTF-8", null);
                 XmlElement root = xdocument.DocumentElement;
                 xdocument.InsertBefore(xmlDeclaration, root);
+                //Aggiungo blacklists al dom
                 xdocument.AppendChild(blacklists);
                 XmlWriterSettings settings = new XmlWriterSettings
                 {
                     Indent = true
                 };
+                //Aggiungo il writer
                 XmlWriter writer = XmlWriter.Create(Filename, settings);
                 XmlSchemaSet schemas = new XmlSchemaSet();
                 //Bisogna trovare una LLLLLLOCATION per tutte queste impostazioni
@@ -121,6 +127,7 @@ namespace SmartKey.DataPersistence
                 xdocument.Schemas = schemas;
                 try
                 {
+                    //Scrivo il file
                     xdocument.Validate((oggetto, handler) => { });
                     xdocument.Save(writer);
                     writer.Close();

@@ -21,7 +21,7 @@ namespace SmartKey.DataPersistence
         {
             _filename = filename;
         }
-        public abstract object Carica(Utente utente);
-        public abstract void Salva(object o);
+        public abstract object Carica();
+        public abstract void Salva(object o, PersistEvent e);
     }
 }

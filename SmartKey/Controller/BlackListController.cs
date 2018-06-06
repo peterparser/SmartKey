@@ -1,4 +1,6 @@
-﻿using SmartKey.ModelGestione;
+﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.DataPersistence;
+using SmartKey.ModelGestione;
 using SmartKey.ModelLog;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Controller
 {
-    class BlackListController : IGestoreBlacklist
+    class BlackListController : IGestoreBlacklist, IPersistable
     {
         public event EventHandler<ActionCompletedEvent> ToLog;
+        public event EventHandler<PersistEvent> Persist;
+
         private Blacklist _blacklist;
         
         public BlackListController()
@@ -28,11 +32,14 @@ namespace SmartKey.Controller
                     {
                         ToEntry = EntryFactory.GetEntry(this, "aggiunto", utente)
                     };
-                    //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    PersistEvent toPersist = new PersistEvent
                     {
-                        completed(this, args);
-                    }
+                        Action = "aggiungi",
+                        ToPersist = utente
+                    };
+                    //scateno gli handler registrati all'evento
+                    ToLog.Invoke(this, args);
+                    Persist?.Invoke(this, toPersist);
                 }
             }
             else
@@ -45,10 +52,7 @@ namespace SmartKey.Controller
                         ToEntry = EntryFactory.GetEntry(this, "non aggiunto", utente)
                     };
                     //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
-                    {
-                        completed(this, args);
-                    }
+                    ToLog.Invoke(this, args);
                 }
             }
         }
@@ -70,10 +74,14 @@ namespace SmartKey.Controller
                         ToEntry = EntryFactory.GetEntry(this, "rimosso", utente)
                     };
                     //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
+                    PersistEvent toPersist = new PersistEvent
                     {
-                        completed(this, args);
-                    }
+                        Action = "aggiungi",
+                        ToPersist = utente
+                    };
+                    //scateno gli handler registrati all'evento
+                    ToLog.Invoke(this, args);
+                    Persist?.Invoke(this, toPersist);
                 }
             }
             else
@@ -86,10 +94,7 @@ namespace SmartKey.Controller
                         ToEntry = EntryFactory.GetEntry(this, "non rimosso", utente)
                     };
                     //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
-                    {
-                        completed(this, args);
-                    }
+                    ToLog.Invoke(this, args);
                 }
             }
         }
