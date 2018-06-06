@@ -21,7 +21,7 @@ namespace SmartKey.DataPersistence
             {
                 xdocument.Load(Filename);
                 XmlNodeList nodelist = xdocument.SelectNodes("/impostazioni/impostazione");
-                IList<ImpostazioneTrasferimento> settings = new List<ImpostazioneTrasferimento>();
+                ISet<ImpostazioneTrasferimento> settings = new HashSet<ImpostazioneTrasferimento>();
                 foreach(XmlNode node in nodelist)
                 {
                     if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
@@ -50,7 +50,100 @@ namespace SmartKey.DataPersistence
 
         public override void Salva(object o, PersistEvent param)
         {
-            //
+            //TODO Bel controllo sul tipo con la reflection
+            ImpostazioneTrasferimento toPut = (ImpostazioneTrasferimento)param.ToPersist;
+            XmlDocument xdocument = new XmlDocument();
+            try
+            {
+                xdocument.Load(Filename);
+                //Dato che sono stato chiamato e il file esiste, si suppone che ci sia da fare un inserimento consono
+                //Mi ri-permetto di andare liscio (a spade)
+                XmlNode impostazioniMainNode = xdocument.DocumentElement.FirstChild;
+                if (param.Action.Equals("aggiungi"))
+                {
+                    //Caso di aggiunta si veda sotto nel catch per commenti dettagliati
+                    XmlElement xImpostazione = xdocument.CreateElement("impostazione");
+                    xImpostazione.SetAttribute("utente", Utente.GetUtente().NomeHost);
+                    XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
+                    cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
+                    XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
+                    cartellaDestinazione.InnerText = toPut.CartellaDestinazione.Path;
+                    XmlElement verso = xdocument.CreateElement("verso");
+                    verso.InnerText = toPut.Verso;
+                    xImpostazione.AppendChild(cartellaSorgente);
+                    xImpostazione.AppendChild(cartellaDestinazione);
+                    xImpostazione.AppendChild(verso);
+                    impostazioniMainNode.AppendChild(xImpostazione);
+                }
+                else if (param.Action.Equals("rimuovi"))
+                {
+                    //Caso di rimozione
+                    //Itero, trovo l'impostazione che fa al caso mio e la rimuovo da impostazioni main node
+                    //E tutti amici come prima
+                    foreach(XmlNode impostazioneNode in impostazioniMainNode.ChildNodes)
+                    {
+                        if (impostazioneNode.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
+                        {
+                            //Controllo il contenuto
+                            bool found = false;
+                            foreach(XmlNode valueImpostazione in impostazioneNode.ChildNodes)
+                            {
+                                found = found && (
+                                    ((valueImpostazione.Name.Equals("cartella-sorgente") &&
+                                    valueImpostazione.InnerText.Equals(toPut.CartellaSorgente.Path)) )||
+                                    (valueImpostazione.Name.Equals("cartella-destinazione") && 
+                                    valueImpostazione.InnerText.Equals(toPut.CartellaDestinazione.Path)));
+                            }
+                            if (found) impostazioniMainNode.RemoveChild(impostazioneNode);
+                        }
+                    }
+                }
+
+
+
+            }
+            catch
+            {
+                //Il documento esiste, aggiungo andando liscio(a spade)
+                xdocument = new XmlDocument();
+                //Creo il tag contenitore
+                XmlElement impostazioni = xdocument.CreateElement("impostazioni");
+                //Creo il tag per la mia impostazione
+                XmlElement impostazione = xdocument.CreateElement("impostazione");
+                //Imposto l'attributo utente in modo consono
+                impostazione.SetAttribute("utente", Utente.GetUtente().NomeHost);
+                
+                //Creo gli i figli che compongono il tag impostazione e gli do il valore che devo inserire
+                XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
+                cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
+                XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
+                cartellaDestinazione.InnerText = toPut.CartellaDestinazione.Path;
+                XmlElement verso = xdocument.CreateElement("verso");
+                verso.InnerText = toPut.Verso;
+                
+                //Creo l'albero XML da aggiungere al DOM appena verra creato
+                impostazione.AppendChild(cartellaSorgente);
+                impostazione.AppendChild(cartellaDestinazione);
+                impostazione.AppendChild(verso);
+                impostazioni.AppendChild(impostazione);
+                XmlDeclaration xmlDeclaration = xdocument.CreateXmlDeclaration("1.0", "UTF-8", null);
+                //Creo la document root
+                XmlElement root = xdocument.DocumentElement;
+                xdocument.InsertBefore(xmlDeclaration, root);
+                //Aggiungo impostazioni al dom
+                xdocument.AppendChild(impostazioni);
+                
+                //Scrivo il file
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true
+                };
+                //Aggiungo il writer
+                XmlWriter writer = XmlWriter.Create(Filename, settings);
+                //TODO Aggiungere lo schema
+                xdocument.Save(writer);
+                writer.Close();
+            }
         }
     }
 }

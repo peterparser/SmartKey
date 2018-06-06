@@ -44,7 +44,7 @@ namespace SmartKey.Controller
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "non aggiunto", utente)
+                    ToEntry = EntryFactory.GetEntry(this, "nonaggiunto", utente)
                 };
                 //scateno gli handler registrati all'evento
                     ToLog?.Invoke(this, args);
@@ -80,7 +80,7 @@ namespace SmartKey.Controller
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "non rimosso", utente)
+                    ToEntry = EntryFactory.GetEntry(this, "nonrimosso", utente)
                 };
                 //scateno gli handler registrati all'evento
                 ToLog?.Invoke(this, args);

@@ -10,7 +10,7 @@ namespace SmartKey.ModelGestione.Filesystem
    public class Cartella : FilesystemElement
     {
         private List<FilesystemElement> _children;
-      
+        private Cartella _parent;
         public Cartella(string path)
         {
 

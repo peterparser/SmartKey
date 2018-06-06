@@ -48,6 +48,7 @@ namespace SmartKey.DataPersistence
 
         public override void Salva(object o, PersistEvent param)
         {
+            //TODO bel controllo sul tipo con reflection
             string badUser = (string)param.ToPersist;
             //Questo metodo riceverà un set di stringhe quindi effettuo il cast
             //prima il documento andrà letto
