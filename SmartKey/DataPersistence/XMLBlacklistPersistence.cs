@@ -54,10 +54,40 @@ namespace SmartKey.DataPersistence
             XmlDocument xdocument = new XmlDocument();
             try
             {
+                //Carico il documento xml
                 xdocument.Load(Filename);
+                //Prendo tutti i nodi blacklist
+                XmlNodeList blacklists = xdocument.SelectNodes("/blacklists/blacklist");
+                //Itero sui nodi
+                foreach(XmlNode blacklist in blacklists)
+                {
+                    //Cerco la blacklist che mi appartiene
+                    if(blacklist.Attributes.GetNamedItem("proprietario").Value
+                        .Equals(Utente.GetUtente().NomeHost))
+                    {
+                        //Rimuovo tutti gli utenti dalla blacklist
+                        blacklist.RemoveAll();
+                        ((XmlElement)blacklist).SetAttribute("proprietario", Utente.GetUtente().NomeHost);
+                        
+                        //Reinserisco tutti per evitare duplicati
+                        foreach (string utente in set)
+                        {
+                            var utentexml = xdocument.CreateElement("utente");
+                            utentexml.InnerText = utente;
+                            blacklist.AppendChild(utentexml);
+                        }
+
+                    }
+                }
                 //Flusso normale il file esiste
                 //TODO MODIFICA FILE XML
-
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true
+                };
+                XmlWriter writer = XmlWriter.Create(Filename, settings);
+                xdocument.Save(writer);
+                writer.Close();
             }
             catch (Exception e)
             {
@@ -93,6 +123,7 @@ namespace SmartKey.DataPersistence
                 {
                     xdocument.Validate((oggetto, handler) => { });
                     xdocument.Save(writer);
+                    writer.Close();
                 }catch(Exception ex)
                 {
                     throw new PersistenceException("Non è stato possibile scrivere il file .xml");
