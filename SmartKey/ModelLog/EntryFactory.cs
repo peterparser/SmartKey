@@ -1,4 +1,5 @@
-﻿using SmartKey.ModelGestione;
+﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ModelGestione;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SmartKey.ModelLog
 {
     public class EntryFactory
     {
-        public static Entry GetEntry(Controller.IController controller, string operazione, string utenteMalevolo="" ,string sorgente="", string destinazione="")
+        public static Entry GetEntry(IController controller, string operazione, string utenteMalevolo="" ,string sorgente="", string destinazione="")
         {
             
             Type tipo = controller.GetType();

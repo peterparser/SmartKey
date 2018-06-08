@@ -60,15 +60,19 @@
     <Compile Include="Controller\Controller.Interfaces\IController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IGestoreBlacklist.cs" />
     <Compile Include="Controller\Controller.Interfaces\IGestoreImpostazione.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IPersistActions.cs" />
     <Compile Include="Controller\ImpostazioneTrasferimentoController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IObserver.cs" />
     <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\TestController\TestImpostazioniController.cs" />
-    <Compile Include="DataPersistence\BlacklistPersistenceTest.cs" />
+    <Compile Include="DataPersistence\PersistEvent.cs" />
+    <Compile Include="DataPersistence\Tests\BlacklistPersistenceXMLTest.cs" />
     <Compile Include="DataPersistence\IDataPersistence.cs" />
     <Compile Include="DataPersistence\PersistenceException.cs" />
+    <Compile Include="DataPersistence\Tests\ImpostazioniTrasfermientoPersistenceXMLTest.cs" />
     <Compile Include="DataPersistence\XMLBlacklistPersistence.cs" />
     <Compile Include="DataPersistence\XMLDataPersistence.cs" />
+    <Compile Include="DataPersistence\XMLImpostazioniPersistence.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

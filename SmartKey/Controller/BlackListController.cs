@@ -1,4 +1,6 @@
-﻿using SmartKey.ModelGestione;
+﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.DataPersistence;
+using SmartKey.ModelGestione;
 using SmartKey.ModelLog;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Controller
 {
-    class BlackListController : IGestoreBlacklist
+    class BlackListController : IGestoreBlacklist,IPersistActions
     {
         public event EventHandler<ActionCompletedEvent> ToLog;
+        public event EventHandler<PersistEvent> Persist;
+
         private Blacklist _blacklist;
         
         public BlackListController()
@@ -21,35 +25,29 @@ namespace SmartKey.Controller
         {
             if (_blacklist.AggiungiUtenteCattivo(utente))
             {
-                if (ToLog != null)
+                //Creazione del parametro da passare quando scateno l'evento
+                ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    //Creazione del parametro da passare quando scateno l'evento
-                    ActionCompletedEvent args = new ActionCompletedEvent
-                    {
-                        ToEntry = EntryFactory.GetEntry(this, "aggiunto", utente)
-                    };
-                    //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
-                    {
-                        completed(this, args);
-                    }
-                }
+                    ToEntry = EntryFactory.GetEntry(this, "aggiunto", utente)
+                };
+                PersistEvent toPersist = new PersistEvent
+                {
+                    Action = "aggiungi",
+                    ToPersist = utente
+                };
+                //scateno gli handler registrati all'evento
+                ToLog?.Invoke(this, args);
+                Persist?.Invoke(this, toPersist);
             }
             else
             {
-                if (ToLog != null)
+                //Creazione del parametro da passare quando scateno l'evento
+                ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    //Creazione del parametro da passare quando scateno l'evento
-                    ActionCompletedEvent args = new ActionCompletedEvent
-                    {
-                        ToEntry = EntryFactory.GetEntry(this, "non aggiunto", utente)
-                    };
-                    //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
-                    {
-                        completed(this, args);
-                    }
-                }
+                    ToEntry = EntryFactory.GetEntry(this, "nonaggiunto", utente)
+                };
+                //scateno gli handler registrati all'evento
+                    ToLog?.Invoke(this, args);
             }
         }
 
@@ -62,35 +60,30 @@ namespace SmartKey.Controller
         {
             if (_blacklist.EliminaUtenteCattivo(utente))
             {
-                if (ToLog != null)
+                //Creazione del parametro da passare quando scateno l'evento
+                ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    //Creazione del parametro da passare quando scateno l'evento
-                    ActionCompletedEvent args = new ActionCompletedEvent
-                    {
-                        ToEntry = EntryFactory.GetEntry(this, "rimosso", utente)
-                    };
-                    //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
-                    {
-                        completed(this, args);
-                    }
-                }
+                    ToEntry = EntryFactory.GetEntry(this, "rimosso", utente)
+                };
+                //scateno gli handler registrati all'evento
+                PersistEvent toPersist = new PersistEvent
+                {
+                    Action = "rimuovi",
+                    ToPersist = utente
+                };
+                //scateno gli handler registrati all'evento
+                ToLog?.Invoke(this, args);
+                Persist?.Invoke(this, toPersist);
             }
             else
             {
-                if (ToLog != null)
+                //Creazione del parametro da passare quando scateno l'evento
+                ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    //Creazione del parametro da passare quando scateno l'evento
-                    ActionCompletedEvent args = new ActionCompletedEvent
-                    {
-                        ToEntry = EntryFactory.GetEntry(this, "non rimosso", utente)
-                    };
-                    //scateno gli handler registrati all'evento
-                    foreach (EventHandler<ActionCompletedEvent> completed in ToLog.GetInvocationList())
-                    {
-                        completed(this, args);
-                    }
-                }
+                    ToEntry = EntryFactory.GetEntry(this, "nonrimosso", utente)
+                };
+                //scateno gli handler registrati all'evento
+                ToLog?.Invoke(this, args);
             }
         }
         public void SetBlackList(ISet<string> blacklist)

@@ -15,7 +15,7 @@ namespace SmartKey.ModelGestione
         private Cartella _cartellaSorgente;
         private Cartella _cartellaDestinazione;
 
-
+        
         public ImpostazioneTrasferimento(string cartellaSorgente, string cartellaDestinazione)
         {
             if(cartellaSorgente != null)
@@ -113,6 +113,20 @@ namespace SmartKey.ModelGestione
                     }
                 }
             }
+        }
+        public override bool Equals(object obj)
+        {
+            ImpostazioneTrasferimento otherSetting = (ImpostazioneTrasferimento)obj;
+            return CartellaSorgente.Path.Equals(otherSetting.CartellaSorgente.Path) &&
+                CartellaDestinazione.Path.Equals(otherSetting.CartellaDestinazione.Path);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -2075503466;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Cartella>.Default.GetHashCode(_cartellaSorgente);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Cartella>.Default.GetHashCode(_cartellaDestinazione);
+            return hashCode;
         }
     }
 }

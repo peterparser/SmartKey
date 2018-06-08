@@ -29,5 +29,17 @@ namespace SmartKey.ModelGestione.Filesystem
                 }
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var element = obj as FilesystemElement;
+            return element != null &&
+                   _path == element._path;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2090457805 + EqualityComparer<string>.Default.GetHashCode(_path);
+        }
     }
 }
