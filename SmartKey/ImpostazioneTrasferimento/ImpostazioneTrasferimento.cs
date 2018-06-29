@@ -1,4 +1,5 @@
-﻿using SmartKey.ModelGestione.Filesystem;
+﻿using SmartKey.ModelGestione;
+using SmartKey.ModelGestione.Filesystem;
 using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.ModelGestione
+namespace SmartKey.ImpostazioneTrasferimento
 {
    public  class ImpostazioneTrasferimento
     {

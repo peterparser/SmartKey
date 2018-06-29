@@ -1,4 +1,5 @@
-﻿using SmartKey.Controller.Controller.Interfaces;
+﻿using SmartKey.Controller;
+using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.DataPersistence;
 using SmartKey.ModelGestione;
 using SmartKey.ModelLog;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.Controller
+namespace SmartKey.Blacklist
 {
     class BlackListController : IGestoreBlacklist
     {
