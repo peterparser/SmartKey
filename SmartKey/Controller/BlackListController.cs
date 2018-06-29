@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Controller
 {
-    class BlackListController : IGestoreBlacklist,IPersistActions
+    class BlackListController : IGestoreBlacklist
     {
         public event EventHandler<ActionCompletedEvent> ToLog;
         public event EventHandler<PersistEvent> Persist;

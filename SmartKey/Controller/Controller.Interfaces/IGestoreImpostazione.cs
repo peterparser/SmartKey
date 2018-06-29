@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Controller.Controller.Interfaces
 {
-    interface IGestoreImpostazione : IController
+    interface IGestoreImpostazione : IPersistActions
     {
       
         void SetImpostazioni(ISet<ImpostazioneTrasferimento> impostazioni);

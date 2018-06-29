@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Controller.Controller.Interfaces
 {
-    interface IGestoreBlacklist : IController
+    interface IGestoreBlacklist : IPersistActions
     {
 
         void SetBlackList(ISet<string> blacklist);

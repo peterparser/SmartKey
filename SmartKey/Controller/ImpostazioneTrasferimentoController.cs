@@ -10,7 +10,7 @@ using SmartKey.ModelLog;
 
 namespace SmartKey.Controller
 {
-    public class ImpostazioneTrasferimentoController : IGestoreImpostazione, IPersistActions
+    public class ImpostazioneTrasferimentoController : IGestoreImpostazione
     {
         ISet<ImpostazioneTrasferimento> _impostazioni;
         public event EventHandler<ActionCompletedEvent> ToLog;
