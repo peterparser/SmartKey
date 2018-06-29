@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SmartKey.Controller;
 using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ImpostazioneTrasferimento;
 using SmartKey.ModelGestione;
 using System;
 using System.Collections.Generic;
@@ -25,26 +26,26 @@ namespace SmartKey.DataPersistence.Tests
             try
             {
                 //Carico il file
-                ISet<ImpostazioneTrasferimento> imps = (ISet<ImpostazioneTrasferimento>)impPers.Carica();
+                ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento> imps = (ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>)impPers.Carica();
                 impCon.SetImpostazioni(imps);
             }
             catch(PersistenceException e) { }
             finally
             {
                 //Inserisco le impostazioni
-                ImpostazioneTrasferimento toBeRemoved = new ImpostazioneTrasferimento("toRemoveSrc", "toRemoveDst");
-                impCon.AddImpostazione(new ImpostazioneTrasferimento("myPathSrc", "myPathDst"));
-                impCon.AddImpostazione(new ImpostazioneTrasferimento("myPath1Src", "myPath1Dst"));
+                ImpostazioneTrasferimento.ImpostazioneTrasferimento toBeRemoved = new ImpostazioneTrasferimento.ImpostazioneTrasferimento("toRemoveSrc", "toRemoveDst");
+                impCon.AddImpostazione(new ImpostazioneTrasferimento.ImpostazioneTrasferimento("myPathSrc", "myPathDst"));
+                impCon.AddImpostazione(new ImpostazioneTrasferimento.ImpostazioneTrasferimento("myPath1Src", "myPath1Dst"));
                 impCon.AddImpostazione(toBeRemoved);
-                ISet<ImpostazioneTrasferimento> imps = (ISet<ImpostazioneTrasferimento>)impPers.Carica();
+                ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento> imps = (ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>)impPers.Carica();
                 impCon.SetImpostazioni(imps);
                 //Testo un po lascamente la lettura da file
                 Assert.IsTrue(impCon.RemoveImpostazione(toBeRemoved));
-                imps = (ISet<ImpostazioneTrasferimento>)impPers.Carica();
+                imps = (ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>)impPers.Carica();
                 //Testo la rimozione
                 impCon.SetImpostazioni(imps);
                 Assert.IsFalse(impCon.RemoveImpostazione(toBeRemoved));
-                Assert.IsTrue(impCon.RemoveImpostazione(new ImpostazioneTrasferimento("myPathSrc", "myPathDst")));
+                Assert.IsTrue(impCon.RemoveImpostazione(new ImpostazioneTrasferimento.ImpostazioneTrasferimento("myPathSrc", "myPathDst")));
 
             }
         }

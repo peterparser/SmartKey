@@ -1,5 +1,9 @@
 ﻿using NUnit.Framework;
+using SmartKey.Blacklist;
 using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ImpostazioneTrasferimento;
+using SmartKey.Log.ControllerLog;
+using SmartKey.Log.ModelLog;
 using SmartKey.ModelLog;
 using System;
 using System.Collections.Generic;
@@ -30,7 +34,7 @@ namespace SmartKey.Controller.TestController
         public void TestLogImpostazione()
         {
             //Test che controlla che l'evento scatenato da add impostazione aggiunga una entry di tipo EntryImpostazione
-            impostazioneController.AddImpostazione(new ModelGestione.ImpostazioneTrasferimento("mydir", "yourdir"));
+            impostazioneController.AddImpostazione(new ImpostazioneTrasferimento.ImpostazioneTrasferimento("mydir", "yourdir"));
             Assert.That(logController.Entries[logController.Entries.Count - 1 ] is EntryImpostazione);
         }
 

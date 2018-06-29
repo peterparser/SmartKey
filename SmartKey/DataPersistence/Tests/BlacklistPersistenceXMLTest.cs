@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SmartKey.Blacklist;
 using SmartKey.Controller;
 using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.ModelGestione;

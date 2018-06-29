@@ -21,7 +21,7 @@ namespace SmartKey.DataPersistence
             {
                 xdocument.Load(Filename);
                 XmlNodeList nodelist = xdocument.SelectNodes("/impostazioni/impostazione");
-                ISet<ImpostazioneTrasferimento> settings = new HashSet<ImpostazioneTrasferimento>();
+                ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento> settings = new HashSet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>();
                 foreach(XmlNode node in nodelist)
                 {
                     if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
@@ -34,7 +34,7 @@ namespace SmartKey.DataPersistence
                             if (settingNode.Name.Equals("cartella-sorgente")) cartellaSorgente = settingNode.InnerText;
                             if (settingNode.Name.Equals("cartella-destinazione")) cartellaDestinazione = settingNode.InnerText;
                         }
-                        settings.Add(new ImpostazioneTrasferimento(cartellaSorgente, cartellaDestinazione));
+                        settings.Add(new ImpostazioneTrasferimento.ImpostazioneTrasferimento(cartellaSorgente, cartellaDestinazione));
                     }
                 }
                 return settings;
@@ -51,7 +51,7 @@ namespace SmartKey.DataPersistence
         public override void Salva(object o, PersistEvent param)
         {
             //TODO Bel controllo sul tipo con la reflection
-            ImpostazioneTrasferimento toPut = (ImpostazioneTrasferimento)param.ToPersist;
+            ImpostazioneTrasferimento.ImpostazioneTrasferimento toPut = (ImpostazioneTrasferimento.ImpostazioneTrasferimento)param.ToPersist;
             XmlDocument xdocument = new XmlDocument();
             try
             {

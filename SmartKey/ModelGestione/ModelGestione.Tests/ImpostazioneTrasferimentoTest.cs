@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SmartKey.ModelGestione;
+using SmartKey.ImpostazioneTrasferimento;
 using SmartKey.ModelGestione.Filesystem;
 
 namespace SmartKey.ModelGestione.ModelGestione.Tests
@@ -27,35 +28,35 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         [TestCase]
         public void TestImpostazioneThrowNullConstructor()
         {
-            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento("", null));
-            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento(null, ""));
-            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento(null, null));
+            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento.ImpostazioneTrasferimento("", null));
+            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento.ImpostazioneTrasferimento(null, ""));
+            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento.ImpostazioneTrasferimento(null, null));
         }
         [TestCase]
         public void TestImpostazioneThrowLengthConstructor()
         {
-            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento(_veryLongElement, ""));
-            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento("", _veryLongElement));
-            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento(_veryLongElement, _veryLongElement));
+            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento.ImpostazioneTrasferimento(_veryLongElement, ""));
+            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento.ImpostazioneTrasferimento("", _veryLongElement));
+            Assert.Throws<PathNotValidException>(() => new ImpostazioneTrasferimento.ImpostazioneTrasferimento(_veryLongElement, _veryLongElement));
         }
         [TestCase]
         public void TestImpostazioneThrowNullSetter()
         {
-            ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("folderS", "folderD");
+            ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento.ImpostazioneTrasferimento("folderS", "folderD");
             Assert.Throws<PathNotValidException>(() => impostazione.CartellaDestinazione = null);
             Assert.Throws<PathNotValidException>(() => impostazione.CartellaSorgente = null);
         }
         [TestCase]
         public void TestImpostazioneThrowLengthSetter()
         {
-            ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("folderS", "folderD");
+            ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento.ImpostazioneTrasferimento("folderS", "folderD");
             Assert.Throws<PathNotValidException>(() => impostazione.CartellaDestinazione = new Cartella(_veryLongElement));
             Assert.Throws<PathNotValidException>(() => impostazione.CartellaSorgente = new Cartella( _veryLongElement));
         }
         [TestCase]
         public void TestImpostazioneSetter()
         {
-            ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento("myDir", "yourDir");
+            ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione = new ImpostazioneTrasferimento.ImpostazioneTrasferimento("myDir", "yourDir");
             impostazione.CartellaDestinazione = new Cartella("CambiamentoDestinazione");
             impostazione.CartellaSorgente =  new Cartella("CambiamentoSorgente");
             Assert.AreEqual(impostazione.CartellaDestinazione.Path, new Cartella("CambiamentoDestinazione").Path);

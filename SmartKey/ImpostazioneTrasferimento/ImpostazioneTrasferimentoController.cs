@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SmartKey.Controller;
 using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.DataPersistence;
+using SmartKey.Log.ModelLog;
 using SmartKey.ModelGestione;
 using SmartKey.ModelLog;
 
@@ -30,8 +31,8 @@ namespace SmartKey.ImpostazioneTrasferimento
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "aggiunta", impostazione.CartellaSorgente.Path,
-                    impostazione.CartellaDestinazione.Path)
+                    ToEntry = EntryFactory.GetEntry(this, "aggiunta", sorgente:impostazione.CartellaSorgente.Path,
+                    destinazione:impostazione.CartellaDestinazione.Path)
                 };
                 PersistEvent toPersist = new PersistEvent
                 {

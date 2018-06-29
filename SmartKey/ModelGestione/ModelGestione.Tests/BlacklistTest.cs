@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartKey.Blacklist;
 
 namespace SmartKey.ModelGestione.ModelGestione.Tests
 {
@@ -13,7 +14,7 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         [TestCase]
         public void TestAggiungiBlacklist()
         {
-            Blacklist list = Blacklist.Instance;
+            Blacklist.Blacklist list = Blacklist.Blacklist.Instance;
             Assert.IsTrue(list.AggiungiUtenteCattivo("Massimo"));
            
         }
@@ -21,15 +22,15 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         [TestCase]
         public void TestSingletonBlacklist()
         {
-            Blacklist list1 = Blacklist.Instance;
-            Blacklist list2 = Blacklist.Instance;
+            Blacklist.Blacklist list1 = Blacklist.Blacklist.Instance;
+            Blacklist.Blacklist list2 = Blacklist.Blacklist.Instance;
             Assert.AreSame(list1, list2);
         }
 
         [TestCase]
         public void TestEliminaBlacklist()
         {
-            Blacklist list = Blacklist.Instance;
+            Blacklist.Blacklist list = Blacklist.Blacklist.Instance;
             list.AggiungiUtenteCattivo("Massimo");
             Assert.IsTrue(list.EliminaUtenteCattivo("Massimo"));
         }
@@ -37,7 +38,7 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         [TestCase]
         public void TestIsInBlacklist()
         {
-            Blacklist list = Blacklist.Instance;
+            Blacklist.Blacklist list = Blacklist.Blacklist.Instance;
             list.AggiungiUtenteCattivo("Massimo");
             Assert.IsTrue(list.IsInBlacklist("Massimo"));
 
@@ -46,7 +47,7 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         [TestCase]
         public void TestBlacklistSetUnique()
         {
-            Blacklist list = Blacklist.Instance;
+            Blacklist.Blacklist list = Blacklist.Blacklist.Instance;
             list.AggiungiUtenteCattivo("Massimo");
             Assert.IsFalse(list.AggiungiUtenteCattivo("Massimo"));
         }
@@ -54,7 +55,7 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
         [TestCase]
         public void TestRemovingUserNotInBlackList()
         {
-            Blacklist list = Blacklist.Instance;
+            Blacklist.Blacklist list = Blacklist.Blacklist.Instance;
             list.AggiungiUtenteCattivo("Massimo");
             Assert.IsFalse(list.EliminaUtenteCattivo("Gianni"));
         }
@@ -65,7 +66,7 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
             HashSet<string> mySet = new HashSet<string>();
             mySet.Add("Massimo");
             mySet.Add("Gianni1");
-            Blacklist blacklist = Blacklist.Instance;
+            Blacklist.Blacklist blacklist = Blacklist.Blacklist.Instance;
             blacklist.SetUtenti = mySet;
             Assert.IsTrue(blacklist.IsInBlacklist("Massimo"));
             Assert.IsTrue(blacklist.IsInBlacklist("Gianni1"));

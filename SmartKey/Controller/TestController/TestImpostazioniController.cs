@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ImpostazioneTrasferimento;
+using SmartKey.Log.ControllerLog;
 using SmartKey.ModelGestione;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace SmartKey.Controller.TestController
             IGestoreImpostazione cont = new ImpostazioneTrasferimentoController();
             //Aggancio l'evento
             cont.ToLog += log.UpdateLog;
-            cont.AddImpostazione(new ImpostazioneTrasferimento("sorgente", "destinazione"));
+            cont.AddImpostazione(new ImpostazioneTrasferimento.ImpostazioneTrasferimento("sorgente", "destinazione"));
             //Se l'invocazione è andata a buon fine e l'evento ha fatto il suo lavoro
             //Dovrebbe essere presente una riga sul file di log
             Assert.AreEqual(log.Entries.ElementAt(0).Operazione, "aggiunta");
@@ -32,7 +34,7 @@ namespace SmartKey.Controller.TestController
             IGestoreImpostazione cont = new ImpostazioneTrasferimentoController();
             //Aggancio l'evento
             cont.ToLog += log.UpdateLog;
-            ImpostazioneTrasferimento imp = new ImpostazioneTrasferimento("sorgente", "destinazione");
+            ImpostazioneTrasferimento.ImpostazioneTrasferimento imp = new ImpostazioneTrasferimento.ImpostazioneTrasferimento("sorgente", "destinazione");
             cont.AddImpostazione(imp);
             //Se l'invocazione è andata a buon fine il contatore è aumentato
             //Controllo che la rimozione avvenga con successo
