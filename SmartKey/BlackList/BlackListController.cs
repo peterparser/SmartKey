@@ -14,6 +14,7 @@ namespace SmartKey.Blacklist
 {
     class BlackListController : IGestoreBlacklist
     {
+        //Eventi
         public event EventHandler<ActionCompletedEvent> ToLog;
         public event EventHandler<PersistEvent> Persist;
 
