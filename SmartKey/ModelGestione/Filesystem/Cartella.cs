@@ -1,4 +1,5 @@
-﻿using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
+﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SmartKey.ModelGestione.Filesystem
         private Cartella _parent;
         public Cartella(string path)
         {
-
+            //Bisogna inserire il build del sottoalbero alla creazione
             if(path != null)
             {
                 Path = path;
@@ -47,5 +48,9 @@ namespace SmartKey.ModelGestione.Filesystem
             return _children.Find(x => x.Path.Equals(path));
         }
 
+        public override void Accept(IGestoreSincronizzazione visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

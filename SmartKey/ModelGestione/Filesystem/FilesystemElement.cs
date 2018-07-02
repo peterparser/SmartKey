@@ -1,4 +1,5 @@
-﻿using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
+﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ModelGestione.Filesystem.Filesystem.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,7 @@ namespace SmartKey.ModelGestione.Filesystem
     {
         private string _path;
 
-        //TODO
-        //Bisogna aggiungere il metodo per il visitor
-
+        public abstract void Accept(IGestoreSincronizzazione visitor);
         public string Path
         {
             get { return _path; }

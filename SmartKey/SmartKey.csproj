@@ -59,6 +59,7 @@
     <Compile Include="BlackList\BlackListController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IController.cs" />
     <Compile Include="BlackList\IGestoreBlacklist.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IGestoreSincronizzazione.cs" />
     <Compile Include="ImpostazioneTrasferimento\IGestoreImpostazione.cs" />
     <Compile Include="Controller\Controller.Interfaces\IPersistActions.cs" />
     <Compile Include="ImpostazioneTrasferimento\ImpostazioneTrasferimentoController.cs" />
