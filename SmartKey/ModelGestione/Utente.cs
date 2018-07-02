@@ -7,6 +7,10 @@ using System.Security.Principal;
 
 namespace SmartKey.ModelGestione
 {
+
+    //Non può essere singleton
+    //Va cambiato in modo che non sia singleton
+    //Va fatto mettere in un controller poi farlo condividere.
     public sealed class Utente
     {
         private static Utente _instance = null;

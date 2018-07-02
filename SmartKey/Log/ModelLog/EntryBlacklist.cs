@@ -11,12 +11,24 @@ namespace SmartKey.Log.ModelLog
         private string _utenteProprietario;
         private string _utenteMalevolo;
         
+
+        //Costruttore per l'aggiunta
         public EntryBlacklist(string operazione, string utenteProprietario,
             string utenteMalevolo): base(operazione)
         {
             _utenteProprietario = utenteProprietario;
             _utenteMalevolo = utenteMalevolo;
         }
+
+        //Costruttore utilizzato per il parsing
+        public EntryBlacklist(DateTime data, string operazione, string utenteProprietario,
+            string utenteMalevolo): base(operazione, data)
+        {
+            _utenteProprietario = utenteProprietario;
+            _utenteMalevolo = utenteMalevolo;
+        }
+
+    
         public string UtenteProprietario
         {
             get
@@ -33,7 +45,8 @@ namespace SmartKey.Log.ModelLog
         }
         public override string ToString()
         {
-            return "" + base.DataOra +"\tBlacklist\t"+ Operazione+"\t"+ UtenteMalevolo + "\t" + UtenteProprietario;
+            //Capire come formatare tutto in un campo
+            return "" + base.DataOra +"\tBlacklist\t"+ Operazione+"\t"+ UtenteProprietario + "\t" + UtenteMalevolo;
         }
     }
 }

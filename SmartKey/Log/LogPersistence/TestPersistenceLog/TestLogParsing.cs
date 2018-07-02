@@ -3,13 +3,14 @@ using SmartKey.Blacklist;
 using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.ImpostazioneTrasferimento;
 using SmartKey.Log.ControllerLog;
+using SmartKey.Log.ModelLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.Log.ModelLog.TestLog
+namespace SmartKey.Log.LogPersistence.TestPersistenceLog
 {
     [TestFixture]
     class TestLogParsing
@@ -28,11 +29,11 @@ namespace SmartKey.Log.ModelLog.TestLog
 
         }
 
+        //Testata e funzionante
         [TestCase]
         public void TestParsingImpostazione()
         {
-            ((IGestoreImpostazione)impostazioneController).AddImpostazione(
-               new ImpostazioneTrasferimento.ImpostazioneTrasferimento("mydir", "yourDir"));
+            Init();      
             //Prendo la entry che ho appena scritto
             Entry scritta = logController.Entries[0];
             if(scritta is EntryImpostazione)
@@ -43,5 +44,15 @@ namespace SmartKey.Log.ModelLog.TestLog
             }
         }
 
+        [TestCase]
+        public void TestParsingBlacklist()
+        {
+            Init();
+            Entry scritta = logController.Entries[0];
+            if(scritta is EntryBlacklist)
+            {
+
+            }
+        }
     }
 }

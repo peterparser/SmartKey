@@ -1,16 +1,13 @@
 ﻿using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.ModelGestione;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartKey.Log.ModelLog
 {
     public class EntryFactory
     {
-        public static Entry GetEntry(IController controller, string operazione, string utenteMalevolo="" ,string sorgente="", string destinazione="")
+        public static Entry GetEntry(IController controller, string operazione, 
+            string utenteMalevolo="" ,string sorgente="", string destinazione="")
         {
             
             Type tipo = controller.GetType();
@@ -26,6 +23,34 @@ namespace SmartKey.Log.ModelLog
             //TODO bisogna implementare le altre entry
                
             
+        }
+        //Metodo da usare per ricostruire le entry dal file di log
+        public static Entry GetEntry(string entryType, string operazione,
+            string dataString, string oraString,
+            string utenteMalevolo="",string utenteProprietario="", string sorgente="", string destinazione = "")
+        {
+            //Parsing della data
+            string[] dateFields = dataString.Split('/');
+            int giorno = Int32.Parse(dateFields[0]);
+            int mese = Int32.Parse(dateFields[1]);
+            int anno = Int32.Parse(dateFields[2]);
+
+            string[] hourFields = oraString.Split(':');
+            int ora = Int32.Parse(hourFields[0]);
+            int minuti = Int32.Parse(hourFields[1]);
+            int secondi = Int32.Parse(hourFields[2]);
+
+            DateTime entryTime = new DateTime(anno, mese, giorno, ora, minuti, secondi);
+            //TODO da implementare il parsing del log
+            switch (entryType)
+            {
+                case ("Blacklist"):
+                    return new EntryBlacklist(entryTime, operazione, utenteProprietario, utenteMalevolo);
+                case ("Impostazione"):
+                    return new EntryImpostazione(entryTime, operazione, sorgente, destinazione);
+                default:
+                    return null;
+            }
         }
     }
 }

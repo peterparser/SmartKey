@@ -18,6 +18,15 @@ namespace SmartKey.Log.ModelLog
             _destinatario = destinatario;
 
         }
+
+        //Costruttore aggiunto per il parsing
+        public EntryImpostazione(DateTime data, string operazione, string sorgente,
+            string destinatario) : base(operazione, data)
+        {
+            _sorgente = sorgente;
+            _destinatario = destinatario;
+        }
+
         public string Sorgente
         {
             get

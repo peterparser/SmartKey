@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartKey.Log.TestLog
+namespace SmartKey.Log.LogPersistence.TestPersistenceLog
 {
     [TestFixture]
     class TestLogPersistence

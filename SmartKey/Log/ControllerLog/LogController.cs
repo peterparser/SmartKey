@@ -16,8 +16,8 @@ namespace SmartKey.Log.ControllerLog
 
         public LogController()
         {
-            _log = new ModelLog.Log();
             _logPersistence = new ConcreteLogPersistence("C:\\Users\\massi\\Desktop\\log.txt", true);
+            _log = _logPersistence.LeggiLog();
         }
 
         public void UpdateLog(object sender, EventArgs e)

@@ -15,6 +15,12 @@ namespace SmartKey.Log.ModelLog
             _dataOra = DateTime.Now;
             _operazione = operazione;
         }
+        
+        public Entry(string operazione, DateTime date)
+        {
+            _operazione = operazione;
+            _dataOra = date;
+        }
 
         public string Operazione
         {

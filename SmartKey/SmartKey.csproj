@@ -83,7 +83,8 @@
     </Compile>
     <Compile Include="Log\LogPersistence\ILogPersistence.cs" />
     <Compile Include="Log\LogPersistence\ConcreteLogPersistence.cs" />
-    <Compile Include="Log\TestLog\TestLogPersistence.cs" />
+    <Compile Include="Log\LogPersistence\TestPersistenceLog\TestLogParsing.cs" />
+    <Compile Include="Log\LogPersistence\TestPersistenceLog\TestLogPersistence.cs" />
     <Compile Include="ModelGestione\ChiaveUSB.cs" />
     <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Exceptions\PathNotValidException.cs" />
