@@ -12,7 +12,7 @@ namespace SmartKey.ImpostazioneTrasferimento
    public  class ImpostazioneTrasferimento
     {
         private string _verso;
-        private Utente _utente = Utente.GetUtente();
+        private string _utente = Utente.GetUtente();
         private Cartella _cartellaSorgente;
         private Cartella _cartellaDestinazione;
 

@@ -24,7 +24,7 @@ namespace SmartKey.DataPersistence
                 ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento> settings = new HashSet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>();
                 foreach(XmlNode node in nodelist)
                 {
-                    if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
+                    if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente()))
                     {
                         string cartellaSorgente, cartellaDestinazione;
                         cartellaSorgente = null;
@@ -63,7 +63,7 @@ namespace SmartKey.DataPersistence
                 {
                     //Caso di aggiunta si veda sotto nel catch per commenti dettagliati
                     XmlElement xImpostazione = xdocument.CreateElement("impostazione");
-                    xImpostazione.SetAttribute("utente", Utente.GetUtente().NomeHost);
+                    xImpostazione.SetAttribute("utente", Utente.GetUtente());
                     XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
                     cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
                     XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
@@ -82,7 +82,7 @@ namespace SmartKey.DataPersistence
                     //E tutti amici come prima
                     foreach(XmlNode impostazioneNode in impostazioniMainNode.ChildNodes)
                     {
-                        if (impostazioneNode.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
+                        if (impostazioneNode.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente()))
                         {
                             //Controllo il contenuto
                             bool found = true;
@@ -118,7 +118,7 @@ namespace SmartKey.DataPersistence
                 //Creo il tag per la mia impostazione
                 XmlElement impostazione = xdocument.CreateElement("impostazione");
                 //Imposto l'attributo utente in modo consono
-                impostazione.SetAttribute("utente", Utente.GetUtente().NomeHost);
+                impostazione.SetAttribute("utente", Utente.GetUtente());
                 
                 //Creo gli i figli che compongono il tag impostazione e gli do il valore che devo inserire
                 XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");

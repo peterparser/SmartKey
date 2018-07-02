@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,5 +60,7 @@ namespace SmartKey.Blacklist
         {
             return _blacklist.Contains(nomeUtente);
         }
+
+       
     }
 }

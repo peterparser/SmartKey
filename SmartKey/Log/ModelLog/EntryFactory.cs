@@ -16,7 +16,7 @@ namespace SmartKey.Log.ModelLog
                 case ("ImpostazioneTrasferimentoController"):
                     return new EntryImpostazione(operazione, sorgente, destinazione);
                 case ("BlackListController"):
-                    return new EntryBlacklist(operazione, Utente.GetUtente().NomeHost, utenteMalevolo);
+                    return new EntryBlacklist(operazione, Utente.GetUtente(), utenteMalevolo);
                 default:
                     return null;
             }
