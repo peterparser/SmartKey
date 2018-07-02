@@ -67,7 +67,7 @@ namespace SmartKey.DataPersistence
                     XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
                     cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
                     XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
-                    cartellaDestinazione.InnerText = toPut.CartellaDestinazione.Path;
+                    cartellaDestinazione.InnerText = toPut.CartellaDestinazione;
                     XmlElement verso = xdocument.CreateElement("verso");
                     verso.InnerText = toPut.Verso;
                     xImpostazione.AppendChild(cartellaSorgente);
@@ -93,7 +93,7 @@ namespace SmartKey.DataPersistence
                                     ((valueImpostazione.Name.Equals("cartella-sorgente") &&
                                     valueImpostazione.InnerText.Equals(toPut.CartellaSorgente.Path)) )||
                                     (valueImpostazione.Name.Equals("cartella-destinazione") && 
-                                    valueImpostazione.InnerText.Equals(toPut.CartellaDestinazione.Path)));
+                                    valueImpostazione.InnerText.Equals(toPut.CartellaDestinazione)));
                             }
                             if (found) impostazioniMainNode.RemoveChild(impostazioneNode);
                         }
@@ -124,7 +124,7 @@ namespace SmartKey.DataPersistence
                 XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
                 cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
                 XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
-                cartellaDestinazione.InnerText = toPut.CartellaDestinazione.Path;
+                cartellaDestinazione.InnerText = toPut.CartellaDestinazione;
                 XmlElement verso = xdocument.CreateElement("verso");
                 verso.InnerText = toPut.Verso;
                 

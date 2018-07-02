@@ -14,7 +14,7 @@ namespace SmartKey.ImpostazioneTrasferimento
         private string _verso;
         private string _utente = Utente.GetUtente();
         private Cartella _cartellaSorgente;
-        private Cartella _cartellaDestinazione;
+        private string _cartellaDestinazione;
 
         
         public ImpostazioneTrasferimento(string cartellaSorgente, string cartellaDestinazione)
@@ -38,7 +38,7 @@ namespace SmartKey.ImpostazioneTrasferimento
             {
                 if (cartellaDestinazione.Length < 261)
                 {
-                    _cartellaDestinazione = new Cartella(cartellaDestinazione);
+                    _cartellaDestinazione = cartellaDestinazione;
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 }
             }
         }
-        public Cartella CartellaDestinazione
+        public string CartellaDestinazione
         {
             get
             {
@@ -104,7 +104,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 }
                 else
                 {
-                    if (value.Path.Length > 260)
+                    if (value.Length > 260)
                     {
                         throw new PathNotValidException("Il path inserito come cartella destinazione troppo lungo");
                     }
@@ -119,14 +119,14 @@ namespace SmartKey.ImpostazioneTrasferimento
         {
             ImpostazioneTrasferimento otherSetting = (ImpostazioneTrasferimento)obj;
             return CartellaSorgente.Path.Equals(otherSetting.CartellaSorgente.Path) &&
-                CartellaDestinazione.Path.Equals(otherSetting.CartellaDestinazione.Path);
+                CartellaDestinazione.Equals(otherSetting.CartellaDestinazione);
         }
 
         public override int GetHashCode()
         {
             var hashCode = -2075503466;
             hashCode = hashCode * -1521134295 + EqualityComparer<Cartella>.Default.GetHashCode(_cartellaSorgente);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Cartella>.Default.GetHashCode(_cartellaDestinazione);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(_cartellaDestinazione);
             return hashCode;
         }
     }

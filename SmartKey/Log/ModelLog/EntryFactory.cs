@@ -17,6 +17,8 @@ namespace SmartKey.Log.ModelLog
                     return new EntryImpostazione(operazione, sorgente, destinazione);
                 case ("BlackListController"):
                     return new EntryBlacklist(operazione, Utente.GetUtente(), utenteMalevolo);
+                case ("GestoreSincronizzazioneController"):
+                    return new EntrySincronizzazione(operazione, sorgente, destinazione);
                 default:
                     return null;
             }

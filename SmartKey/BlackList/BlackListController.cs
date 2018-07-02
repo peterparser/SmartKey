@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SmartKey.Blacklist
 {
-    class BlackListController : IGestoreBlacklist
+    public class BlackListController : IGestoreBlacklist
     {
         //Eventi
         public event EventHandler<ActionCompletedEvent> ToLog;

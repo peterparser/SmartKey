@@ -36,11 +36,11 @@ namespace SmartKey.ModelGestione.Filesystem
                 FileAttributes attr = File.GetAttributes(currentEntry);
                 if (attr.HasFlag(FileAttributes.Directory))
                 {
-                    _children.Add(new Cartella(currentEntry));
+                   AddChild(new Cartella(currentEntry));
                 }
                 else
                 {
-                    _children.Add(new FileWrapper(currentEntry));
+                    AddChild(new FileWrapper(currentEntry));
                 }
             }
 
@@ -66,6 +66,15 @@ namespace SmartKey.ModelGestione.Filesystem
         public FilesystemElement GetChild(string path)
         {
             return _children.Find(x => x.Path.Equals(path));
+        }
+
+        //Metodo per vedere i figli
+        public List<FilesystemElement> Children
+        {
+            get
+            {
+                return _children;
+            }
         }
 
         public override void Accept(IGestoreSincronizzazione visitor)

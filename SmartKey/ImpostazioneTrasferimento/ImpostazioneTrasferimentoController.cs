@@ -32,7 +32,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
                     ToEntry = EntryFactory.GetEntry(this, "aggiunta", sorgente:impostazione.CartellaSorgente.Path,
-                    destinazione:impostazione.CartellaDestinazione.Path)
+                    destinazione:impostazione.CartellaDestinazione)
                 };
                 PersistEvent toPersist = new PersistEvent
                 {
@@ -48,7 +48,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
                     ToEntry = EntryFactory.GetEntry(this, "nonaggiunta", impostazione.CartellaSorgente.Path,
-                   impostazione.CartellaDestinazione.Path)
+                   impostazione.CartellaDestinazione)
                 };
                 ToLog?.Invoke(this, args);
             }
@@ -69,7 +69,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
                     ToEntry = EntryFactory.GetEntry(this, "rimossa", impostazione.CartellaSorgente.Path,
-                                                            impostazione.CartellaDestinazione.Path)
+                                                            impostazione.CartellaDestinazione)
                 };
                 PersistEvent toPersist = new PersistEvent
                 {
@@ -86,7 +86,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
                     ToEntry = EntryFactory.GetEntry(this, "nonrimossa", impostazione.CartellaSorgente.Path,
-                                                        impostazione.CartellaDestinazione.Path)
+                                                        impostazione.CartellaDestinazione)
                 };
                 ToLog?.Invoke(this, args);
             }
