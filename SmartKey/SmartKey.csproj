@@ -62,11 +62,29 @@
     <Compile Include="Controller\Controller.Interfaces\IGestoreSincronizzazione.cs" />
     <Compile Include="Controller\GestoreSincronizzazioneController.cs" />
     <Compile Include="Controller\TestController\TestSincronizzazione.cs" />
+    <Compile Include="HomeAnalisiOttimizzazione.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeAnalisiOttimizzazione.Designer.cs">
+      <DependentUpon>HomeAnalisiOttimizzazione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeBlacklist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeBlacklist.Designer.cs">
+      <DependentUpon>HomeBlacklist.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeImpostazioni.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HomeImpostazioni.Designer.cs">
       <DependentUpon>HomeImpostazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeLog.Designer.cs">
+      <DependentUpon>HomeLog.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeSmartKey.cs">
       <SubType>Form</SubType>
@@ -127,6 +145,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeBlacklist.resx">
+      <DependentUpon>HomeBlacklist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeImpostazioni.resx">
       <DependentUpon>HomeImpostazioni.cs</DependentUpon>

@@ -24,7 +24,7 @@ namespace SmartKey
 
         private void BaseForm_Load(object sender, EventArgs e)
         {
-            switch (this.GetType().Name)
+            switch (GetType().Name)
             {
                 case ("HomeSmartKey"):
                     buttonSmartKey.BackColor = Color.CornflowerBlue;

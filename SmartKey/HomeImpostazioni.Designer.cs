@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewImpostazioni = new System.Windows.Forms.DataGridView();
+            this.sorgenteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.destinazioneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelDescrizioneTabella = new System.Windows.Forms.Label();
             this.buttonRimuovi = new System.Windows.Forms.Button();
             this.buttonAggiungi = new System.Windows.Forms.Button();
             this.buttonLogImpostazione = new System.Windows.Forms.Button();
-            this.sorgenteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.destinazioneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -100,7 +101,15 @@
             this.dataGridViewImpostazioni.AllowUserToAddRows = false;
             this.dataGridViewImpostazioni.AllowUserToDeleteRows = false;
             this.dataGridViewImpostazioni.AllowUserToResizeRows = false;
-            this.dataGridViewImpostazioni.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridViewImpostazioni.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImpostazioni.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewImpostazioni.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewImpostazioni.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sorgenteColumn,
@@ -112,6 +121,20 @@
             this.dataGridViewImpostazioni.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewImpostazioni.Size = new System.Drawing.Size(257, 262);
             this.dataGridViewImpostazioni.TabIndex = 0;
+            // 
+            // sorgenteColumn
+            // 
+            this.sorgenteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sorgenteColumn.HeaderText = "Sorgente";
+            this.sorgenteColumn.Name = "sorgenteColumn";
+            this.sorgenteColumn.ReadOnly = true;
+            // 
+            // destinazioneColumn
+            // 
+            this.destinazioneColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.destinazioneColumn.HeaderText = "Destinazione";
+            this.destinazioneColumn.Name = "destinazioneColumn";
+            this.destinazioneColumn.ReadOnly = true;
             // 
             // labelDescrizioneTabella
             // 
@@ -158,20 +181,6 @@
             this.buttonLogImpostazione.TabIndex = 0;
             this.buttonLogImpostazione.Text = "Visualizza Log di Impostazione";
             this.buttonLogImpostazione.UseVisualStyleBackColor = false;
-            // 
-            // sorgenteColumn
-            // 
-            this.sorgenteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sorgenteColumn.HeaderText = "Sorgente";
-            this.sorgenteColumn.Name = "sorgenteColumn";
-            this.sorgenteColumn.ReadOnly = true;
-            // 
-            // destinazioneColumn
-            // 
-            this.destinazioneColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.destinazioneColumn.HeaderText = "Destinazione";
-            this.destinazioneColumn.Name = "destinazioneColumn";
-            this.destinazioneColumn.ReadOnly = true;
             // 
             // HomeImpostazioni
             // 
