@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SmartKey.Controller;
-using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.DataPersistence;
 using SmartKey.Log.ModelLog;
-using SmartKey.ModelGestione;
-using SmartKey.ModelLog;
 
 namespace SmartKey.ImpostazioneTrasferimento
 {

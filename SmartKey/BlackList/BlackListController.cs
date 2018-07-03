@@ -2,8 +2,6 @@
 using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.DataPersistence;
 using SmartKey.Log.ModelLog;
-using SmartKey.ModelGestione;
-using SmartKey.ModelLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;

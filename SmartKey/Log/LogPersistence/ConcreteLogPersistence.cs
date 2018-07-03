@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SmartKey.Log.ModelLog;
-using SmartKey.ModelGestione;
-using SmartKey.ModelLog;
 
 namespace SmartKey.Log.LogPersistence
 {

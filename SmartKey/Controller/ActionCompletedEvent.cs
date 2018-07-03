@@ -1,5 +1,4 @@
 ﻿using SmartKey.Log.ModelLog;
-using SmartKey.ModelLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
