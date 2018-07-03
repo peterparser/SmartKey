@@ -3,23 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SmartKey
 {
-    public partial class Form1 : Form
+    public partial class HomeSmartKey : SmartKey.BaseForm
     {
-        public Form1()
+        public HomeSmartKey()
         {
             InitializeComponent();
-        }
-
-        private void bottone_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("WORK");
         }
     }
 }
