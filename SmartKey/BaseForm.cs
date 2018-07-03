@@ -17,5 +17,28 @@ namespace SmartKey
             InitializeComponent();
         }
 
+        private void buttonSmartKey_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("ciao");
+        }
+
+        private void BaseForm_Load(object sender, EventArgs e)
+        {
+            switch (this.GetType().Name)
+            {
+                case ("HomeSmartKey"):
+                    buttonSmartKey.BackColor = Color.CornflowerBlue;
+                    buttonSmartKey.ForeColor = Color.White;
+                    break;
+                case ("HomeImpostazioni"):
+                    buttonImpostazioni.BackColor = Color.CornflowerBlue;
+                    buttonImpostazioni.ForeColor = Color.White;
+                    break;
+                case (""):
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

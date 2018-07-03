@@ -16,7 +16,7 @@ namespace SmartKey
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            BaseForm formHome = new BaseForm();
+            BaseForm formHome = new HomeImpostazioni();
             
             Application.Run(formHome);
         }

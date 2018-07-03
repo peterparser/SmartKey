@@ -62,6 +62,12 @@
     <Compile Include="Controller\Controller.Interfaces\IGestoreSincronizzazione.cs" />
     <Compile Include="Controller\GestoreSincronizzazioneController.cs" />
     <Compile Include="Controller\TestController\TestSincronizzazione.cs" />
+    <Compile Include="HomeImpostazioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeImpostazioni.Designer.cs">
+      <DependentUpon>HomeImpostazioni.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeSmartKey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeImpostazioni.resx">
+      <DependentUpon>HomeImpostazioni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeSmartKey.resx">
       <DependentUpon>HomeSmartKey.cs</DependentUpon>

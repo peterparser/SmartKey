@@ -7,7 +7,7 @@ namespace SmartKey
         /// <summary>
         /// Variabile di progettazione necessaria.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        protected System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Pulire le risorse in uso.
@@ -28,13 +28,13 @@ namespace SmartKey
         /// Metodo necessario per il supporto della finestra di progettazione. Non modificare
         /// il contenuto del metodo con l'editor di codice.
         /// </summary>
-        private void InitializeComponent()
+        protected void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSmartKey = new System.Windows.Forms.Button();
-            this.impostazioneTrasferimentoButton = new System.Windows.Forms.Button();
+            this.buttonImpostazioni = new System.Windows.Forms.Button();
             this.buttonBlacklist = new System.Windows.Forms.Button();
             this.buttonAnalisi = new System.Windows.Forms.Button();
             this.buttonLog = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@ namespace SmartKey
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.buttonSmartKey, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.impostazioneTrasferimentoButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonImpostazioni, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonBlacklist, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.buttonAnalisi, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.buttonLog, 0, 4);
@@ -95,18 +95,19 @@ namespace SmartKey
             this.buttonSmartKey.TabIndex = 0;
             this.buttonSmartKey.Text = "Home Smartkey";
             this.buttonSmartKey.UseVisualStyleBackColor = false;
+            this.buttonSmartKey.Click += new System.EventHandler(this.buttonSmartKey_Click);
             // 
-            // impostazioneTrasferimentoButton
+            // buttonImpostazioni
             // 
-            this.impostazioneTrasferimentoButton.BackColor = System.Drawing.SystemColors.Window;
-            this.impostazioneTrasferimentoButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.impostazioneTrasferimentoButton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.impostazioneTrasferimentoButton.Location = new System.Drawing.Point(3, 77);
-            this.impostazioneTrasferimentoButton.Name = "impostazioneTrasferimentoButton";
-            this.impostazioneTrasferimentoButton.Size = new System.Drawing.Size(181, 68);
-            this.impostazioneTrasferimentoButton.TabIndex = 1;
-            this.impostazioneTrasferimentoButton.Text = "Impostazione Trasferimento";
-            this.impostazioneTrasferimentoButton.UseVisualStyleBackColor = false;
+            this.buttonImpostazioni.BackColor = System.Drawing.SystemColors.Window;
+            this.buttonImpostazioni.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonImpostazioni.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonImpostazioni.Location = new System.Drawing.Point(3, 77);
+            this.buttonImpostazioni.Name = "buttonImpostazioni";
+            this.buttonImpostazioni.Size = new System.Drawing.Size(181, 68);
+            this.buttonImpostazioni.TabIndex = 1;
+            this.buttonImpostazioni.Text = "Impostazione Trasferimento";
+            this.buttonImpostazioni.UseVisualStyleBackColor = false;
             // 
             // buttonBlacklist
             // 
@@ -156,6 +157,7 @@ namespace SmartKey
             this.Name = "BaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Smartkey";
+            this.Load += new System.EventHandler(this.BaseForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -169,7 +171,7 @@ namespace SmartKey
         protected SplitContainer splitContainer1;
         protected TableLayoutPanel tableLayoutPanel1;
         protected Button buttonSmartKey;
-        protected Button impostazioneTrasferimentoButton;
+        protected Button buttonImpostazioni;
         protected Button buttonBlacklist;
         protected Button buttonAnalisi;
         protected Button buttonLog;
