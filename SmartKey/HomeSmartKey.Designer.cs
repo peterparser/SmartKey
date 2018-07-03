@@ -138,7 +138,7 @@
             this.textBoxUtente.Location = new System.Drawing.Point(188, 3);
             this.textBoxUtente.Name = "textBoxUtente";
             this.textBoxUtente.ReadOnly = true;
-            this.textBoxUtente.Size = new System.Drawing.Size(180, 20);
+            this.textBoxUtente.Size = new System.Drawing.Size(180, 21);
             this.textBoxUtente.TabIndex = 3;
             this.textBoxUtente.Text = "Riccardo";
             this.textBoxUtente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -148,7 +148,7 @@
             this.textBoxDispositivo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxDispositivo.Location = new System.Drawing.Point(188, 48);
             this.textBoxDispositivo.Name = "textBoxDispositivo";
-            this.textBoxDispositivo.Size = new System.Drawing.Size(180, 20);
+            this.textBoxDispositivo.Size = new System.Drawing.Size(180, 21);
             this.textBoxDispositivo.TabIndex = 4;
             this.textBoxDispositivo.Text = "RV-Kingston";
             this.textBoxDispositivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -158,7 +158,7 @@
             this.textBoxCartellaPrivata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxCartellaPrivata.Location = new System.Drawing.Point(188, 86);
             this.textBoxCartellaPrivata.Name = "textBoxCartellaPrivata";
-            this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 20);
+            this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 21);
             this.textBoxCartellaPrivata.TabIndex = 5;
             this.textBoxCartellaPrivata.Text = "D:\\path\\to\\CartellaPrivata";
             this.textBoxCartellaPrivata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

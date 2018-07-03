@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,9 +17,9 @@ namespace SmartKey
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            BaseForm formHome = new HomeImpostazioni();
-            
-            Application.Run(formHome);
+            NavigationHelper helper = new NavigationHelper();
+            helper.AgganciaHandlers();
+            Application.Run(helper.GetForm("HomeSmartKey"));
         }
     }
 }

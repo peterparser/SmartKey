@@ -27,17 +27,62 @@ namespace SmartKey
             switch (GetType().Name)
             {
                 case ("HomeSmartKey"):
-                    buttonSmartKey.BackColor = Color.CornflowerBlue;
-                    buttonSmartKey.ForeColor = Color.White;
+                    ButtonHomeSmartKey.BackColor = Color.CornflowerBlue;
+                    ButtonHomeSmartKey.ForeColor = Color.White;
                     break;
                 case ("HomeImpostazioni"):
-                    buttonImpostazioni.BackColor = Color.CornflowerBlue;
-                    buttonImpostazioni.ForeColor = Color.White;
+                    ButtonImpostazioneTrasferimento.BackColor = Color.CornflowerBlue;
+                    ButtonImpostazioneTrasferimento.ForeColor = Color.White;
                     break;
-                case (""):
+                case ("HomeBlacklist"):
+                    ButtonBlacklist.BackColor = Color.CornflowerBlue;
+                    ButtonBlacklist.ForeColor = Color.White;
+                    break;
+                case ("HomeLog"):
+                    ButtonLog.BackColor = Color.CornflowerBlue;
+                    ButtonLog.ForeColor = Color.White;
+                    break;
+                case ("HomeAnalisiOttimizzazione"):
+                    ButtonAnalisi.BackColor = Color.CornflowerBlue;
+                    ButtonAnalisi.ForeColor = Color.White;
                     break;
                 default:
                     break;
+            }
+        }
+        public Button ButtonHomeSmartKey
+        {
+            get
+            {
+                return buttonSmartKey;
+            }
+        }
+        public Button ButtonImpostazioneTrasferimento
+        {
+            get
+            {
+                return buttonImpostazioni;
+            }
+        }
+        public Button ButtonAnalisi
+        {
+            get
+            {
+                return buttonAnalisi;
+            }
+        }
+        public Button ButtonBlacklist
+        {
+            get
+            {
+                return buttonBlacklist;
+            }
+        }
+        public Button ButtonLog
+        {
+            get
+            {
+                return buttonLog;
             }
         }
     }
