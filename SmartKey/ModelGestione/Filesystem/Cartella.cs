@@ -26,30 +26,33 @@ namespace SmartKey.ModelGestione.Filesystem
             {
                 throw new PathNotValidException("Path della cartella non valido");
             }
-            _children = new List<FilesystemElement>();
-            //Popolamento del sottoalbero
-            //Enumero il contenuto della cartella, se è un file aggiungo filewrapper
-            //Se è una cartella aggiungo una directory
-            var filesystemEntry = Directory.EnumerateFileSystemEntries(path);
-            foreach (string currentEntry in filesystemEntry)
-            { 
-                FileAttributes attr = File.GetAttributes(currentEntry);
-                if (attr.HasFlag(FileAttributes.Directory))
+            FileAttributes dirAtt = File.GetAttributes(Path);
+            if (dirAtt.HasFlag(FileAttributes.Directory))
+            {
+                _children = new List<FilesystemElement>();
+                //Popolamento del sottoalbero
+                //Enumero il contenuto della cartella, se è un file aggiungo filewrapper
+                //Se è una cartella aggiungo una directory
+                var filesystemEntry = Directory.EnumerateFileSystemEntries(path);
+                foreach (string currentEntry in filesystemEntry)
                 {
-                   AddChild(new Cartella(currentEntry));
-                }
-                else
-                {
-                    AddChild(new FileWrapper(currentEntry));
+                    FileAttributes attr = File.GetAttributes(currentEntry);
+                    if (attr.HasFlag(FileAttributes.Directory))
+                    {
+                        AddChild(new Cartella(currentEntry));
+                    }
+                    else
+                    { 
+                        AddChild(new FileWrapper(currentEntry));
+                    }
                 }
             }
-
+            else
+            {
+                throw new PathNotValidException("Il path passato non è una cartella");
+            }
         }
         
-        public String NomeCartella()
-        {
-            return base.Path.Split('\\').Last();
-        }
 
         public void AddChild(FilesystemElement e)
         {

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace SmartKey.ImpostazioneTrasferimento
 {
-   public  class ImpostazioneTrasferimento
+   public class ImpostazioneTrasferimento
     {
         private string _verso;
-        private string _utente = Utente.GetUtente();
+        private string _utente = Utente.GetNomeUtente();
         private Cartella _cartellaSorgente;
         private string _cartellaDestinazione;
 

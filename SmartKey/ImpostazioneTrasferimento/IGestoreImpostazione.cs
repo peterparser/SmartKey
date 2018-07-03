@@ -12,7 +12,7 @@ namespace SmartKey.ImpostazioneTrasferimento
       
         void SetImpostazioni(ISet<ImpostazioneTrasferimento> impostazioni);
         ISet<ImpostazioneTrasferimento> ElencoImpostazioni();
-        void AddImpostazione(ImpostazioneTrasferimento impostazione);
+        bool AddImpostazione(ImpostazioneTrasferimento impostazione);
         bool RemoveImpostazione(ImpostazioneTrasferimento impostazione);
     }
 }

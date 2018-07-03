@@ -20,15 +20,16 @@ namespace SmartKey.ImpostazioneTrasferimento
             _impostazioni = new HashSet<ImpostazioneTrasferimento>();
         }
 
-        void IGestoreImpostazione.AddImpostazione(ImpostazioneTrasferimento impostazione)
+        bool IGestoreImpostazione.AddImpostazione(ImpostazioneTrasferimento impostazione)
         {
+            bool toOut = _impostazioni.Add(impostazione);
             //Il log cambia a seconda dell'esito
-            if (_impostazioni.Add(impostazione))
+            if (toOut)
             {
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "aggiunta", sorgente:impostazione.CartellaSorgente.Path,
+                    ToEntry = EntryFactory.CreateEntry(this, "aggiunta", sorgente:impostazione.CartellaSorgente.Path,
                     destinazione:impostazione.CartellaDestinazione)
                 };
                 PersistEvent toPersist = new PersistEvent
@@ -44,11 +45,12 @@ namespace SmartKey.ImpostazioneTrasferimento
             {
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "nonaggiunta", impostazione.CartellaSorgente.Path,
+                    ToEntry = EntryFactory.CreateEntry(this, "nonaggiunta", impostazione.CartellaSorgente.Path,
                    impostazione.CartellaDestinazione)
                 };
                 ToLog?.Invoke(this, args);
             }
+            return toOut;
         }
 
         ISet<ImpostazioneTrasferimento> IGestoreImpostazione.ElencoImpostazioni()
@@ -65,7 +67,7 @@ namespace SmartKey.ImpostazioneTrasferimento
                 //Creazione dei parametri da passare agli handler dell'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "rimossa", impostazione.CartellaSorgente.Path,
+                    ToEntry = EntryFactory.CreateEntry(this, "rimossa", impostazione.CartellaSorgente.Path,
                                                             impostazione.CartellaDestinazione)
                 };
                 PersistEvent toPersist = new PersistEvent
@@ -82,7 +84,7 @@ namespace SmartKey.ImpostazioneTrasferimento
             {
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "nonrimossa", impostazione.CartellaSorgente.Path,
+                    ToEntry = EntryFactory.CreateEntry(this, "nonrimossa", impostazione.CartellaSorgente.Path,
                                                         impostazione.CartellaDestinazione)
                 };
                 ToLog?.Invoke(this, args);

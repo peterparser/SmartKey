@@ -21,20 +21,17 @@ namespace SmartKey.Blacklist
 
         public static Blacklist Instance
         {
-            get
-            {
-                lock (padlock)
+            get { 
+            
+                if (_instance == null)
                 {
-                    if (_instance == null)
-                    {
-                        _instance = new Blacklist();
-                    }
-                    return _instance;
+                    _instance = new Blacklist();
                 }
+                return _instance;
             }
         }
         //Serve per settare al vol
-        public ISet<String> SetUtenti
+        public ISet<String> Utenti
         {
             set
             {

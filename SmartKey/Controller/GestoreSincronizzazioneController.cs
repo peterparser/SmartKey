@@ -74,7 +74,7 @@ namespace SmartKey.Controller
 
             //Trovo l'autore del file
             string author = File.GetAccessControl(file.Path).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString();
-            if (!author.Equals(Utente.GetUtente()))
+            if (!author.Equals(Utente.GetNomeUtente()))
             {
                 if (!_blacklistController.IsBlackListed(author))
                 {

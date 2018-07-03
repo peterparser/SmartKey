@@ -24,8 +24,8 @@ namespace SmartKey.Log.LogPersistence.TestPersistenceLog
             blacklistController = new BlackListController();
             impostazioneController = new ImpostazioneTrasferimentoController();
             logController = new LogController();
-            impostazioneController.ToLog += logController.UpdateLog;
-            blacklistController.ToLog += logController.UpdateLog;
+            impostazioneController.ToLog += logController.Update;
+            blacklistController.ToLog += logController.Update;
 
         }
 

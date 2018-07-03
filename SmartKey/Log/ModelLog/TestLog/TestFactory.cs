@@ -15,7 +15,7 @@ namespace SmartKey.ModelLog.TestLog
         [TestCase]
         public void TestReturnType()
         {
-            Entry entry = EntryFactory.GetEntry(new ImpostazioneTrasferimento.ImpostazioneTrasferimentoController(), "ciao");
+            Entry entry = EntryFactory.CreateEntry(new ImpostazioneTrasferimento.ImpostazioneTrasferimentoController(), "ciao");
             Assert.IsInstanceOf(new EntryImpostazione("cioa", "mi", "u").GetType(), entry);
         }
     }

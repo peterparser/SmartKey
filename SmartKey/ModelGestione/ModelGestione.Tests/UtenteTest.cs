@@ -14,7 +14,7 @@ namespace SmartKey.ModelGestione.Tests
         [TestCase]
         public void TestNomeHost()
         {
-            string me = Utente.GetUtente();
+            string me = Utente.GetNomeUtente();
             Assert.AreEqual(me, WindowsIdentity.GetCurrent().Name.ToString());
         }
     }

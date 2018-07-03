@@ -34,7 +34,7 @@ namespace SmartKey.Log.ModelLog
         }
         public override string ToString()
         {
-            return "" + base.DataOra + "\t" + "Sincronizzazione\t" + Operazione + "\t" + Utente.GetUtente() + "\t" + Sorgente + "\t" + Destinatario;
+            return "" + base.DataOra + "\t" + "Sincronizzazione\t" + Operazione + "\t" + Utente.GetNomeUtente() + "\t" + Sorgente + "\t" + Destinatario;
         }
     }
 }

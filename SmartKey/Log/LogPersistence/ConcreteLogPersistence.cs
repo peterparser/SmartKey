@@ -5,18 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SmartKey.Log.ModelLog;
+using SmartKey.ModelGestione;
 
 namespace SmartKey.Log.LogPersistence
 {
     public class ConcreteLogPersistence : ILogPersistence
     {
         private readonly string _filename;
-        private readonly bool _append;
         
-        public ConcreteLogPersistence(string filename,bool append=false)
+        public ConcreteLogPersistence(string filename)
         {
             _filename = filename;
-            _append = true;
         }
         public ModelLog.Log LeggiLog()
         {
@@ -44,21 +43,16 @@ namespace SmartKey.Log.LogPersistence
                     {
                         case ("Blacklist"):
                             string badUser = fields[4];
-                            log.AddEntry(EntryFactory.GetEntry(entryType, operazione, date, hour,
-                                utenteMalevolo: badUser, utenteProprietario: "daaggiungere"));
+                            log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                utenteMalevolo: badUser, utenteProprietario: Utente.GetNomeUtente()));
                             break;
                         case ("Impostazione"):
                             string sorgente = fields[4];
                             string destinazione = fields[5];
-                            log.AddEntry(EntryFactory.GetEntry(entryType, operazione, date, hour,
+                            log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
                                 sorgente: sorgente, destinazione: destinazione));
                             break;
                     }
-
-
-                    //Parte variabile Se impostazione ci sono le cartelle
-                    //Se blacklist è finita
-
                 }
             }catch(Exception e)
             {
@@ -69,12 +63,9 @@ namespace SmartKey.Log.LogPersistence
 
         public void ScriviLog(ModelLog.Log log)
         {
-            using (StreamWriter writer = new StreamWriter(_filename, append:_append))
+            using (StreamWriter writer = new StreamWriter(_filename, append:true))
             {
-                foreach (Entry entry in log.Entries)
-                {
-                    writer.WriteLine(entry.ToString());
-                }
+                writer.WriteLine(log.Entries.Last());
             }
         }
     }

@@ -20,7 +20,7 @@ namespace SmartKey.Controller.TestController
             LogController log = new LogController();
             IGestoreImpostazione cont = new ImpostazioneTrasferimentoController();
             //Aggancio l'evento
-            cont.ToLog += log.UpdateLog;
+            cont.ToLog += log.Update;
             cont.AddImpostazione(new ImpostazioneTrasferimento.ImpostazioneTrasferimento("sorgente", "destinazione"));
             //Se l'invocazione è andata a buon fine e l'evento ha fatto il suo lavoro
             //Dovrebbe essere presente una riga sul file di log
@@ -33,7 +33,7 @@ namespace SmartKey.Controller.TestController
             LogController log = new LogController();
             IGestoreImpostazione cont = new ImpostazioneTrasferimentoController();
             //Aggancio l'evento
-            cont.ToLog += log.UpdateLog;
+            cont.ToLog += log.Update;
             ImpostazioneTrasferimento.ImpostazioneTrasferimento imp = new ImpostazioneTrasferimento.ImpostazioneTrasferimento("sorgente", "destinazione");
             cont.AddImpostazione(imp);
             //Se l'invocazione è andata a buon fine il contatore è aumentato

@@ -67,7 +67,7 @@ namespace SmartKey.ModelGestione.ModelGestione.Tests
             mySet.Add("Massimo");
             mySet.Add("Gianni1");
             Blacklist.Blacklist blacklist = Blacklist.Blacklist.Instance;
-            blacklist.SetUtenti = mySet;
+            blacklist.Utenti = mySet;
             Assert.IsTrue(blacklist.IsInBlacklist("Massimo"));
             Assert.IsTrue(blacklist.IsInBlacklist("Gianni1"));
         }

@@ -16,11 +16,11 @@ namespace SmartKey.Log.ControllerLog
 
         public LogController()
         {
-            _logPersistence = new ConcreteLogPersistence("C:\\Users\\massi\\Desktop\\log.txt", true);
+            _logPersistence = new ConcreteLogPersistence("C:\\Users\\massi\\Desktop\\log.txt");
             _log = _logPersistence.LeggiLog();
         }
 
-        public void UpdateLog(object sender, EventArgs e)
+        public void Update(object sender, EventArgs e)
         {
 
             ActionCompletedEvent param = (ActionCompletedEvent)e;
@@ -38,5 +38,7 @@ namespace SmartKey.Log.ControllerLog
                 return _log.Entries;
             }
         }
+        //TODO GENTRIESINTIME
+        //GETENTRIESTIPE
     }
 }

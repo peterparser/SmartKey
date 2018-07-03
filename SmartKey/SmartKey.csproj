@@ -65,7 +65,6 @@
     <Compile Include="ImpostazioneTrasferimento\IGestoreImpostazione.cs" />
     <Compile Include="Controller\Controller.Interfaces\IPersistActions.cs" />
     <Compile Include="ImpostazioneTrasferimento\ImpostazioneTrasferimentoController.cs" />
-    <Compile Include="Controller\SincronizzazioneController.cs" />
     <Compile Include="Controller\TestController\LogControllerTest.cs" />
     <Compile Include="Log\ControllerLog\IObserver.cs" />
     <Compile Include="Log\ControllerLog\LogController.cs" />

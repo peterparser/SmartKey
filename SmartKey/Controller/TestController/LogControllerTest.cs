@@ -25,8 +25,8 @@ namespace SmartKey.Controller.TestController
             impostazioneController = new ImpostazioneTrasferimentoController();
             logController = new LogController();
             //Registro gli eventi
-            listController.ToLog += logController.UpdateLog;
-            impostazioneController.ToLog += logController.UpdateLog;
+            listController.ToLog += logController.Update;
+            impostazioneController.ToLog += logController.Update;
 
         }
 

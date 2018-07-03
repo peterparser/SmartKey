@@ -13,17 +13,16 @@ namespace SmartKey.ModelGestione
     //Va fatto mettere in un controller poi farlo condividere.
     public class Utente
     {
-        private IDispositivo _dispositivo;
-
-
-        public static string GetUtente()
+        private IList<IDispositivo> _dispositivo;
+        
+        public static string GetNomeUtente()
         {
             return WindowsIdentity.GetCurrent().Name.ToString();
         }
 
 
 
-        public IDispositivo Dispositivo
+        public IList<IDispositivo> Dispositivo
         {
             get
             {

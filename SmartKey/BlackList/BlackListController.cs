@@ -29,7 +29,7 @@ namespace SmartKey.Blacklist
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "aggiunto", utente)
+                    ToEntry = EntryFactory.CreateEntry(this, "aggiunto", utente)
                 };
                 PersistEvent toPersist = new PersistEvent
                 {
@@ -45,10 +45,10 @@ namespace SmartKey.Blacklist
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "nonaggiunto", utente)
+                    ToEntry = EntryFactory.CreateEntry(this, "nonaggiunto", utente)
                 };
                 //scateno gli handler registrati all'evento
-                    ToLog?.Invoke(this, args);
+                ToLog?.Invoke(this, args);
             }
         }
 
@@ -64,7 +64,7 @@ namespace SmartKey.Blacklist
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "rimosso", utente)
+                    ToEntry = EntryFactory.CreateEntry(this, "rimosso", utente)
                 };
                 //scateno gli handler registrati all'evento
                 PersistEvent toPersist = new PersistEvent
@@ -81,19 +81,16 @@ namespace SmartKey.Blacklist
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.GetEntry(this, "nonrimosso", utente)
+                    ToEntry = EntryFactory.CreateEntry(this, "nonrimosso", utente)
                 };
                 //scateno gli handler registrati all'evento
                 ToLog?.Invoke(this, args);
             }
         }
+
         public void SetBlackList(ISet<string> blacklist)
         {
-            _blacklist.SetUtenti = blacklist;
-        }
-        public ISet<String> GetUtentiInBlackList()
-        {
-            return _blacklist.SetUtenti;
+            _blacklist.Utenti = blacklist;
         }
     }
 }

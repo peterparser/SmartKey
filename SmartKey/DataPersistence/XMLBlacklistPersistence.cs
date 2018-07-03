@@ -30,7 +30,7 @@ namespace SmartKey.DataPersistence
                 foreach (XmlNode node in nodelist)
                 {
                     //Se quell'elemento blacklist ha "me" come proprietario allora è la mia blacklist
-                    if (node.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetUtente())){
+                    if (node.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetNomeUtente())){
                         //Itero sui figli di quel nodo per prendere tutti gli utenti nella mia blacklist
                         foreach(XmlNode utenti in node.ChildNodes)
                         {
@@ -72,7 +72,7 @@ namespace SmartKey.DataPersistence
                 //Per prima cosa trovo la mia blacklist
                 foreach (XmlNode blacklist in blacklists)
                 {
-                    if (blacklist.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetUtente()))
+                    if (blacklist.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetNomeUtente()))
                     {
                         //Se l'operazione era di aggiunta appendo l'elemento
                         if (param.Action.Equals("aggiungi"))
@@ -115,7 +115,7 @@ namespace SmartKey.DataPersistence
                 //creo il tag blacklist
                 XmlElement blacklist = xdocument.CreateElement("blacklist");
                 //metto l'attributo per il proprietario
-                blacklist.SetAttribute("proprietario", Utente.GetUtente());
+                blacklist.SetAttribute("proprietario", Utente.GetNomeUtente());
                 //Aggiungo l'utente al dom
 
                 var utentexml = xdocument.CreateElement("utente");
