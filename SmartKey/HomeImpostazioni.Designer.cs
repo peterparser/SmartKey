@@ -104,7 +104,7 @@
             this.dataGridViewImpostazioni.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -116,6 +116,7 @@
             this.destinazioneColumn});
             this.dataGridViewImpostazioni.Location = new System.Drawing.Point(3, 29);
             this.dataGridViewImpostazioni.Name = "dataGridViewImpostazioni";
+            this.dataGridViewImpostazioni.ReadOnly = true;
             this.dataGridViewImpostazioni.RowHeadersVisible = false;
             this.dataGridViewImpostazioni.RowTemplate.ReadOnly = true;
             this.dataGridViewImpostazioni.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

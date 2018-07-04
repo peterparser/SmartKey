@@ -147,11 +147,17 @@
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HomeAnalisiOttimizzazione.resx">
+      <DependentUpon>HomeAnalisiOttimizzazione.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HomeBlacklist.resx">
       <DependentUpon>HomeBlacklist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeImpostazioni.resx">
       <DependentUpon>HomeImpostazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeLog.resx">
+      <DependentUpon>HomeLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeSmartKey.resx">
       <DependentUpon>HomeSmartKey.cs</DependentUpon>

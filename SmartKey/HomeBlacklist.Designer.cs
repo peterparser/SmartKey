@@ -103,7 +103,7 @@
             this.dataGridViewBlacklist.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -114,6 +114,7 @@
             this.utentiBloccatiColumn});
             this.dataGridViewBlacklist.Location = new System.Drawing.Point(7, 20);
             this.dataGridViewBlacklist.Name = "dataGridViewBlacklist";
+            this.dataGridViewBlacklist.ReadOnly = true;
             this.dataGridViewBlacklist.RowHeadersVisible = false;
             this.dataGridViewBlacklist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBlacklist.Size = new System.Drawing.Size(262, 252);
