@@ -1,4 +1,5 @@
 ﻿using SmartKey.ImpostazioneTrasferimento;
+using SmartKey.Log.ControllerLog;
 using SmartKey.Utility;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace SmartKey
             helper.AgganciaHandlers();
             ImpostazioneTrasferimentoController impostazioniController = 
                 new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));
+            LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
             Application.Run(helper.GetForm("HomeSmartKey"));
         }
     }

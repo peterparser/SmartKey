@@ -23,7 +23,7 @@ namespace SmartKey.Controller.TestController
         {
             listController = new BlackListController();
             impostazioneController = new ImpostazioneTrasferimentoController();
-            logController = new LogController();
+            logController = new LogController(new HomeLog());
             //Registro gli eventi
             listController.ToLog += logController.Update;
             impostazioneController.ToLog += logController.Update;

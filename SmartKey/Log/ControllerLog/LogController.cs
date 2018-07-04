@@ -13,11 +13,31 @@ namespace SmartKey.Log.ControllerLog
     {
         private ILogPersistence _logPersistence;
         private ModelLog.Log _log;
+        private HomeLog _logView;
 
-        public LogController()
+        public LogController(HomeLog _view)
         {
             _logPersistence = new ConcreteLogPersistence("C:\\Users\\massi\\Desktop\\log.txt");
             _log = _logPersistence.LeggiLog();
+            _logView = _view;
+            _logView.RadioButtonData.CheckedChanged += RadioButtonDataHandler;
+        }
+        private void RadioButtonDataHandler(object sender, EventArgs args)
+        {
+            if (_logView.RadioButtonData.Checked)
+            {
+                _logView.LabelDataStart.Visible = true;
+                _logView.DateTimePickerStart.Visible = true;
+                _logView.LabelDataStart.Visible = true;
+                _logView.DateTimePickerEnd.Visible = true;
+            }
+            else
+            {
+                _logView.LabelDataStart.Visible = false;
+                _logView.DateTimePickerStart.Visible = false;
+                _logView.LabelDataStart.Visible = false;
+                _logView.DateTimePickerEnd.Visible = false;
+            }
         }
 
         public void Update(object sender, EventArgs e)

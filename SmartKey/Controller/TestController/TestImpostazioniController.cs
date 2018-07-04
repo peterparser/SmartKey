@@ -17,7 +17,7 @@ namespace SmartKey.Controller.TestController
         [TestCase]
         public void TestLogInvocationAddImpostazione()
         {
-            LogController log = new LogController();
+            LogController log = new LogController(new HomeLog());
             IGestoreImpostazione cont = new ImpostazioneTrasferimentoController();
             //Aggancio l'evento
             cont.ToLog += log.Update;
@@ -30,7 +30,7 @@ namespace SmartKey.Controller.TestController
         [TestCase]
         public void TestLogInvocationRemImpostazione()
         {
-            LogController log = new LogController();
+            LogController log = new LogController(new HomeLog());
             IGestoreImpostazione cont = new ImpostazioneTrasferimentoController();
             //Aggancio l'evento
             cont.ToLog += log.Update;
