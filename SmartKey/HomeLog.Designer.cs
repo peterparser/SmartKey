@@ -1,4 +1,6 @@
-﻿namespace SmartKey
+﻿using System.Windows.Forms;
+
+namespace SmartKey
 {
     partial class HomeLog
     {
@@ -30,16 +32,22 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewOutputLog = new System.Windows.Forms.DataGridView();
+            this.labelDataStart = new System.Windows.Forms.Label();
+            this.labelDataEnd = new System.Windows.Forms.Label();
+            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.labelElencoLog = new System.Windows.Forms.Label();
-            this.checkedListBoxFiltriLog = new System.Windows.Forms.CheckedListBox();
+            this.dataGridViewOutputLog = new System.Windows.Forms.DataGridView();
             this.dataOraColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoLogColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrizioneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
-            this.labelDataEnd = new System.Windows.Forms.Label();
-            this.labelDataStart = new System.Windows.Forms.Label();
+            this.radioButtonBlackList = new System.Windows.Forms.RadioButton();
+            this.groupBoxFiltri = new System.Windows.Forms.GroupBox();
+            this.radioButtonCompressione = new System.Windows.Forms.RadioButton();
+            this.radioButtonData = new System.Windows.Forms.RadioButton();
+            this.radioButtonImpostazioni = new System.Windows.Forms.RadioButton();
+            this.radioButtonSincronizzazione = new System.Windows.Forms.RadioButton();
+            this.radioButtonSistema = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -48,6 +56,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutputLog)).BeginInit();
+            this.groupBoxFiltri.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -66,19 +75,62 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.groupBoxFiltri);
             this.splitContainer2.Panel1.Controls.Add(this.labelDataStart);
             this.splitContainer2.Panel1.Controls.Add(this.labelDataEnd);
             this.splitContainer2.Panel1.Controls.Add(this.dateTimePickerEnd);
             this.splitContainer2.Panel1.Controls.Add(this.dateTimePickerStart);
-            this.splitContainer2.Panel1.Controls.Add(this.checkedListBoxFiltriLog);
             this.splitContainer2.Panel1.Controls.Add(this.labelElencoLog);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dataGridViewOutputLog);
             this.splitContainer2.Size = new System.Drawing.Size(371, 372);
-            this.splitContainer2.SplitterDistance = 126;
+            this.splitContainer2.SplitterDistance = 125;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // labelDataStart
+            // 
+            this.labelDataStart.AutoSize = true;
+            this.labelDataStart.Location = new System.Drawing.Point(259, 19);
+            this.labelDataStart.Name = "labelDataStart";
+            this.labelDataStart.Size = new System.Drawing.Size(64, 13);
+            this.labelDataStart.TabIndex = 6;
+            this.labelDataStart.Text = "Data iniziale";
+            // 
+            // labelDataEnd
+            // 
+            this.labelDataEnd.AutoSize = true;
+            this.labelDataEnd.Location = new System.Drawing.Point(259, 61);
+            this.labelDataEnd.Name = "labelDataEnd";
+            this.labelDataEnd.Size = new System.Drawing.Size(59, 13);
+            this.labelDataEnd.TabIndex = 5;
+            this.labelDataEnd.Text = "Data finale";
+            // 
+            // dateTimePickerEnd
+            // 
+            this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(259, 77);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(100, 21);
+            this.dateTimePickerEnd.TabIndex = 4;
+            // 
+            // dateTimePickerStart
+            // 
+            this.dateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerStart.Location = new System.Drawing.Point(259, 34);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(100, 21);
+            this.dateTimePickerStart.TabIndex = 3;
+            // 
+            // labelElencoLog
+            // 
+            this.labelElencoLog.AutoSize = true;
+            this.labelElencoLog.Location = new System.Drawing.Point(3, 3);
+            this.labelElencoLog.Name = "labelElencoLog";
+            this.labelElencoLog.Size = new System.Drawing.Size(76, 13);
+            this.labelElencoLog.TabIndex = 0;
+            this.labelElencoLog.Text = "Elenco Dei Log";
             // 
             // dataGridViewOutputLog
             // 
@@ -105,36 +157,8 @@
             this.dataGridViewOutputLog.ReadOnly = true;
             this.dataGridViewOutputLog.RowHeadersVisible = false;
             this.dataGridViewOutputLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOutputLog.Size = new System.Drawing.Size(371, 242);
+            this.dataGridViewOutputLog.Size = new System.Drawing.Size(371, 243);
             this.dataGridViewOutputLog.TabIndex = 0;
-            // 
-            // labelElencoLog
-            // 
-            this.labelElencoLog.AutoSize = true;
-            this.labelElencoLog.Location = new System.Drawing.Point(3, 3);
-            this.labelElencoLog.Name = "labelElencoLog";
-            this.labelElencoLog.Size = new System.Drawing.Size(76, 13);
-            this.labelElencoLog.TabIndex = 0;
-            this.labelElencoLog.Text = "Elenco Dei Log";
-            // 
-            // checkedListBoxFiltriLog
-            // 
-            this.checkedListBoxFiltriLog.CheckOnClick = true;
-            this.checkedListBoxFiltriLog.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.checkedListBoxFiltriLog.FormattingEnabled = true;
-            this.checkedListBoxFiltriLog.Items.AddRange(new object[] {
-            "Blacklist",
-            "Compressione",
-            "Data",
-            "Impostazioni",
-            "Sincronizzazione",
-            "Sistema"});
-            this.checkedListBoxFiltriLog.Location = new System.Drawing.Point(6, 19);
-            this.checkedListBoxFiltriLog.MultiColumn = true;
-            this.checkedListBoxFiltriLog.Name = "checkedListBoxFiltriLog";
-            this.checkedListBoxFiltriLog.Size = new System.Drawing.Size(109, 100);
-            this.checkedListBoxFiltriLog.Sorted = true;
-            this.checkedListBoxFiltriLog.TabIndex = 1;
             // 
             // dataOraColumn
             // 
@@ -157,39 +181,92 @@
             this.descrizioneColumn.Name = "descrizioneColumn";
             this.descrizioneColumn.ReadOnly = true;
             // 
-            // dateTimePickerStart
+            // radioButtonBlackList
             // 
-            this.dateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerStart.Location = new System.Drawing.Point(259, 34);
-            this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(100, 21);
-            this.dateTimePickerStart.TabIndex = 3;
+            this.radioButtonBlackList.AutoSize = true;
+            this.radioButtonBlackList.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.radioButtonBlackList.Location = new System.Drawing.Point(6, 20);
+            this.radioButtonBlackList.Name = "radioButtonBlackList";
+            this.radioButtonBlackList.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonBlackList.TabIndex = 7;
+            this.radioButtonBlackList.TabStop = true;
+            this.radioButtonBlackList.Text = "Blacklist";
+            this.radioButtonBlackList.UseVisualStyleBackColor = true;
             // 
-            // dateTimePickerEnd
+            // groupBoxFiltri
             // 
-            this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(259, 77);
-            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(100, 21);
-            this.dateTimePickerEnd.TabIndex = 4;
+            this.groupBoxFiltri.Controls.Add(this.radioButtonSistema);
+            this.groupBoxFiltri.Controls.Add(this.radioButtonSincronizzazione);
+            this.groupBoxFiltri.Controls.Add(this.radioButtonImpostazioni);
+            this.groupBoxFiltri.Controls.Add(this.radioButtonData);
+            this.groupBoxFiltri.Controls.Add(this.radioButtonCompressione);
+            this.groupBoxFiltri.Controls.Add(this.radioButtonBlackList);
+            this.groupBoxFiltri.Location = new System.Drawing.Point(6, 19);
+            this.groupBoxFiltri.Name = "groupBoxFiltri";
+            this.groupBoxFiltri.Size = new System.Drawing.Size(247, 100);
+            this.groupBoxFiltri.TabIndex = 8;
+            this.groupBoxFiltri.TabStop = false;
+            this.groupBoxFiltri.Text = "Filtri";
             // 
-            // labelDataEnd
+            // radioButtonCompressione
             // 
-            this.labelDataEnd.AutoSize = true;
-            this.labelDataEnd.Location = new System.Drawing.Point(259, 61);
-            this.labelDataEnd.Name = "labelDataEnd";
-            this.labelDataEnd.Size = new System.Drawing.Size(59, 13);
-            this.labelDataEnd.TabIndex = 5;
-            this.labelDataEnd.Text = "Data finale";
+            this.radioButtonCompressione.AutoSize = true;
+            this.radioButtonCompressione.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.radioButtonCompressione.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonCompressione.Name = "radioButtonCompressione";
+            this.radioButtonCompressione.Size = new System.Drawing.Size(92, 17);
+            this.radioButtonCompressione.TabIndex = 8;
+            this.radioButtonCompressione.TabStop = true;
+            this.radioButtonCompressione.Text = "Compressione";
+            this.radioButtonCompressione.UseVisualStyleBackColor = true;
             // 
-            // labelDataStart
+            // radioButtonData
             // 
-            this.labelDataStart.AutoSize = true;
-            this.labelDataStart.Location = new System.Drawing.Point(259, 19);
-            this.labelDataStart.Name = "labelDataStart";
-            this.labelDataStart.Size = new System.Drawing.Size(64, 13);
-            this.labelDataStart.TabIndex = 6;
-            this.labelDataStart.Text = "Data iniziale";
+            this.radioButtonData.AutoSize = true;
+            this.radioButtonData.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.radioButtonData.Location = new System.Drawing.Point(6, 66);
+            this.radioButtonData.Name = "radioButtonData";
+            this.radioButtonData.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonData.TabIndex = 9;
+            this.radioButtonData.TabStop = true;
+            this.radioButtonData.Text = "Data";
+            this.radioButtonData.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonImpostazioni
+            // 
+            this.radioButtonImpostazioni.AutoSize = true;
+            this.radioButtonImpostazioni.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.radioButtonImpostazioni.Location = new System.Drawing.Point(109, 20);
+            this.radioButtonImpostazioni.Name = "radioButtonImpostazioni";
+            this.radioButtonImpostazioni.Size = new System.Drawing.Size(85, 17);
+            this.radioButtonImpostazioni.TabIndex = 10;
+            this.radioButtonImpostazioni.TabStop = true;
+            this.radioButtonImpostazioni.Text = "Impostazioni";
+            this.radioButtonImpostazioni.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonSincronizzazione
+            // 
+            this.radioButtonSincronizzazione.AutoSize = true;
+            this.radioButtonSincronizzazione.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.radioButtonSincronizzazione.Location = new System.Drawing.Point(109, 42);
+            this.radioButtonSincronizzazione.Name = "radioButtonSincronizzazione";
+            this.radioButtonSincronizzazione.Size = new System.Drawing.Size(103, 17);
+            this.radioButtonSincronizzazione.TabIndex = 11;
+            this.radioButtonSincronizzazione.TabStop = true;
+            this.radioButtonSincronizzazione.Text = "Sincronizzazione";
+            this.radioButtonSincronizzazione.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonSistema
+            // 
+            this.radioButtonSistema.AutoSize = true;
+            this.radioButtonSistema.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.radioButtonSistema.Location = new System.Drawing.Point(109, 66);
+            this.radioButtonSistema.Name = "radioButtonSistema";
+            this.radioButtonSistema.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonSistema.TabIndex = 12;
+            this.radioButtonSistema.TabStop = true;
+            this.radioButtonSistema.Text = "Sistema";
+            this.radioButtonSistema.UseVisualStyleBackColor = true;
             // 
             // HomeLog
             // 
@@ -205,6 +282,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutputLog)).EndInit();
+            this.groupBoxFiltri.ResumeLayout(false);
+            this.groupBoxFiltri.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,7 +292,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView dataGridViewOutputLog;
-        private System.Windows.Forms.CheckedListBox checkedListBoxFiltriLog;
         private System.Windows.Forms.Label labelElencoLog;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataOraColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoLogColumn;
@@ -222,5 +300,12 @@
         private System.Windows.Forms.Label labelDataEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerStart;
+        private GroupBox groupBoxFiltri;
+        private RadioButton radioButtonSistema;
+        private RadioButton radioButtonSincronizzazione;
+        private RadioButton radioButtonImpostazioni;
+        private RadioButton radioButtonData;
+        private RadioButton radioButtonCompressione;
+        private RadioButton radioButtonBlackList;
     }
 }
