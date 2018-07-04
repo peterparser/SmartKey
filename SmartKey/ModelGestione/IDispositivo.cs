@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione.Filesystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace SmartKey.ModelGestione
 {
     public interface IDispositivo
     {
-        string NomeDispositivo();
-        string NomePercorso();
+        string OttieniNomeDispositivo();
+        Cartella OttieniCartellaPrivata();
+        Cartella OttieniCartellaPubblica();
     }
 }
