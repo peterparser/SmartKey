@@ -145,9 +145,11 @@
             // 
             // textBoxDispositivo
             // 
+            this.textBoxDispositivo.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxDispositivo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxDispositivo.Location = new System.Drawing.Point(188, 48);
             this.textBoxDispositivo.Name = "textBoxDispositivo";
+            this.textBoxDispositivo.ReadOnly = true;
             this.textBoxDispositivo.Size = new System.Drawing.Size(180, 21);
             this.textBoxDispositivo.TabIndex = 4;
             this.textBoxDispositivo.Text = "RV-Kingston";
@@ -155,9 +157,11 @@
             // 
             // textBoxCartellaPrivata
             // 
+            this.textBoxCartellaPrivata.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxCartellaPrivata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxCartellaPrivata.Location = new System.Drawing.Point(188, 86);
             this.textBoxCartellaPrivata.Name = "textBoxCartellaPrivata";
+            this.textBoxCartellaPrivata.ReadOnly = true;
             this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 21);
             this.textBoxCartellaPrivata.TabIndex = 5;
             this.textBoxCartellaPrivata.Text = "D:\\path\\to\\CartellaPrivata";
