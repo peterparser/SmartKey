@@ -14,5 +14,27 @@ namespace SmartKey
         {
             InitializeComponent();
         }
+
+        public Button AggiungiImpostazioneButton
+        {
+            get
+            {
+                return buttonAggiungi;
+            }
+        }
+        public DataGridView DataGridImpostazioni
+        {
+            get
+            {
+                return dataGridViewImpostazioni;
+            }
+        }
+        public Button RimuoviImpostazioneButton
+        {
+            get
+            {
+                return buttonRimuovi;
+            }
+        }
     }
 }

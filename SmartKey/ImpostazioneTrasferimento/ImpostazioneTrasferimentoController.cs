@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SmartKey.Controller;
+using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.DataPersistence;
 using SmartKey.Log.ModelLog;
 
@@ -14,14 +16,97 @@ namespace SmartKey.ImpostazioneTrasferimento
         ISet<ImpostazioneTrasferimento> _impostazioni;
         public event EventHandler<ActionCompletedEvent> ToLog;
         public event EventHandler<PersistEvent> Persist;
-
+        private HomeImpostazioni _impostazioniView;
         public ImpostazioneTrasferimentoController()
         {
             _impostazioni = new HashSet<ImpostazioneTrasferimento>();
         }
-
-        bool IGestoreImpostazione.AddImpostazione(ImpostazioneTrasferimento impostazione)
+        public ImpostazioneTrasferimentoController(HomeImpostazioni view)
         {
+            _impostazioni = new HashSet<ImpostazioneTrasferimento>();
+            _impostazioniView = view;
+            _impostazioniView.AggiungiImpostazioneButton.Click += AddImpostazioneHandler;
+            _impostazioniView.RimuoviImpostazioneButton.Click += RimuoviImpostazioneHandler;
+            
+        }
+
+        event EventHandler<PersistEvent> IPersistActions.Persist
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        event EventHandler<ActionCompletedEvent> IController.ToLog
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private void RimuoviImpostazioneHandler(object sender, EventArgs args)
+        {
+            foreach(DataGridViewRow row in _impostazioniView.DataGridImpostazioni.SelectedRows)
+            { 
+                string sorgente = row.Cells[0].Value.ToString();
+                string destinazione = row.Cells[1].Value.ToString();
+                
+                bool result = ((IGestoreImpostazione)this).RemoveImpostazione(new ImpostazioneTrasferimento(sorgente, destinazione));
+                if (result)
+                {
+                    _impostazioniView.DataGridImpostazioni.Rows.Remove(row);
+                }
+            }
+        }
+        private void AddImpostazioneHandler(object sender, EventArgs args)
+        {
+            String sorgente = null;
+            String destinazione = null;
+            //Mostrare le due dialog
+            using(var sorgenteDialog = new FolderBrowserDialog())
+            {
+                sorgenteDialog.Description = "Seleziona la cartella da sincronizzare";
+                DialogResult sorgenteResult = sorgenteDialog.ShowDialog();
+                if(sorgenteResult == DialogResult.OK && !string.IsNullOrWhiteSpace(sorgenteDialog.SelectedPath))
+                {
+                    sorgente = sorgenteDialog.SelectedPath;
+                }
+            }
+            using(var destinazioneDialog = new FolderBrowserDialog())
+            {
+                destinazioneDialog.Description = "Seleziona la cartella di destinazione";
+                DialogResult destinazioneResult = destinazioneDialog.ShowDialog();
+                if (destinazioneResult == DialogResult.OK && !string.IsNullOrWhiteSpace(destinazioneDialog.SelectedPath))
+                {
+                    destinazione = destinazioneDialog.SelectedPath;
+                }
+            }
+            if (sorgente != null && destinazione != null)
+            {
+                bool toAdd = AddImpostazione(new ImpostazioneTrasferimento(sorgente, destinazione));
+                if (toAdd)
+                {
+                    _impostazioniView.DataGridImpostazioni.Rows.Add(sorgente, destinazione);
+                }
+            }
+        }
+
+        public bool AddImpostazione(ImpostazioneTrasferimento impostazione)
+        {
+
+
             bool toOut = _impostazioni.Add(impostazione);
             //Il log cambia a seconda dell'esito
             if (toOut)
