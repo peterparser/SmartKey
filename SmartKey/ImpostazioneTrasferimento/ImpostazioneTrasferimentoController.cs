@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SmartKey.Controller;
 using SmartKey.DataPersistence;
 using SmartKey.Log.ModelLog;
@@ -14,14 +15,55 @@ namespace SmartKey.ImpostazioneTrasferimento
         ISet<ImpostazioneTrasferimento> _impostazioni;
         public event EventHandler<ActionCompletedEvent> ToLog;
         public event EventHandler<PersistEvent> Persist;
-
+        private HomeImpostazioni _impostazioniView;
         public ImpostazioneTrasferimentoController()
         {
             _impostazioni = new HashSet<ImpostazioneTrasferimento>();
         }
-
-        bool IGestoreImpostazione.AddImpostazione(ImpostazioneTrasferimento impostazione)
+        public ImpostazioneTrasferimentoController(HomeImpostazioni view)
         {
+            _impostazioni = new HashSet<ImpostazioneTrasferimento>();
+            _impostazioniView = view;
+            _impostazioniView.AggiungiImpostazioneButton.Click += AddImpostazioneHandler;
+        }
+
+        private void AddImpostazioneHandler(object sender, EventArgs args)
+        {
+            String sorgente = null;
+            String destinazione = null;
+            //Mostrare le due dialog
+            using(var sorgenteDialog = new FolderBrowserDialog())
+            {
+                sorgenteDialog.Description = "Seleziona la cartella da sincronizzare";
+                DialogResult sorgenteResult = sorgenteDialog.ShowDialog();
+                if(sorgenteResult == DialogResult.OK && !string.IsNullOrWhiteSpace(sorgenteDialog.SelectedPath))
+                {
+                    sorgente = sorgenteDialog.SelectedPath;
+                }
+            }
+            using(var destinazioneDialog = new FolderBrowserDialog())
+            {
+                destinazioneDialog.Description = "Seleziona la cartella di destinazione";
+                DialogResult destinazioneResult = destinazioneDialog.ShowDialog();
+                if (destinazioneResult == DialogResult.OK && !string.IsNullOrWhiteSpace(destinazioneDialog.SelectedPath))
+                {
+                    destinazione = destinazioneDialog.SelectedPath;
+                }
+            }
+            if (sorgente != null && destinazione != null)
+            {
+                bool toAdd = AddImpostazione(new ImpostazioneTrasferimento(sorgente, destinazione));
+                if (toAdd)
+                {
+                    _impostazioniView.DataGridImpostazioni.Rows.Add(sorgente, destinazione);
+                }
+            }
+        }
+
+        public bool AddImpostazione(ImpostazioneTrasferimento impostazione)
+        {
+
+
             bool toOut = _impostazioni.Add(impostazione);
             //Il log cambia a seconda dell'esito
             if (toOut)

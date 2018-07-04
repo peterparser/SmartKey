@@ -1,4 +1,5 @@
-﻿using SmartKey.Utility;
+﻿using SmartKey.ImpostazioneTrasferimento;
+using SmartKey.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace SmartKey
             Application.SetCompatibleTextRenderingDefault(false);
             NavigationHelper helper = new NavigationHelper();
             helper.AgganciaHandlers();
+            ImpostazioneTrasferimentoController impostazioniController = 
+                new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));
             Application.Run(helper.GetForm("HomeSmartKey"));
         }
     }
