@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartKey.Controller;
+using SmartKey.Controller.Controller.Interfaces;
 using SmartKey.DataPersistence;
 using SmartKey.Log.ModelLog;
 
@@ -25,8 +26,50 @@ namespace SmartKey.ImpostazioneTrasferimento
             _impostazioni = new HashSet<ImpostazioneTrasferimento>();
             _impostazioniView = view;
             _impostazioniView.AggiungiImpostazioneButton.Click += AddImpostazioneHandler;
+            _impostazioniView.RimuoviImpostazioneButton.Click += RimuoviImpostazioneHandler;
+            
         }
 
+        event EventHandler<PersistEvent> IPersistActions.Persist
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        event EventHandler<ActionCompletedEvent> IController.ToLog
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private void RimuoviImpostazioneHandler(object sender, EventArgs args)
+        {
+            foreach(DataGridViewRow row in _impostazioniView.DataGridImpostazioni.SelectedRows)
+            { 
+                string sorgente = row.Cells[0].Value.ToString();
+                string destinazione = row.Cells[1].Value.ToString();
+                
+                bool result = ((IGestoreImpostazione)this).RemoveImpostazione(new ImpostazioneTrasferimento(sorgente, destinazione));
+                if (result)
+                {
+                    _impostazioniView.DataGridImpostazioni.Rows.Remove(row);
+                }
+            }
+        }
         private void AddImpostazioneHandler(object sender, EventArgs args)
         {
             String sorgente = null;
