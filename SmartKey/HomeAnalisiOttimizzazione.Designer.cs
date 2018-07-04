@@ -1,4 +1,6 @@
-﻿namespace SmartKey
+﻿using System.IO.Compression;
+
+namespace SmartKey
 {
     partial class HomeAnalisiOttimizzazione
     {
@@ -31,15 +33,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.labelCartelleConsigliate = new System.Windows.Forms.Label();
-            this.comboBoxQualita = new System.Windows.Forms.ComboBox();
-            this.labelQualita = new System.Windows.Forms.Label();
-            this.buttonLogCompressione = new System.Windows.Forms.Button();
-            this.buttonComprimi = new System.Windows.Forms.Button();
-            this.buttonPulisciLista = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pathCartellaColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dimensioneCartellaColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelCartelleConsigliate = new System.Windows.Forms.Label();
+            this.buttonPulisciLista = new System.Windows.Forms.Button();
+            this.buttonComprimi = new System.Windows.Forms.Button();
+            this.labelQualita = new System.Windows.Forms.Label();
+            this.comboBoxQualita = new System.Windows.Forms.ComboBox();
+            this.buttonLogCompressione = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -100,65 +102,6 @@
             this.splitContainer3.SplitterDistance = 254;
             this.splitContainer3.TabIndex = 0;
             // 
-            // labelCartelleConsigliate
-            // 
-            this.labelCartelleConsigliate.AutoSize = true;
-            this.labelCartelleConsigliate.Location = new System.Drawing.Point(4, 13);
-            this.labelCartelleConsigliate.Name = "labelCartelleConsigliate";
-            this.labelCartelleConsigliate.Size = new System.Drawing.Size(195, 13);
-            this.labelCartelleConsigliate.TabIndex = 0;
-            this.labelCartelleConsigliate.Text = "Cartelle consigliate per la compressione";
-            // 
-            // comboBoxQualita
-            // 
-            this.comboBoxQualita.FormattingEnabled = true;
-            this.comboBoxQualita.Location = new System.Drawing.Point(7, 28);
-            this.comboBoxQualita.Name = "comboBoxQualita";
-            this.comboBoxQualita.Size = new System.Drawing.Size(94, 21);
-            this.comboBoxQualita.TabIndex = 0;
-            // 
-            // labelQualita
-            // 
-            this.labelQualita.AutoSize = true;
-            this.labelQualita.Location = new System.Drawing.Point(1, 12);
-            this.labelQualita.Name = "labelQualita";
-            this.labelQualita.Size = new System.Drawing.Size(109, 13);
-            this.labelQualita.TabIndex = 1;
-            this.labelQualita.Text = "Qualità compressione";
-            // 
-            // buttonLogCompressione
-            // 
-            this.buttonLogCompressione.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.buttonLogCompressione.ForeColor = System.Drawing.SystemColors.Window;
-            this.buttonLogCompressione.Location = new System.Drawing.Point(126, 21);
-            this.buttonLogCompressione.Name = "buttonLogCompressione";
-            this.buttonLogCompressione.Size = new System.Drawing.Size(115, 42);
-            this.buttonLogCompressione.TabIndex = 0;
-            this.buttonLogCompressione.Text = "Visualizza Log Compressione";
-            this.buttonLogCompressione.UseVisualStyleBackColor = false;
-            // 
-            // buttonComprimi
-            // 
-            this.buttonComprimi.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.buttonComprimi.ForeColor = System.Drawing.SystemColors.Window;
-            this.buttonComprimi.Location = new System.Drawing.Point(18, 77);
-            this.buttonComprimi.Name = "buttonComprimi";
-            this.buttonComprimi.Size = new System.Drawing.Size(83, 29);
-            this.buttonComprimi.TabIndex = 2;
-            this.buttonComprimi.Text = "Comprimi";
-            this.buttonComprimi.UseVisualStyleBackColor = false;
-            // 
-            // buttonPulisciLista
-            // 
-            this.buttonPulisciLista.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.buttonPulisciLista.ForeColor = System.Drawing.SystemColors.Window;
-            this.buttonPulisciLista.Location = new System.Drawing.Point(18, 130);
-            this.buttonPulisciLista.Name = "buttonPulisciLista";
-            this.buttonPulisciLista.Size = new System.Drawing.Size(83, 29);
-            this.buttonPulisciLista.TabIndex = 3;
-            this.buttonPulisciLista.Text = "Pulisci Lista";
-            this.buttonPulisciLista.UseVisualStyleBackColor = false;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -198,6 +141,69 @@
             this.dimensioneCartellaColumn.HeaderText = "Dimensione";
             this.dimensioneCartellaColumn.Name = "dimensioneCartellaColumn";
             this.dimensioneCartellaColumn.ReadOnly = true;
+            // 
+            // labelCartelleConsigliate
+            // 
+            this.labelCartelleConsigliate.AutoSize = true;
+            this.labelCartelleConsigliate.Location = new System.Drawing.Point(4, 13);
+            this.labelCartelleConsigliate.Name = "labelCartelleConsigliate";
+            this.labelCartelleConsigliate.Size = new System.Drawing.Size(195, 13);
+            this.labelCartelleConsigliate.TabIndex = 0;
+            this.labelCartelleConsigliate.Text = "Cartelle consigliate per la compressione";
+            // 
+            // buttonPulisciLista
+            // 
+            this.buttonPulisciLista.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonPulisciLista.ForeColor = System.Drawing.SystemColors.Window;
+            this.buttonPulisciLista.Location = new System.Drawing.Point(18, 130);
+            this.buttonPulisciLista.Name = "buttonPulisciLista";
+            this.buttonPulisciLista.Size = new System.Drawing.Size(83, 29);
+            this.buttonPulisciLista.TabIndex = 3;
+            this.buttonPulisciLista.Text = "Pulisci Lista";
+            this.buttonPulisciLista.UseVisualStyleBackColor = false;
+            // 
+            // buttonComprimi
+            // 
+            this.buttonComprimi.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonComprimi.ForeColor = System.Drawing.SystemColors.Window;
+            this.buttonComprimi.Location = new System.Drawing.Point(18, 77);
+            this.buttonComprimi.Name = "buttonComprimi";
+            this.buttonComprimi.Size = new System.Drawing.Size(83, 29);
+            this.buttonComprimi.TabIndex = 2;
+            this.buttonComprimi.Text = "Comprimi";
+            this.buttonComprimi.UseVisualStyleBackColor = false;
+            // 
+            // labelQualita
+            // 
+            this.labelQualita.AutoSize = true;
+            this.labelQualita.Location = new System.Drawing.Point(1, 12);
+            this.labelQualita.Name = "labelQualita";
+            this.labelQualita.Size = new System.Drawing.Size(109, 13);
+            this.labelQualita.TabIndex = 1;
+            this.labelQualita.Text = "Qualità compressione";
+            // 
+            // comboBoxQualita
+            // 
+            this.comboBoxQualita.FormattingEnabled = true;
+            this.comboBoxQualita.Items.AddRange(new object[] {
+            CompressionLevel.Optimal,
+            CompressionLevel.Fastest,
+            CompressionLevel.NoCompression});
+            this.comboBoxQualita.Location = new System.Drawing.Point(7, 28);
+            this.comboBoxQualita.Name = "comboBoxQualita";
+            this.comboBoxQualita.Size = new System.Drawing.Size(94, 21);
+            this.comboBoxQualita.TabIndex = 0;
+            // 
+            // buttonLogCompressione
+            // 
+            this.buttonLogCompressione.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonLogCompressione.ForeColor = System.Drawing.SystemColors.Window;
+            this.buttonLogCompressione.Location = new System.Drawing.Point(126, 21);
+            this.buttonLogCompressione.Name = "buttonLogCompressione";
+            this.buttonLogCompressione.Size = new System.Drawing.Size(115, 42);
+            this.buttonLogCompressione.TabIndex = 0;
+            this.buttonLogCompressione.Text = "Visualizza Log Compressione";
+            this.buttonLogCompressione.UseVisualStyleBackColor = false;
             // 
             // HomeAnalisiOttimizzazione
             // 

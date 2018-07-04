@@ -17,7 +17,7 @@ namespace SmartKey.Controller.TestController
         private void Init()
         {
             
-            sincroController = new GestoreSincronizzazioneController(new BlackListController());
+            sincroController = new GestoreSincronizzazioneController(new BlackListController(new HomeBlacklist()));
             impostazioni = new List<ImpostazioneTrasferimento.ImpostazioneTrasferimento>();
             impostazioni.Add(new ImpostazioneTrasferimento.ImpostazioneTrasferimento(@"C:\Users\massi\Desktop\prova", @"C:\Users\massi\Desktop\sincronizzato"));
 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SmartKey.Blacklist
 {
@@ -17,10 +18,24 @@ namespace SmartKey.Blacklist
         public event EventHandler<PersistEvent> Persist;
 
         private Blacklist _blacklist;
+        private HomeBlacklist _blacklistView;
         
-        public BlackListController()
+        public BlackListController(HomeBlacklist _view)
         {
             _blacklist = Blacklist.Instance;
+            _blacklistView = _view;
+            _blacklistView.ButtonRimuovi.Click += RimuoviUtenteHandler;
+        }
+        private void RimuoviUtenteHandler(object sender, EventArgs args)
+        {
+            foreach (DataGridViewRow row in _blacklistView.DataGridViewBlacklist.SelectedRows)
+            {
+                string utente = row.Cells[0].Value.ToString();
+                Console.WriteLine(utente);
+               // this.RimuoviUtente(utente);               
+                _blacklistView.DataGridViewBlacklist.Rows.Remove(row);
+                
+            }
         }
         public void AggiungiUtente(string utente)
         {

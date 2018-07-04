@@ -21,7 +21,7 @@ namespace SmartKey.Controller.TestController
         private IObserver logController;
         private void Init()
         {
-            listController = new BlackListController();
+            listController = new BlackListController(new HomeBlacklist());
             impostazioneController = new ImpostazioneTrasferimentoController();
             logController = new LogController(new HomeLog());
             //Registro gli eventi

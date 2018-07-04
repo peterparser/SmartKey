@@ -14,5 +14,19 @@ namespace SmartKey
         {
             InitializeComponent();
         }
+        public Button ButtonRimuovi
+        {
+            get
+            {
+               return this.buttonRimuovi;
+            }
+        }
+        public DataGridView DataGridViewBlacklist
+        {
+            get
+            {
+                return this.dataGridViewBlacklist;
+            }
+        }
     }
 }

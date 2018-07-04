@@ -20,7 +20,7 @@ namespace SmartKey.DataPersistence
         {
             //Crea correttamente le entry, precaricando la blacklist non inserisce duplicati
             XMLDataPersistence bpers = new XMLBlacklistPersistence(PATH);
-            IGestoreBlacklist bcontr = new BlackListController();
+            IGestoreBlacklist bcontr = new BlackListController(new HomeBlacklist());
             try
             {
                 ISet<String> black = (ISet<string>)bpers.Carica();

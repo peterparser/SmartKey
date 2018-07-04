@@ -21,8 +21,7 @@ namespace SmartKey
             Application.SetCompatibleTextRenderingDefault(false);
             NavigationHelper helper = new NavigationHelper();
             helper.AgganciaHandlers();
-            ImpostazioneTrasferimentoController impostazioniController = 
-                new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));
+            ImpostazioneTrasferimentoController impostazioniController = new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
             Application.Run(helper.GetForm("HomeSmartKey"));
         }
