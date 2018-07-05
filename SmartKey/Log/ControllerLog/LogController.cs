@@ -21,7 +21,14 @@ namespace SmartKey.Log.ControllerLog
             _logPersistence = new ConcreteLogPersistence(string.Join("\\",path,"log.txt"));
             _log = _logPersistence.LeggiLog();
             _logView = _view;
-            _logView.RadioButtonData.CheckedChanged += RadioButtonDataHandler;
+            _logView.RadioButtonData.CheckedChanged += ShowLogData;
+            _logView.RadioButtonImpostazioni.CheckedChanged += ShowLogImpostazioni;
+            _logView.ButtonReset.Click += ResetButtonHandler;
+            _logView.RadioButtonBlacklist.CheckedChanged += ShowLogBlacklist;
+            _logView.RadioButtonCompressione.CheckedChanged += ShowLogCompressione;
+            _logView.RadioButtonSincronizzazione.CheckedChanged += ShowLogSincro;
+            _logView.RadioButtonSistema.CheckedChanged += ShowLogSistema;
+            
 
             //Popolo la grid con i dati dei log
             foreach(Entry entry in _log.Entries)
@@ -30,7 +37,21 @@ namespace SmartKey.Log.ControllerLog
             }
 
         }
-        private void RadioButtonDataHandler(object sender, EventArgs args)
+        private void ResetButtonHandler(object sender, EventArgs args)
+        {
+            //Controllo che non siano gia tutte stampate
+            //Se sono lo stesso numero che abbiamo in Entries vuol dire che le abbiamo stampate tutte
+            if (_logView.DataGridOutputLog.Rows.Count != _log.Entries.Count)
+            {
+                //Cancello tutto dalla view e ripopolo
+                _logView.DataGridOutputLog.Rows.Clear();
+                foreach (Entry entry in _log.Entries)
+                { 
+                    _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+                }
+            }
+        }
+        private void ShowLogData(object sender, EventArgs args)
         {
             if (_logView.RadioButtonData.Checked)
             {
@@ -68,6 +89,53 @@ namespace SmartKey.Log.ControllerLog
             }
         }
         //TODO GENTRIESINTIME
-        //GETENTRIESTIPE
+        private void ShowLogImpostazioni(object sender, EventArgs args)
+        {
+            _logView.DataGridOutputLog.Rows.Clear();
+            foreach(Entry entry in GetEntriesType("EntryImpostazione"))
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+            }
+        }
+        private void ShowLogBlacklist(object sender, EventArgs args)
+        {
+            _logView.DataGridOutputLog.Rows.Clear();
+            foreach (Entry entry in GetEntriesType("EntryBlacklist"))
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+            }
+        }
+        private void ShowLogSincro(object sender, EventArgs args)
+        {
+            _logView.DataGridOutputLog.Rows.Clear();
+            foreach (Entry entry in GetEntriesType("EntrySincronizzazione"))
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+            }
+        }
+
+        private void ShowLogCompressione(object sender, EventArgs args)
+        {
+            _logView.DataGridOutputLog.Rows.Clear();
+            foreach (Entry entry in GetEntriesType("EntryAnalisi"))
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+            }
+        }
+
+        private void ShowLogSistema(object sender, EventArgs args)
+        {
+            _logView.DataGridOutputLog.Rows.Clear();
+            foreach (Entry entry in GetEntriesType("EntrySistema"))
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+            }
+        }
+
+
+
+        private IList<Entry> GetEntriesType(string type){
+            return _log.Entries.Where(x => x.GetType().Name.Equals(type)).ToList();
+        }
     }
 }

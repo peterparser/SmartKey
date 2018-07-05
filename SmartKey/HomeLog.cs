@@ -15,6 +15,13 @@ namespace SmartKey
             InitializeComponent();
         }
 
+        public Button ButtonReset
+        {
+            get
+            {
+                return buttonReset;
+            }
+        }
         public DataGridView DataGridOutputLog
         {
             get

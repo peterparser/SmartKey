@@ -32,7 +32,7 @@ namespace SmartKey
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.buttonCancellaSelezione = new System.Windows.Forms.Button();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.groupBoxFiltri = new System.Windows.Forms.GroupBox();
             this.radioButtonSistema = new System.Windows.Forms.RadioButton();
             this.radioButtonSincronizzazione = new System.Windows.Forms.RadioButton();
@@ -74,7 +74,7 @@ namespace SmartKey
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.buttonCancellaSelezione);
+            this.splitContainer2.Panel1.Controls.Add(this.buttonReset);
             this.splitContainer2.Panel1.Controls.Add(this.groupBoxFiltri);
             this.splitContainer2.Panel1.Controls.Add(this.labelDataStart);
             this.splitContainer2.Panel1.Controls.Add(this.labelDataEnd);
@@ -89,15 +89,15 @@ namespace SmartKey
             this.splitContainer2.SplitterDistance = 125;
             this.splitContainer2.TabIndex = 0;
             // 
-            // buttonCancellaSelezione
+            // buttonReset
             // 
-            this.buttonCancellaSelezione.Location = new System.Drawing.Point(274, 100);
-            this.buttonCancellaSelezione.Name = "buttonCancellaSelezione";
-            this.buttonCancellaSelezione.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancellaSelezione.TabIndex = 9;
-            this.buttonCancellaSelezione.Text = "Reset";
-            this.buttonCancellaSelezione.UseVisualStyleBackColor = true;
-            this.buttonCancellaSelezione.Click += new System.EventHandler(this.ButtonCancellaSelezione_Click);
+            this.buttonReset.Location = new System.Drawing.Point(274, 100);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(75, 23);
+            this.buttonReset.TabIndex = 9;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.ButtonCancellaSelezione_Click);
             // 
             // groupBoxFiltri
             // 
@@ -302,7 +302,7 @@ namespace SmartKey
         private RadioButton radioButtonData;
         private RadioButton radioButtonCompressione;
         private RadioButton radioButtonBlackList;
-        private Button buttonCancellaSelezione;
+        private Button buttonReset;
         private DataGridViewTextBoxColumn dataOraColumn;
     }
 }
