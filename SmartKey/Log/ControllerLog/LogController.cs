@@ -21,6 +21,7 @@ namespace SmartKey.Log.ControllerLog
             _logPersistence = new ConcreteLogPersistence(string.Join("\\",path,"log.txt"));
             _log = _logPersistence.LeggiLog();
             _logView = _view;
+            //Assegnamento degli event handlers
             _logView.RadioButtonData.CheckedChanged += ShowLogData;
             _logView.RadioButtonImpostazioni.CheckedChanged += ShowLogImpostazioni;
             _logView.ButtonReset.Click += ResetButtonHandler;
@@ -28,6 +29,8 @@ namespace SmartKey.Log.ControllerLog
             _logView.RadioButtonCompressione.CheckedChanged += ShowLogCompressione;
             _logView.RadioButtonSincronizzazione.CheckedChanged += ShowLogSincro;
             _logView.RadioButtonSistema.CheckedChanged += ShowLogSistema;
+            _logView.DateTimePickerStart.ValueChanged += ShowLogData;
+            _logView.DateTimePickerEnd.ValueChanged += ShowLogData;
             
 
             //Popolo la grid con i dati dei log
@@ -53,6 +56,7 @@ namespace SmartKey.Log.ControllerLog
         }
         private void ShowLogData(object sender, EventArgs args)
         {
+
             if (_logView.RadioButtonData.Checked)
             {
                 _logView.LabelDataStart.Visible = true;
@@ -67,6 +71,19 @@ namespace SmartKey.Log.ControllerLog
                 _logView.LabelDataStart.Visible = false;
                 _logView.DateTimePickerEnd.Visible = false;
             }
+            DateTime valueStart = _logView.DateTimePickerStart.Value;
+            DateTime valueEnd = _logView.DateTimePickerEnd.Value;
+
+            //Piccolo trick cosi la data iniziale parte dalla mezzanotte e pochi millisecondi dopo
+            //E la data finale finale finisce alle 23 e 59 di quel giorno
+            DateTime startDate = valueStart.AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute).AddMilliseconds(-DateTime.Now.Millisecond);
+            DateTime endDate = valueEnd.AddHours(23 - DateTime.Now.Hour).AddMinutes(59 - DateTime.Now.Minute).AddMilliseconds(99-DateTime.Now.Millisecond);
+            _logView.DataGridOutputLog.Rows.Clear();
+            foreach (Entry entry in GetEntriesInTime(startDate, endDate))
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t', ' '));
+            }
+
         }
 
         public void Update(object sender, EventArgs e)
@@ -134,8 +151,17 @@ namespace SmartKey.Log.ControllerLog
 
 
 
-        private IList<Entry> GetEntriesType(string type){
+        private IList<Entry> GetEntriesType(string type)
+        {
             return _log.Entries.Where(x => x.GetType().Name.Equals(type)).ToList();
+        }
+
+        private IList<Entry> GetEntriesInTime(DateTime start, DateTime end)
+        {
+            
+            return _log.Entries.Where(x => x.DataOra >= start &&
+            x.DataOra <= end)
+            .ToList();
         }
     }
 }
