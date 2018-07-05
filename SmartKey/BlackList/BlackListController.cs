@@ -111,6 +111,11 @@ namespace SmartKey.Blacklist
         public void SetBlackList(ISet<string> blacklist)
         {
             _blacklist.Utenti = blacklist;
+            foreach(string utente in _blacklist.Utenti)
+            {
+                _blacklistView.DataGridViewBlacklist.Rows.Add(utente);
+            }
+
         }
     }
 }

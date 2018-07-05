@@ -35,7 +35,7 @@ namespace SmartKey
             IGestoreImpostazione impostazioniController = 
                 new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));
 
-            IGestoreBlacklist blacklistController = new BlackListController();
+            IGestoreBlacklist blacklistController = new BlackListController((HomeBlacklist)(helper.GetForm("HomeBlacklist")));
             InitControllers initializer = new InitControllers();
 
             initializer.Init(blacklistController, impostazioniController);
