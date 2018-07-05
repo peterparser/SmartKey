@@ -76,8 +76,8 @@ namespace SmartKey.Log.ControllerLog
 
             //Piccolo trick cosi la data iniziale parte dalla mezzanotte e pochi millisecondi dopo
             //E la data finale finale finisce alle 23 e 59 di quel giorno
-            DateTime startDate = valueStart.AddHours(-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute).AddMilliseconds(-DateTime.Now.Millisecond);
-            DateTime endDate = valueEnd.AddHours(23 - DateTime.Now.Hour).AddMinutes(59 - DateTime.Now.Minute).AddMilliseconds(99-DateTime.Now.Millisecond);
+            DateTime startDate = new DateTime(valueStart.Year, valueStart.Month, valueStart.Day, 0, 0, 0, 0);
+            DateTime endDate = new DateTime(valueEnd.Year, valueEnd.Month, valueEnd.Day, 23, 59, 59,99);
             _logView.DataGridOutputLog.Rows.Clear();
             foreach (Entry entry in GetEntriesInTime(startDate, endDate))
             {
