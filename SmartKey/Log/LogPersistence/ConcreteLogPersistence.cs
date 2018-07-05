@@ -24,34 +24,38 @@ namespace SmartKey.Log.LogPersistence
             {
                 using (StreamReader readtext = new StreamReader(_filename))
                 {
-                    string readMeText = readtext.ReadLine();
-                    //  29 / 06 / 2018 09:14:20 Blacklist aggiunto DESKTOP-TF7TLNM\massi    riccardo 
-                    //  29 / 06 / 2018 09:14:20 Impostazione aggiunta    DESKTOP - TF7TLNM\massi mydir   yourDir
-                    //Esempio righe da parsare
+                    string readMeText = null;
+                    while ((readMeText = readtext.ReadLine()) != null)
+                    { 
+                        //  29 / 06 / 2018 09:14:20 Blacklist aggiunto DESKTOP-TF7TLNM\massi    riccardo 
+                        //  29 / 06 / 2018 09:14:20 Impostazione aggiunta    DESKTOP - TF7TLNM\massi mydir   yourDir
+                        //Esempio righe da parsare
 
-                    //Parsing della parte fissa.
-                    string[] fields = readMeText.Split('\t');
-                    string[] dateHour = fields[0].Split(' ');
-                    string date = dateHour[0];
-                    string hour = dateHour[1];
-                    string entryType = fields[1];
-                    string operazione = fields[2];
-                    string utente = fields[3];
+                        //Parsing della parte fissa.
+                        string[] fields = readMeText.Split('\t');
+                        string[] dateHour = fields[0].Split(' ');
+                        string date = dateHour[0];
+                        string hour = dateHour[1];
+                        string entryType = fields[1];
+                        string operazione = fields[2];
+                        string utente = fields[3];
 
-                    //Assegno i parametri che variano
-                    switch (entryType)
-                    {
-                        case ("Blacklist"):
-                            string badUser = fields[4];
-                            log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
-                                utenteMalevolo: badUser, utenteProprietario: Utente.GetNomeUtente()));
-                            break;
-                        case ("Impostazione"):
-                            string sorgente = fields[4];
-                            string destinazione = fields[5];
-                            log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
-                                sorgente: sorgente, destinazione: destinazione));
-                            break;
+                        //Assegno i parametri che variano
+                        switch (entryType)
+                        {
+                            case ("Blacklist"):
+                                string badUser = fields[4];
+                                log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                    utenteMalevolo: badUser, utenteProprietario: Utente.GetNomeUtente()));
+                                break;
+                            case ("Impostazione"):
+                                string sorgente = fields[4];
+                                string destinazione = fields[5];
+                                log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                    sorgente: sorgente, destinazione: destinazione));
+                                break;
+                        }
+
                     }
                 }
             }catch(Exception e)

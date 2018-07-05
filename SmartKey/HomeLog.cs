@@ -13,7 +13,14 @@ namespace SmartKey
         public HomeLog()
         {
             InitializeComponent();
-            RadioButtonData.CheckedChanged += DataDeSelectedHandler;
+        }
+
+        public DataGridView DataGridOutputLog
+        {
+            get
+            {
+                return dataGridViewOutputLog;
+            }
         }
 
         public RadioButton RadioButtonData
@@ -95,20 +102,14 @@ namespace SmartKey
         }
 
 
-        public void DataDeSelectedHandler(object sender, EventArgs args)
+        private void ButtonCancellaSelezione_Click(object sender, EventArgs e)
         {
-            if(DateTimePickerStart.Visible && DateTimePickerEnd.Visible)
-            {
-                DateTimePickerEnd.Hide();
-                DateTimePickerStart.Hide();
-            }
-            else
-            {
-                DateTimePickerEnd.Show();
-                DateTimePickerStart.Show();
-            }
-            
+            RadioButtonData.Checked = false;
+            RadioButtonBlacklist.Checked = false;
+            RadioButtonImpostazioni.Checked = false;
+            RadioButtonCompressione.Checked = false;
+            RadioButtonSistema.Checked = false;
+            RadioButtonSincronizzazione.Checked = false;
         }
-
     }
 }

@@ -32,6 +32,7 @@ namespace SmartKey
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.buttonCancellaSelezione = new System.Windows.Forms.Button();
             this.groupBoxFiltri = new System.Windows.Forms.GroupBox();
             this.radioButtonSistema = new System.Windows.Forms.RadioButton();
             this.radioButtonSincronizzazione = new System.Windows.Forms.RadioButton();
@@ -46,8 +47,6 @@ namespace SmartKey
             this.labelElencoLog = new System.Windows.Forms.Label();
             this.dataGridViewOutputLog = new System.Windows.Forms.DataGridView();
             this.dataOraColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoLogColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrizioneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -75,6 +74,7 @@ namespace SmartKey
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.buttonCancellaSelezione);
             this.splitContainer2.Panel1.Controls.Add(this.groupBoxFiltri);
             this.splitContainer2.Panel1.Controls.Add(this.labelDataStart);
             this.splitContainer2.Panel1.Controls.Add(this.labelDataEnd);
@@ -88,6 +88,16 @@ namespace SmartKey
             this.splitContainer2.Size = new System.Drawing.Size(371, 372);
             this.splitContainer2.SplitterDistance = 125;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // buttonCancellaSelezione
+            // 
+            this.buttonCancellaSelezione.Location = new System.Drawing.Point(274, 100);
+            this.buttonCancellaSelezione.Name = "buttonCancellaSelezione";
+            this.buttonCancellaSelezione.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancellaSelezione.TabIndex = 9;
+            this.buttonCancellaSelezione.Text = "Reset";
+            this.buttonCancellaSelezione.UseVisualStyleBackColor = true;
+            this.buttonCancellaSelezione.Click += new System.EventHandler(this.ButtonCancellaSelezione_Click);
             // 
             // groupBoxFiltri
             // 
@@ -151,7 +161,6 @@ namespace SmartKey
             this.radioButtonData.TabStop = true;
             this.radioButtonData.Text = "Data";
             this.radioButtonData.UseVisualStyleBackColor = true;
-            
             // 
             // radioButtonCompressione
             // 
@@ -240,9 +249,7 @@ namespace SmartKey
             this.dataGridViewOutputLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewOutputLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOutputLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataOraColumn,
-            this.tipoLogColumn,
-            this.descrizioneColumn});
+            this.dataOraColumn});
             this.dataGridViewOutputLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOutputLog.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewOutputLog.Name = "dataGridViewOutputLog";
@@ -255,23 +262,9 @@ namespace SmartKey
             // dataOraColumn
             // 
             this.dataOraColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataOraColumn.HeaderText = "Data Ora";
+            this.dataOraColumn.HeaderText = "Data Ora    Tipo      Descrizione";
             this.dataOraColumn.Name = "dataOraColumn";
             this.dataOraColumn.ReadOnly = true;
-            // 
-            // tipoLogColumn
-            // 
-            this.tipoLogColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tipoLogColumn.HeaderText = "Tipo Log";
-            this.tipoLogColumn.Name = "tipoLogColumn";
-            this.tipoLogColumn.ReadOnly = true;
-            // 
-            // descrizioneColumn
-            // 
-            this.descrizioneColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descrizioneColumn.HeaderText = "Descrizione";
-            this.descrizioneColumn.Name = "descrizioneColumn";
-            this.descrizioneColumn.ReadOnly = true;
             // 
             // HomeLog
             // 
@@ -298,9 +291,6 @@ namespace SmartKey
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView dataGridViewOutputLog;
         private System.Windows.Forms.Label labelElencoLog;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataOraColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipoLogColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descrizioneColumn;
         private System.Windows.Forms.Label labelDataStart;
         private System.Windows.Forms.Label labelDataEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
@@ -312,5 +302,7 @@ namespace SmartKey
         private RadioButton radioButtonData;
         private RadioButton radioButtonCompressione;
         private RadioButton radioButtonBlackList;
+        private Button buttonCancellaSelezione;
+        private DataGridViewTextBoxColumn dataOraColumn;
     }
 }

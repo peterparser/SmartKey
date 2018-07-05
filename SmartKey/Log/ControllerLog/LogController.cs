@@ -17,10 +17,18 @@ namespace SmartKey.Log.ControllerLog
 
         public LogController(HomeLog _view)
         {
-            _logPersistence = new ConcreteLogPersistence("C:\\Users\\massi\\Desktop\\log.txt");
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            _logPersistence = new ConcreteLogPersistence(string.Join("\\",path,"log.txt"));
             _log = _logPersistence.LeggiLog();
             _logView = _view;
             _logView.RadioButtonData.CheckedChanged += RadioButtonDataHandler;
+
+            //Popolo la grid con i dati dei log
+            foreach(Entry entry in _log.Entries)
+            {
+                _logView.DataGridOutputLog.Rows.Add(entry.ToString().Replace('\t',' '));
+            }
+
         }
         private void RadioButtonDataHandler(object sender, EventArgs args)
         {
@@ -44,12 +52,13 @@ namespace SmartKey.Log.ControllerLog
         {
 
             ActionCompletedEvent param = (ActionCompletedEvent)e;
-            _log.AddEntry(param.ToEntry);
+            ScriviEntry(param.ToEntry);
             _logPersistence.ScriviLog(_log);
         }
         private void ScriviEntry(Entry e)
         {
             _log.AddEntry(e);
+            _logView.DataGridOutputLog.Rows.Add(e.ToString().Replace('\t',' '));
         }
         public IList<Entry> Entries
         {
