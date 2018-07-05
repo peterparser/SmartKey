@@ -21,39 +21,14 @@ namespace SmartKey.ImpostazioneTrasferimento
         {
             _impostazioni = new HashSet<ImpostazioneTrasferimento>();
         }
+
         public ImpostazioneTrasferimentoController(HomeImpostazioni view)
         {
             _impostazioni = new HashSet<ImpostazioneTrasferimento>();
             _impostazioniView = view;
             _impostazioniView.AggiungiImpostazioneButton.Click += AddImpostazioneHandler;
             _impostazioniView.RimuoviImpostazioneButton.Click += RimuoviImpostazioneHandler;
-            
-        }
 
-        event EventHandler<PersistEvent> IPersistActions.Persist
-        {
-            add
-            {
-                throw new NotImplementedException();
-            }
-
-            remove
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        event EventHandler<ActionCompletedEvent> IController.ToLog
-        {
-            add
-            {
-                throw new NotImplementedException();
-            }
-
-            remove
-            {
-                throw new NotImplementedException();
-            }
         }
 
         private void RimuoviImpostazioneHandler(object sender, EventArgs args)
@@ -180,6 +155,11 @@ namespace SmartKey.ImpostazioneTrasferimento
         void IGestoreImpostazione.SetImpostazioni(ISet<ImpostazioneTrasferimento> impostazioni)
         {
             _impostazioni = impostazioni;
+            foreach(ImpostazioneTrasferimento impostazione in _impostazioni)
+            {
+                _impostazioniView.DataGridImpostazioni.Rows.Add(impostazione.CartellaSorgente.Path,
+                    impostazione.CartellaDestinazione);
+            }
         }
 
     }

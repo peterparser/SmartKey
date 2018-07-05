@@ -29,17 +29,39 @@ namespace SmartKey.Controller
 
         private void InitBlacklist(IGestoreBlacklist blacklist)
         {
-            ISet<String> blacklisted = (ISet<String>) GetPersister("blacklist").Carica();
-            blacklist.SetBlackList(blacklisted);
-            blacklist.Persist += GetPersister("blacklist").Salva;
+            try
+            {
+                ISet<String> blacklisted = (ISet<String>)GetPersister("blacklist").Carica();
+                blacklist.SetBlackList(blacklisted);
+            }
+            catch (PersistenceException e)
+            {
+                //Gestione primo avvio
+            }
+            finally
+            {
+                blacklist.Persist += GetPersister("blacklist").Salva;
+
+            }
         }
 
         private void InitImpostazioni(IGestoreImpostazione impostazioni)
         {
-            ISet <ImpostazioneTrasferimento.ImpostazioneTrasferimento > imps =
+            try
+            {
+                ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento> imps =
                 (ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>)GetPersister("impostazioni").Carica();
-            impostazioni.SetImpostazioni(imps);
-            impostazioni.Persist += GetPersister("impostazioni").Salva;
+                impostazioni.SetImpostazioni(imps);
+            }
+            catch (PersistenceException e)
+            {
+                //Gestione primo avvio
+            }
+            finally
+            {
+                impostazioni.Persist += GetPersister("impostazioni").Salva;
+
+            }
         }
 
         private IDataPersistence GetPersister(string name)

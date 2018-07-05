@@ -42,6 +42,7 @@ namespace SmartKey.DataPersistence
             }
             catch
             {
+                //Gestione primo avvio
                 throw new PersistenceException("File per il caricamento non trovato");
             }
         }
@@ -136,14 +137,14 @@ namespace SmartKey.DataPersistence
                 };
                 //Aggiungo il writer
                 XmlWriter writer = XmlWriter.Create(Filename, settings);
-                XmlSchemaSet schemas = new XmlSchemaSet();
+                //XmlSchemaSet schemas = new XmlSchemaSet();
                 //Bisogna trovare una LLLLLLOCATION per tutte queste impostazioni
-                schemas.Add("", @"C:\Users\massi\Desktop\blacklist.xsd");
-                xdocument.Schemas = schemas;
+                //chemas.Add("", @"C:\Users\massi\Desktop\blacklist.xsd");
+                //xdocument.Schemas = schemas;
                 try
                 {
                     //Scrivo il file
-                    xdocument.Validate((oggetto, handler) => { });
+                  //  xdocument.Validate((oggetto, handler) => { });
                     xdocument.Save(writer);
                     writer.Close();
                 }catch(Exception ex)
