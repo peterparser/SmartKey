@@ -42,8 +42,11 @@ namespace SmartKey
             IGestoreSincronizzazione sincroController = new GestoreSincronizzazioneController(blacklistController,
                 impostazioniController,(HomeSmartKey) helper.GetForm("HomeSmartKey"));
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
+
+            blacklistController.ToLog += logController.Update;
             impostazioniController.ToLog += logController.Update;
             sincroController.ToLog += logController.Update;
+
             Application.Run(helper.GetForm("HomeSmartKey"));
         }           
     }
