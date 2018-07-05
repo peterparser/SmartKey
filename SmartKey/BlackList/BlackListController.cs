@@ -19,6 +19,11 @@ namespace SmartKey.Blacklist
 
         private Blacklist _blacklist;
         private HomeBlacklist _blacklistView;
+
+        public BlackListController()
+        {
+            _blacklist = Blacklist.Instance;
+        }
         
         public BlackListController(HomeBlacklist _view)
         {
@@ -32,7 +37,7 @@ namespace SmartKey.Blacklist
             {
                 string utente = row.Cells[0].Value.ToString();
                 Console.WriteLine(utente);
-               // this.RimuoviUtente(utente);               
+                RimuoviUtente(utente);               
                 _blacklistView.DataGridViewBlacklist.Rows.Remove(row);
                 
             }

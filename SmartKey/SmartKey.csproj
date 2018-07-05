@@ -143,6 +143,7 @@
     <Compile Include="Log\ModelLog\TestLog\TestFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestChiavetta.cs" />
     <Compile Include="Utility\NavigationHelper.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>

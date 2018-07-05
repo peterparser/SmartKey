@@ -13,6 +13,7 @@ namespace SmartKey
         public HomeLog()
         {
             InitializeComponent();
+            RadioButtonData.CheckedChanged += DataDeSelectedHandler;
         }
 
         public RadioButton RadioButtonData
@@ -91,6 +92,22 @@ namespace SmartKey
             {
                 return this.groupBoxFiltri;
             }
+        }
+
+
+        public void DataDeSelectedHandler(object sender, EventArgs args)
+        {
+            if(DateTimePickerStart.Visible && DateTimePickerEnd.Visible)
+            {
+                DateTimePickerEnd.Hide();
+                DateTimePickerStart.Hide();
+            }
+            else
+            {
+                DateTimePickerEnd.Show();
+                DateTimePickerStart.Show();
+            }
+            
         }
 
     }
