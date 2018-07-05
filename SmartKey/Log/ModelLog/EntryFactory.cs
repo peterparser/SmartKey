@@ -50,6 +50,8 @@ namespace SmartKey.Log.ModelLog
                     return new EntryBlacklist(entryTime, operazione, utenteProprietario, utenteMalevolo);
                 case ("Impostazione"):
                     return new EntryImpostazione(entryTime, operazione, sorgente, destinazione);
+                case ("Sincronizzazione"):
+                    return new EntrySincronizzazione(entryTime, operazione, sorgente, destinazione);
                 default:
                     return null;
             }

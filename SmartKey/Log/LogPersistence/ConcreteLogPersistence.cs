@@ -54,6 +54,20 @@ namespace SmartKey.Log.LogPersistence
                                 log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
                                     sorgente: sorgente, destinazione: destinazione));
                                 break;
+                            case ("Sincronizzazione"):
+                                string source = fields[4];
+                                if(operazione.Equals("file eliminato"))
+                                {
+                                    log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                        sorgente:source));
+                                }
+                                else
+                                {
+                                    string dst = fields[5];
+                                    log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                        sorgente:source, destinazione:dst));
+                                }
+                                break;
                         }
 
                     }

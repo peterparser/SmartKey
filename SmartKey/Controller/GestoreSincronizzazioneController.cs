@@ -1,4 +1,5 @@
 ﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.Log.ModelLog;
 using SmartKey.ModelGestione;
 using SmartKey.ModelGestione.Filesystem;
 using System;
@@ -52,6 +53,12 @@ namespace SmartKey.Controller
                 if (!Directory.Exists(dirToSync))
                 {
                     Directory.CreateDirectory(dirToSync);
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.CreateEntry(this, "creata cartella",
+                        sorgente: cartella.Path, destinazione: dirToSync)
+                    };
+                    ToLog?.Invoke(this, args);
                 }
                 //Memorizzo il vecchio path per quando ho finito di ispezionare i figli
                 string oldPath = _pathDestinazione;
@@ -94,12 +101,22 @@ namespace SmartKey.Controller
                             if (!srcSum.Equals(dstSum))
                             {
                                 File.Copy(file.Path, fileDstPath);
+                                ActionCompletedEvent args = new ActionCompletedEvent
+                                {
+                                    ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
+                                };
+                                ToLog?.Invoke(this, args);
                             }
                         }
                         //Copio diretto
                         else
                         {
                             File.Copy(file.Path, fileDstPath);
+                            ActionCompletedEvent args = new ActionCompletedEvent
+                            {
+                                ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
+                            };
+                            ToLog?.Invoke(this, args);
                         }
                     }
                     else
@@ -107,6 +124,11 @@ namespace SmartKey.Controller
                         _blacklistController.AggiungiUtente(author);
                         //Elimino il file
                         File.Delete(file.Path);
+                        ActionCompletedEvent args = new ActionCompletedEvent
+                        {
+                            ToEntry = EntryFactory.CreateEntry(this, "file eliminato", sorgente: file.Path)
+                        };
+                        ToLog?.Invoke(this, args);
                     }
                 }
             }
@@ -123,12 +145,22 @@ namespace SmartKey.Controller
                     //Se gli hash non sono uguali
                     if (!srcSum.Equals(dstSum))
                     {
+                        ActionCompletedEvent args = new ActionCompletedEvent
+                        {
+                            ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
+                        };
+                        ToLog?.Invoke(this, args);
                         File.Copy(file.Path, fileDstPath);
                     }
                 }
                 //Copio diretto
                 else
                 {
+                    ActionCompletedEvent args = new ActionCompletedEvent
+                    {
+                        ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
+                    };
+                    ToLog?.Invoke(this, args);
                     File.Copy(file.Path, fileDstPath);
                 }
             }

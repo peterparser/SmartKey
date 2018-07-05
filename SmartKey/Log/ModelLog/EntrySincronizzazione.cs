@@ -18,6 +18,13 @@ namespace SmartKey.Log.ModelLog
             _destinatario = destinatario;
 
         }
+        public EntrySincronizzazione(DateTime entryTime, string operazione ,string sorgente,
+            string destinatario) :base(operazione, entryTime)
+        {
+            _sorgente = sorgente;
+            _destinatario = destinatario;
+        }
+
         public string Sorgente
         {
             get

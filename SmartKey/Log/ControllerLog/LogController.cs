@@ -15,6 +15,8 @@ namespace SmartKey.Log.ControllerLog
         private ModelLog.Log _log;
         private HomeLog _logView;
 
+        //Per i test
+
         public LogController(HomeLog _view)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
