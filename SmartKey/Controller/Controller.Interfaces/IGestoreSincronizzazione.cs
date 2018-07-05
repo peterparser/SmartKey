@@ -9,7 +9,7 @@ namespace SmartKey.Controller.Controller.Interfaces
 {
     public interface IGestoreSincronizzazione :IController
     {
-        void Sincronizza(IList<ImpostazioneTrasferimento.ImpostazioneTrasferimento> impostazioni);
+        void Sincronizza(object sender, EventArgs args);
         void Visit(Cartella cartella);
         void Visit(FileWrapper file);
 

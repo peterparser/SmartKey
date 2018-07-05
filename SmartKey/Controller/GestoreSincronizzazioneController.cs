@@ -1,4 +1,5 @@
 ﻿using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.ImpostazioneTrasferimento;
 using SmartKey.Log.ModelLog;
 using SmartKey.ModelGestione;
 using SmartKey.ModelGestione.Filesystem;
@@ -16,11 +17,20 @@ namespace SmartKey.Controller
     {
         public event EventHandler<ActionCompletedEvent> ToLog;
         private IGestoreBlacklist _blacklistController;
+        private HomeSmartKey _viewHome;
+        private IGestoreImpostazione _impostazioniController;
+        private string _pathDestinazione;
 
-        public GestoreSincronizzazioneController(IGestoreBlacklist blacklistController)
+        public GestoreSincronizzazioneController(IGestoreBlacklist blacklistController,
+            IGestoreImpostazione impostazioniController,
+            HomeSmartKey viewHome)
         {
             _blacklistController = blacklistController;
+            _viewHome = viewHome;
+            _impostazioniController = impostazioniController;
+            _viewHome.ButtonSincronizza.Click += Sincronizza;
         }
+
         private static string GetChecksumBuffered(Stream stream)
         {
             using (var bufferedStream = new BufferedStream(stream, 1024 * 32))
@@ -32,10 +42,10 @@ namespace SmartKey.Controller
         }
 
         //bisogna trovare un modo di mantenere il path destinazione
-        private string _pathDestinazione;
-        public void Sincronizza(IList<ImpostazioneTrasferimento.ImpostazioneTrasferimento> impostazioni)
+ 
+        public void Sincronizza(object sender, EventArgs args)
         {
-           foreach(ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione in impostazioni)
+           foreach(ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione in _impostazioniController.ElencoImpostazioni())
             {
                 _pathDestinazione = impostazione.CartellaDestinazione;
                 impostazione.CartellaSorgente.Accept(this);
@@ -81,12 +91,14 @@ namespace SmartKey.Controller
 
             //Trovo l'autore del file
             string author = File.GetAccessControl(file.Path).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString();
-            if (!author.Equals(Utente.GetNomeUtente()))
+            //Prova va spostato sotto
+            
+            if (!author.Equals(string.Join("\\",Utente.GetNomeHost(),Utente.GetNomeUtente())))
             {
                 if (!_blacklistController.IsBlackListed(author))
                 {
-                    //Dobbiamo richiedere la risposta all'utente
-                    bool riconosciuto = true;
+                    
+                    bool riconosciuto = _viewHome.ChiediScelta(author);
                     if (riconosciuto)
                     {
                         //Se esiste Confronto gli hash se sono diversi sincronizzo

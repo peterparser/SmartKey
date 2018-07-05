@@ -15,6 +15,21 @@ namespace SmartKey
             InitializeComponent();
         }
 
+        public bool ChiediScelta(string badUser)
+        {
+            var confirmResult = MessageBox.Show("Vuoi sincronizzare i file prodotti da " +badUser+" ?",
+                                     "Attenzione Sincronizzazione",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Button ButtonLogSincro
         {
             get
@@ -22,13 +37,13 @@ namespace SmartKey
                 return buttonLogSincro;
             }
         }
-        public Button ButtonSincro
+        public Button ButtonSincronizza
         {
             get
             {
                 return buttonSincronizza;
             }
         }
-       
+
     }
 }

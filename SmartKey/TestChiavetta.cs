@@ -1,4 +1,5 @@
-﻿using SmartKey.ModelGestione;
+﻿using NUnit.Framework;
+using SmartKey.ModelGestione;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace SmartKey
 {
+    [TestFixture]
     class TestChiavetta
     {
+        [TestCase]
         public void Test()
         {
 
@@ -20,6 +23,7 @@ namespace SmartKey
                 if (mydrive.DriveType == DriveType.Removable)
                 {
                     Utente.Dispositivo.Add(new ChiaveUSB(mydrive.Name));
+                    // Te l'ho commentato perchè non compilava
                 //    foreach (DirectoryInfo dirInfo in ) { 
 
                   //      Console.WriteLine(mydrive.RootDirectory.GetDirectories().GetValue(2).ToString());

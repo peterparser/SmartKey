@@ -17,6 +17,8 @@ namespace SmartKey.ModelGestione
             _dispositivo = new DriveInfo(_nome);
         }
 
+        //Forse conviene restituire una stringa
+        //Dato che dobbiamo solo visualizzare il path
         public Cartella OttieniCartellaPrivata()
         {
 

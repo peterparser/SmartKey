@@ -39,16 +39,11 @@ namespace SmartKey
             InitControllers initializer = new InitControllers();
 
             initializer.Init(blacklistController, impostazioniController);
-
+            IGestoreSincronizzazione sincroController = new GestoreSincronizzazioneController(blacklistController,
+                impostazioniController,(HomeSmartKey) helper.GetForm("HomeSmartKey"));
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
             impostazioniController.ToLog += logController.Update;
             Application.Run(helper.GetForm("HomeSmartKey"));
-
-
-        }
-
-
-
-           
+        }           
     }
 }

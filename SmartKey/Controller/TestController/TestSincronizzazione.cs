@@ -19,7 +19,7 @@ namespace SmartKey.Controller.TestController
         private void Init()
         {
             gestoreLog = new LogController(new HomeLog());
-            sincroController = new GestoreSincronizzazioneController(new BlackListController(new HomeBlacklist()));
+         //   sincroController = new GestoreSincronizzazioneController(new BlackListController(new HomeBlacklist()));
             sincroController.ToLog += gestoreLog.Update;
             impostazioni = new List<ImpostazioneTrasferimento.ImpostazioneTrasferimento>();
             impostazioni.Add(new ImpostazioneTrasferimento.ImpostazioneTrasferimento(@"C:\Users\massi\Desktop\prova", @"C:\Users\massi\Desktop\sincronizzato"));
@@ -29,7 +29,7 @@ namespace SmartKey.Controller.TestController
         public void TestDirCreation()
         {
             Init();
-            sincroController.Sincronizza(impostazioni);
+            //sincroController.Sincronizza(impostazioni);
             //Verificare se esistono i file copiati
             //Va codificato, però il metodo funziona
         }

@@ -108,7 +108,7 @@ namespace SmartKey
             }
         }
 
-
+        
         private void ButtonCancellaSelezione_Click(object sender, EventArgs e)
         {
             RadioButtonData.Checked = false;
