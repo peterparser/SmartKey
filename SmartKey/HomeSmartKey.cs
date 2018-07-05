@@ -15,6 +15,20 @@ namespace SmartKey
             InitializeComponent();
         }
 
+        public Button ButtonLogSincro
+        {
+            get
+            {
+                return buttonLogSincro;
+            }
+        }
+        public Button ButtonSincro
+        {
+            get
+            {
+                return buttonSincronizza;
+            }
+        }
        
     }
 }

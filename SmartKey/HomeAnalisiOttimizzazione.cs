@@ -14,5 +14,13 @@ namespace SmartKey
         {
             InitializeComponent();
         }
+
+        public Button ButtonToLogAnalisi
+        {
+            get
+            {
+                return buttonLogCompressione;
+            }
+        }
     }
 }

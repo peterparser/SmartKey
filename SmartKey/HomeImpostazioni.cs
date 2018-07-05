@@ -15,6 +15,13 @@ namespace SmartKey
             InitializeComponent();
         }
 
+        public Button ToLogImpostazioni
+        {
+            get
+            {
+                return buttonLogImpostazione;
+            }
+        }
         public Button AggiungiImpostazioneButton
         {
             get

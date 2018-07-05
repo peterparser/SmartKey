@@ -14,6 +14,14 @@ namespace SmartKey
         {
             InitializeComponent();
         }
+
+        public Button ButtonToLogBlacklist
+        {
+            get
+            {
+                return buttonLogBlacklist;
+            }
+        }
         public Button ButtonRimuovi
         {
             get

@@ -31,12 +31,54 @@ namespace SmartKey.Utility
                 form.ButtonLog.Click += HandlerNavigation;
                 form.FormClosed += HandlderClosure;
             }
+
+            //Parte per l'aggancio della navigazione a log
+            ((HomeSmartKey)GetForm("HomeSmartKey")).ButtonLogSincro.Click += HandlerToLogSincro;
+            ((HomeImpostazioni)GetForm("HomeImpostazioni")).ToLogImpostazioni.Click += HandlerToLogImpostazioni;
+            ((HomeBlacklist)GetForm("HomeBlacklist")).ButtonToLogBlacklist.Click += HandlerToLogBlacklist;
+            ((HomeAnalisiOttimizzazione)GetForm("HomeAnalisiOttimizzazione")).ButtonToLogAnalisi.Click += HandlerToLogAnalisi;
         }
 
         public BaseForm GetForm(string key)
         {
             _forms.TryGetValue(key, out BaseForm toOut);
             return toOut;
+        }
+
+        private void HandlerToLogSincro(object sender, EventArgs args)
+        {
+            HomeLog logForm =(HomeLog) GetForm("HomeLog");
+            logForm.Show();
+            _currentForm.Hide();
+            _currentForm = logForm;
+            logForm.RadioButtonSincronizzazione.Select();
+        }
+
+        private void HandlerToLogImpostazioni(object sender, EventArgs args)
+        {
+            HomeLog logForm = (HomeLog)GetForm("HomeLog");
+            logForm.Show();
+            _currentForm.Hide();
+            _currentForm = logForm;
+            logForm.RadioButtonImpostazioni.Select();
+        }
+
+        private void HandlerToLogBlacklist(object sender, EventArgs args)
+        {
+            HomeLog logForm = (HomeLog)GetForm("HomeLog");
+            logForm.Show();
+            _currentForm.Hide();
+            _currentForm = logForm;
+            logForm.RadioButtonBlacklist.Select();
+        }
+
+        private void HandlerToLogAnalisi(object sender, EventArgs args)
+        {
+            HomeLog logForm = (HomeLog)GetForm("HomeLog");
+            logForm.Show();
+            _currentForm.Hide();
+            _currentForm = logForm;
+            logForm.RadioButtonCompressione.Select();
         }
 
         public void HandlderClosure(object sender, EventArgs param)
@@ -59,9 +101,9 @@ namespace SmartKey.Utility
                     BaseForm homeForm = GetForm("HomeSmartKey");
                     //Se il form corrente non è quello
                     if (!_currentForm.Equals(homeForm))
-                    {
-                        _currentForm.Hide();
+                    { 
                         homeForm.Show();
+                        _currentForm.Hide();
                         _currentForm = homeForm;
                     }
                     break;
@@ -69,8 +111,8 @@ namespace SmartKey.Utility
                     BaseForm impostazioniForm = GetForm("HomeImpostazioni");
                     if (!_currentForm.Equals(impostazioniForm))
                     {
-                        _currentForm.Hide();
                         impostazioniForm.Show();
+                        _currentForm.Hide();
                         _currentForm = impostazioniForm;
                     }
                     break;
@@ -78,8 +120,8 @@ namespace SmartKey.Utility
                     BaseForm blackListForm = GetForm("HomeBlacklist");
                     if (!_currentForm.Equals(blackListForm))
                     {
-                        _currentForm.Hide();
                         blackListForm.Show();
+                        _currentForm.Hide();
                         _currentForm = blackListForm;
                     }
                     break;
@@ -87,11 +129,9 @@ namespace SmartKey.Utility
                     BaseForm analisiForm = GetForm("HomeAnalisiOttimizzazione");
                     if (!_currentForm.Equals(analisiForm))
                     {
-                        _currentForm.Hide();
                         analisiForm.Show();
+                        _currentForm.Hide();
                         _currentForm = analisiForm;
-
-                       
                     }
                     break;
 
@@ -99,8 +139,8 @@ namespace SmartKey.Utility
                     BaseForm logForm = GetForm("HomeLog");
                     if (!_currentForm.Equals(logForm))
                     {
-                        _currentForm.Hide();
                         logForm.Show();
+                        _currentForm.Hide();
                         _currentForm = logForm;
                     }
                     break;
