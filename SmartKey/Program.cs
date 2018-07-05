@@ -43,6 +43,7 @@ namespace SmartKey
                 impostazioniController,(HomeSmartKey) helper.GetForm("HomeSmartKey"));
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
             impostazioniController.ToLog += logController.Update;
+            sincroController.ToLog += logController.Update;
             Application.Run(helper.GetForm("HomeSmartKey"));
         }           
     }
