@@ -61,14 +61,14 @@ namespace SmartKey.Log.ControllerLog
             {
                 _logView.LabelDataStart.Visible = true;
                 _logView.DateTimePickerStart.Visible = true;
-                _logView.LabelDataStart.Visible = true;
+                _logView.LabelDataEnd.Visible = true;
                 _logView.DateTimePickerEnd.Visible = true;
             }
             else
             {
                 _logView.LabelDataStart.Visible = false;
                 _logView.DateTimePickerStart.Visible = false;
-                _logView.LabelDataStart.Visible = false;
+                _logView.LabelDataEnd.Visible = false;
                 _logView.DateTimePickerEnd.Visible = false;
             }
             DateTime valueStart = _logView.DateTimePickerStart.Value;
