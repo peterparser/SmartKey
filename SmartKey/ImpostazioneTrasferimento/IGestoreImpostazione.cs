@@ -7,7 +7,7 @@ using SmartKey.Controller.Controller.Interfaces;
 
 namespace SmartKey.ImpostazioneTrasferimento
 {
-    interface IGestoreImpostazione : IPersistActions
+    public interface IGestoreImpostazione : IPersistActions
     {
       
         void SetImpostazioni(ISet<ImpostazioneTrasferimento> impostazioni);

@@ -14,12 +14,11 @@ namespace SmartKey.DataPersistence
     [TestFixture]
     class BlacklistPersistenceXMLTest
     {
-        private const string PATH = @"C:\Users\massi\Desktop\blacklist.xml";
         [TestCase(Category = "BlacklistPersistence")]
         public void TestReadWriteXMLBlacklist()
         {
             //Crea correttamente le entry, precaricando la blacklist non inserisce duplicati
-            XMLDataPersistence bpers = new XMLBlacklistPersistence(PATH);
+            XMLDataPersistence bpers = new XMLBlacklistPersistence();
             IGestoreBlacklist bcontr = new BlackListController(new HomeBlacklist());
             try
             {

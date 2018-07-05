@@ -10,7 +10,7 @@ namespace SmartKey.DataPersistence
 {
     public class XMLImpostazioniPersistence : XMLDataPersistence
     {
-        public XMLImpostazioniPersistence(string filename) : base(filename)
+        public XMLImpostazioniPersistence() : base("impostazioni.xml")
         {
         }
 

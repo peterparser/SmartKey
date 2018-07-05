@@ -61,6 +61,7 @@
     <Compile Include="BlackList\IGestoreBlacklist.cs" />
     <Compile Include="Controller\Controller.Interfaces\IGestoreSincronizzazione.cs" />
     <Compile Include="Controller\GestoreSincronizzazioneController.cs" />
+    <Compile Include="Controller\InitControllers.cs" />
     <Compile Include="Controller\TestController\TestSincronizzazione.cs" />
     <Compile Include="HomeAnalisiOttimizzazione.cs">
       <SubType>Form</SubType>

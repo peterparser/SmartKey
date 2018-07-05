@@ -1,4 +1,8 @@
-﻿using SmartKey.ImpostazioneTrasferimento;
+﻿using SmartKey.Blacklist;
+using SmartKey.Controller;
+using SmartKey.Controller.Controller.Interfaces;
+using SmartKey.DataPersistence;
+using SmartKey.ImpostazioneTrasferimento;
 using SmartKey.Log.ControllerLog;
 using SmartKey.ModelGestione;
 using SmartKey.Utility;
@@ -28,8 +32,14 @@ namespace SmartKey
             Application.SetCompatibleTextRenderingDefault(false);
             NavigationHelper helper = new NavigationHelper();
             helper.AgganciaHandlers();
-            ImpostazioneTrasferimentoController impostazioniController = 
+            IGestoreImpostazione impostazioniController = 
                 new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));
+
+            IGestoreBlacklist blacklistController = new BlackListController();
+            InitControllers initializer = new InitControllers();
+
+            initializer.Init(blacklistController, impostazioniController);
+
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
             impostazioniController.ToLog += logController.Update;
             Application.Run(helper.GetForm("HomeSmartKey"));

@@ -13,7 +13,7 @@ namespace SmartKey.DataPersistence
 {
     public class XMLBlacklistPersistence : XMLDataPersistence
     {
-        public XMLBlacklistPersistence(string filename) : base(filename) { }
+        public XMLBlacklistPersistence() : base("blacklist.xml") { }
         
         public override object Carica()
         {

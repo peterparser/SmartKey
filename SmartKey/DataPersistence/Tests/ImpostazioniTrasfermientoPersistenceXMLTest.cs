@@ -14,13 +14,11 @@ namespace SmartKey.DataPersistence.Tests
     [TestFixture]
     class ImpostazioniTrasfermientoPersistenceXMLTest
     {
-        private const string PATH = @"C:\Users\massi\Desktop\impostazioni.xml";
-
 
         [TestCase(Category ="ImpostazioneTrasferimentoPersistence")]
         public void TestReadWriteImpostazioni()
         {
-            XMLDataPersistence impPers = new XMLImpostazioniPersistence(PATH);
+            XMLDataPersistence impPers = new XMLImpostazioniPersistence();
             IGestoreImpostazione impCon = new ImpostazioneTrasferimentoController();
             ((IPersistActions)impCon).Persist += impPers.Salva;
             try
