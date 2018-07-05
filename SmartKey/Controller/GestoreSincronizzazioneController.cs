@@ -5,6 +5,7 @@ using SmartKey.ModelGestione;
 using SmartKey.ModelGestione.Filesystem;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -20,6 +21,7 @@ namespace SmartKey.Controller
         private HomeSmartKey _viewHome;
         private IGestoreImpostazione _impostazioniController;
         private string _pathDestinazione;
+        private BackgroundWorker syncWorker;
 
         public GestoreSincronizzazioneController(IGestoreBlacklist blacklistController,
             IGestoreImpostazione impostazioniController,
@@ -29,6 +31,8 @@ namespace SmartKey.Controller
             _viewHome = viewHome;
             _impostazioniController = impostazioniController;
             _viewHome.ButtonSincronizza.Click += Sincronizza;
+            syncWorker = new BackgroundWorker();
+            syncWorker.DoWork += InitSync;
         }
 
         private static string GetChecksumBuffered(Stream stream)
@@ -42,14 +46,19 @@ namespace SmartKey.Controller
         }
 
         //bisogna trovare un modo di mantenere il path destinazione
- 
-        public void Sincronizza(object sender, EventArgs args)
+
+        private void InitSync(object o, EventArgs args)
         {
-           foreach(ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione in _impostazioniController.ElencoImpostazioni())
+            foreach (ImpostazioneTrasferimento.ImpostazioneTrasferimento impostazione in _impostazioniController.ElencoImpostazioni())
             {
                 _pathDestinazione = impostazione.CartellaDestinazione;
                 impostazione.CartellaSorgente.Accept(this);
             }
+        }
+        public void Sincronizza(object sender, EventArgs args)
+        {
+
+            syncWorker.RunWorkerAsync();
         }
 
         public void Visit(Cartella cartella)
