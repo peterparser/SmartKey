@@ -142,7 +142,7 @@ namespace SmartKey
             this.textBoxUtente.ReadOnly = true;
             this.textBoxUtente.Size = new System.Drawing.Size(180, 21);
             this.textBoxUtente.TabIndex = 3;
-            this.textBoxUtente.Text = "Riccardo Vasumini";
+            this.textBoxUtente.Text = Utente.GetNomeUtente();
             this.textBoxUtente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxDispositivo
@@ -154,7 +154,14 @@ namespace SmartKey
             this.textBoxDispositivo.ReadOnly = true;
             this.textBoxDispositivo.Size = new System.Drawing.Size(180, 21);
             this.textBoxDispositivo.TabIndex = 4;
-            this.textBoxDispositivo.Text = "RV-Kingston";
+            if( Utente.Dispositivo.Count < 1)
+            {
+                this.textBoxDispositivo.Text = "Nessun dispositivo USB inserito";
+            }
+            else
+            {
+                this.textBoxDispositivo.Text = "RV-Kingston";
+            }
             this.textBoxDispositivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCartellaPrivata
@@ -166,7 +173,14 @@ namespace SmartKey
             this.textBoxCartellaPrivata.ReadOnly = true;
             this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 21);
             this.textBoxCartellaPrivata.TabIndex = 5;
-            this.textBoxCartellaPrivata.Text = "D:\\path\\to\\CartellaPrivata";
+            if (Utente.Dispositivo.Count < 1)
+            {
+                this.textBoxCartellaPrivata.Text = "No USB no party...";
+            }
+            else
+            {
+                this.textBoxCartellaPrivata.Text = "D:\\path\\to\\CartellaPrivata";
+            }
             this.textBoxCartellaPrivata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // buttonLogSincro
