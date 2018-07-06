@@ -27,7 +27,7 @@ namespace SmartKey
      
         static void Main()
         {
-
+            //Avvio del Main
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             NavigationHelper helper = new NavigationHelper();
