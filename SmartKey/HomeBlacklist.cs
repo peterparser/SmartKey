@@ -36,5 +36,10 @@ namespace SmartKey
                 return this.dataGridViewBlacklist;
             }
         }
+
+        public void AddRow(string baduser)
+        {
+            
+        }
     }
 }
