@@ -54,6 +54,7 @@ namespace SmartKey.Controller
                 _pathDestinazione = impostazione.CartellaDestinazione;
                 impostazione.CartellaSorgente.Accept(this);
             }
+            _viewHome.AvvisaFineSync();
         }
         public void Sincronizza(object sender, EventArgs args)
         {
