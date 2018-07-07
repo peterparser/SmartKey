@@ -10,6 +10,7 @@ namespace SmartKey
 {
     public partial class HomeAnalisiOttimizzazione : SmartKey.BaseForm
     {
+
         public HomeAnalisiOttimizzazione()
         {
             InitializeComponent();
@@ -22,5 +23,22 @@ namespace SmartKey
                 return buttonLogCompressione;
             }
         }
+
+        public Button ButtonComprimi
+        {
+            get
+            {
+                return buttonComprimi;
+            }
+        }
+        
+        public Button ButtonPulisciLista
+        {
+            get
+            {
+                return buttonPulisciLista;
+            }
+        }
+        
     }
 }

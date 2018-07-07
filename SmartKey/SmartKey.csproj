@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalisiOttimizzazione\AnalisiOttimizzazioneController.cs" />
+    <Compile Include="AnalisiOttimizzazione\IGestoreAnalisiOttimizzazione.cs" />
     <Compile Include="Controller\ActionCompletedEvent.cs" />
     <Compile Include="BlackList\BlackListController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IController.cs" />
