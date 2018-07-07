@@ -154,7 +154,14 @@ namespace SmartKey
             this.textBoxDispositivo.ReadOnly = true;
             this.textBoxDispositivo.Size = new System.Drawing.Size(180, 21);
             this.textBoxDispositivo.TabIndex = 4;
-            this.textBoxDispositivo.Text = Utente.Dispositivo[0].OttieniNomeDispositivo();
+            if (Utente.Dispositivo.Count < 1)
+            {
+                this.textBoxDispositivo.Text = "Nessun Dispositivo Collegato";
+            }
+            else
+            {
+                this.textBoxDispositivo.Text = Utente.Dispositivo[0].OttieniNomeDispositivo();
+            }
             this.textBoxDispositivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCartellaPrivata
@@ -166,7 +173,15 @@ namespace SmartKey
             this.textBoxCartellaPrivata.ReadOnly = true;
             this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 21);
             this.textBoxCartellaPrivata.TabIndex = 5;
-            this.textBoxCartellaPrivata.Text = Utente.Dispositivo[0].OttieniCartellaPrivata();
+            if (Utente.Dispositivo.Count < 1)
+            {
+                this.textBoxCartellaPrivata.Text = "No USB no party...";
+            }
+            else
+            {
+                this.textBoxCartellaPrivata.Text = Utente.Dispositivo[0].OttieniCartellaPrivata();
+                Utente.Dispositivo[0].OttieniCartellaPubblica();
+            }
             this.textBoxCartellaPrivata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // buttonLogSincro

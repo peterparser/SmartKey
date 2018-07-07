@@ -54,23 +54,26 @@ namespace SmartKey.ModelGestione
         public String OttieniCartellaPubblica()
         {
             DirectoryInfo dirInfoPubblica = null;
-            DriveInfo[] mydrives = DriveInfo.GetDrives();
             foreach (DriveInfo mydrive in mydrives)
             {
                 dirInfoPubblica = new DirectoryInfo(mydrive.RootDirectory.ToString() + "Cartella Pubblica");
-                if (!dirInfoPubblica.Exists)
+                if (mydrive.DriveType == DriveType.Removable)
                 {
-                    dirInfoPubblica.Create();
-                    dirInfoPubblica.CreateSubdirectory(Utente.GetNomeUtente());
-
-                }
-                else
-                {
-                    if (!Directory.Exists(mydrive.RootDirectory.ToString() + "Cartella Privata\\" + Utente.GetNomeUtente()))
+                    if (!dirInfoPubblica.Exists)
                     {
+                        dirInfoPubblica.Create();
                         dirInfoPubblica.CreateSubdirectory(Utente.GetNomeUtente());
+
+                    }
+                    else
+                    {
+                        if (!Directory.Exists(mydrive.RootDirectory.ToString() + "Cartella Privata\\" + Utente.GetNomeUtente()))
+                        {
+                            dirInfoPubblica.CreateSubdirectory(Utente.GetNomeUtente());
+                        }
                     }
                 }
+                   
             }
             return dirInfoPubblica.ToString();
 

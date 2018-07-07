@@ -38,7 +38,7 @@ namespace SmartKey
 
             IGestoreBlacklist blacklistController = new BlackListController((HomeBlacklist)(helper.GetForm("HomeBlacklist")));
             InitControllers initializer = new InitControllers();
-
+       
             initializer.Init(blacklistController, impostazioniController);
             IGestoreSincronizzazione sincroController = new GestoreSincronizzazioneController(blacklistController,
                 impostazioniController,(HomeSmartKey) helper.GetForm("HomeSmartKey"));
@@ -49,7 +49,7 @@ namespace SmartKey
             sincroController.ToLog += logController.Update;
 
             Application.Run(helper.GetForm("HomeSmartKey"));
-
+          
         }
     }
 }
