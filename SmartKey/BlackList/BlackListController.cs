@@ -46,7 +46,10 @@ namespace SmartKey.Blacklist
         {
             if (_blacklist.AggiungiUtenteCattivo(utente))
             {
-                _blacklistView.DataGridViewBlacklist.Rows.Add(utente);
+                //Col fatto che questa viene chiamata dal thread della sincronizzazione va
+                //Risolto con l'escamotage 
+                _blacklistView.AddRow(utente);
+                //_blacklistView.DataGridViewBlacklist.Rows.Add(utente);
                 //Creazione del parametro da passare quando scateno l'evento
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
