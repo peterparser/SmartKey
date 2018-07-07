@@ -142,7 +142,7 @@ namespace SmartKey
             this.textBoxUtente.ReadOnly = true;
             this.textBoxUtente.Size = new System.Drawing.Size(180, 21);
             this.textBoxUtente.TabIndex = 3;
-            this.textBoxUtente.Text = "Riccardo Vasumini";
+            this.textBoxUtente.Text = "arian";
             this.textBoxUtente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxDispositivo
@@ -154,7 +154,7 @@ namespace SmartKey
             this.textBoxDispositivo.ReadOnly = true;
             this.textBoxDispositivo.Size = new System.Drawing.Size(180, 21);
             this.textBoxDispositivo.TabIndex = 4;
-            this.textBoxDispositivo.Text = "RV-Kingston";
+            this.textBoxDispositivo.Text = Utente.Dispositivo[0].OttieniNomeDispositivo();
             this.textBoxDispositivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCartellaPrivata
@@ -166,7 +166,7 @@ namespace SmartKey
             this.textBoxCartellaPrivata.ReadOnly = true;
             this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 21);
             this.textBoxCartellaPrivata.TabIndex = 5;
-            this.textBoxCartellaPrivata.Text = "D:\\path\\to\\CartellaPrivata";
+            this.textBoxCartellaPrivata.Text = Utente.Dispositivo[0].OttieniCartellaPrivata();
             this.textBoxCartellaPrivata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // buttonLogSincro

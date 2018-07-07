@@ -10,7 +10,7 @@ namespace SmartKey.ModelGestione
     public interface IDispositivo
     {
         string OttieniNomeDispositivo();
-        Cartella OttieniCartellaPrivata();
-        Cartella OttieniCartellaPubblica();
+        string OttieniCartellaPrivata();
+        string OttieniCartellaPubblica();
     }
 }

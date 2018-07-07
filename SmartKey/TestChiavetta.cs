@@ -23,21 +23,30 @@ namespace SmartKey
                 if (mydrive.DriveType == DriveType.Removable)
                 {
                     Utente.Dispositivo.Add(new ChiaveUSB(mydrive.Name));
-                    // Te l'ho commentato perchè non compilava
-                //    foreach (DirectoryInfo dirInfo in ) { 
+                    DirectoryInfo dirInfoPrivata = new DirectoryInfo(mydrive.RootDirectory.ToString() + Utente.GetNomeUtente());
+                    DirectoryInfo dirInfoPubblica = new DirectoryInfo(mydrive.RootDirectory.ToString() + "Cartella Pubblica");
+                    
+                    if (!dirInfoPrivata.Exists)
+                    {
+                        dirInfoPrivata.Create();
+                        Console.WriteLine(dirInfoPrivata.ToString());
+                    }
+                    if (!dirInfoPubblica.Exists)
+                    {
+                        dirInfoPubblica.Create();
+                        DirectoryInfo dirInfoPubblicaUtente = dirInfoPubblica.CreateSubdirectory(Utente.GetNomeUtente());
+                        Console.WriteLine(dirInfoPubblica.ToString());
+                        Console.WriteLine(dirInfoPubblicaUtente.ToString());
 
-                  //      Console.WriteLine(mydrive.RootDirectory.GetDirectories().GetValue(2).ToString());
-                   // Console.WriteLine(mydrive.RootDirectory.ToString() + Utente.GetNomeUtente());
-
-                    //Console.WriteLine(mydrive.RootDirectory.ToString());
-
+                    }
+                    else
+                    {
+                       if(! Directory.Exists(mydrive.RootDirectory.ToString() + "Cartella Privata\\" + Utente.GetNomeUtente())){
+                            dirInfoPubblica.CreateSubdirectory(Utente.GetNomeUtente());
+                        }
+                    }
                 }
-
             }
-          //  foreach (mydrive in Utente.Dispositivo)
-            //{
-
-//            }
             foreach (IDispositivo disp in Utente.Dispositivo)
             {
                 Console.WriteLine(disp.OttieniNomeDispositivo());

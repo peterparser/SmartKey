@@ -27,7 +27,8 @@ namespace SmartKey
      
         static void Main()
         {
-
+            // Ho bisogno di un posto dove inizializzare la chiavetta e collegarla all'utente
+            ChiaveUSB chiavetta = new ChiaveUSB();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             NavigationHelper helper = new NavigationHelper();
