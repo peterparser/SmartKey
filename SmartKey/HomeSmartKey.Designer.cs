@@ -179,6 +179,7 @@ namespace SmartKey
             }
             else
             {
+                // qui invoco entrambi i metodi per la creazione dello spazio
                 this.textBoxCartellaPrivata.Text = Utente.Dispositivo[0].OttieniCartellaPrivata();
                 Utente.Dispositivo[0].OttieniCartellaPubblica();
             }

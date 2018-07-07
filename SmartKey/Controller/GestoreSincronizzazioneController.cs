@@ -22,6 +22,7 @@ namespace SmartKey.Controller
         private IGestoreImpostazione _impostazioniController;
         private string _pathDestinazione;
         private BackgroundWorker syncWorker;
+        // aggiunta una variabile privata per tenere a mente l'autore riconosciuto
         private bool remember;
 
         public GestoreSincronizzazioneController(IGestoreBlacklist blacklistController,
@@ -106,6 +107,7 @@ namespace SmartKey.Controller
             {
                 if (!_blacklistController.IsBlackListed(author))
                 {
+                    // Ho aggiunto questo if else
                     bool riconosciuto = false;
                     if (remember == false)
                     {
@@ -114,6 +116,7 @@ namespace SmartKey.Controller
                     else riconosciuto = true;
                     if (riconosciuto)
                     {
+                        // e questo
                         remember = true;
                         //Se esiste Confronto gli hash se sono diversi sincronizzo
                         if (File.Exists(fileDstPath))
