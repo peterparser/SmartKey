@@ -22,6 +22,7 @@ namespace SmartKey.Controller
         private IGestoreImpostazione _impostazioniController;
         private string _pathDestinazione;
         private BackgroundWorker syncWorker;
+        private bool remember;
 
         public GestoreSincronizzazioneController(IGestoreBlacklist blacklistController,
             IGestoreImpostazione impostazioniController,
@@ -98,19 +99,22 @@ namespace SmartKey.Controller
         {
             FileInfo source = new FileInfo(file.Path);
             String fileDstPath = String.Join("\\", _pathDestinazione, source.Name);
-
             //Trovo l'autore del file
             string author = File.GetAccessControl(file.Path).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString();
             //Prova va spostato sotto
-            
             if (!author.Equals(string.Join("\\",Utente.GetNomeHost(),Utente.GetNomeUtente())))
             {
                 if (!_blacklistController.IsBlackListed(author))
                 {
-                    
-                    bool riconosciuto = _viewHome.ChiediScelta(author);
+                    bool riconosciuto = false;
+                    if (remember == false)
+                    {
+                        riconosciuto = _viewHome.ChiediScelta(author);
+                    }
+                    else riconosciuto = true;
                     if (riconosciuto)
                     {
+                        remember = true;
                         //Se esiste Confronto gli hash se sono diversi sincronizzo
                         if (File.Exists(fileDstPath))
                         {
