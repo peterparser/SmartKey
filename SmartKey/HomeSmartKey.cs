@@ -44,6 +44,17 @@ namespace SmartKey
                 return buttonSincronizza;
             }
         }
+        public void AvvisaFineSync()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate ()
+                {
+                    MessageBox.Show("Sincronizzazione terminata", "Sincronizzazione",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }));
+            }
+        }
 
     }
 }

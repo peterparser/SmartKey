@@ -48,6 +48,7 @@ namespace SmartKey
             sincroController.ToLog += logController.Update;
 
             Application.Run(helper.GetForm("HomeSmartKey"));
-        }           
+
+        }
     }
 }

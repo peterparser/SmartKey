@@ -98,7 +98,7 @@ namespace SmartKey.Log.ControllerLog
         private void ScriviEntry(Entry e)
         {
             _log.AddEntry(e);
-            _logView.DataGridOutputLog.Rows.Add(e.ToString().Replace('\t',' '));
+            _logView.UpdateLog(e.ToString().Replace('\t',' '));
         }
         public IList<Entry> Entries
         {

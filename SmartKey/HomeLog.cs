@@ -108,7 +108,20 @@ namespace SmartKey
             }
         }
 
-        
+        public void UpdateLog(string entry)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate ()
+                {
+                    
+                }));
+            }
+            else
+            {
+                dataGridViewOutputLog.Rows.Add(entry);
+            }
+        }
         private void ButtonCancellaSelezione_Click(object sender, EventArgs e)
         {
             RadioButtonData.Checked = false;

@@ -36,5 +36,20 @@ namespace SmartKey
                 return this.dataGridViewBlacklist;
             }
         }
+
+        public void AddRow(string baduser)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate ()
+                {
+                    DataGridViewBlacklist.Rows.Add(baduser);
+                }));
+            }
+            else
+            {
+                DataGridViewBlacklist.Rows.Add(baduser);
+            }
+        }
     }
 }
