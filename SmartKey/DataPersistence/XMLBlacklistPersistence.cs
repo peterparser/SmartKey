@@ -13,7 +13,7 @@ namespace SmartKey.DataPersistence
 {
     public class XMLBlacklistPersistence : XMLDataPersistence
     {
-        public XMLBlacklistPersistence(string filename) : base(filename) { }
+        public XMLBlacklistPersistence() : base("blacklist.xml") { }
         
         public override object Carica()
         {
@@ -30,7 +30,7 @@ namespace SmartKey.DataPersistence
                 foreach (XmlNode node in nodelist)
                 {
                     //Se quell'elemento blacklist ha "me" come proprietario allora è la mia blacklist
-                    if (node.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetUtente().NomeHost)){
+                    if (node.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetNomeUtente())){
                         //Itero sui figli di quel nodo per prendere tutti gli utenti nella mia blacklist
                         foreach(XmlNode utenti in node.ChildNodes)
                         {
@@ -42,6 +42,7 @@ namespace SmartKey.DataPersistence
             }
             catch
             {
+                //Gestione primo avvio
                 throw new PersistenceException("File per il caricamento non trovato");
             }
         }
@@ -72,7 +73,7 @@ namespace SmartKey.DataPersistence
                 //Per prima cosa trovo la mia blacklist
                 foreach (XmlNode blacklist in blacklists)
                 {
-                    if (blacklist.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetUtente().NomeHost))
+                    if (blacklist.Attributes.GetNamedItem("proprietario").Value.Equals(Utente.GetNomeUtente()))
                     {
                         //Se l'operazione era di aggiunta appendo l'elemento
                         if (param.Action.Equals("aggiungi"))
@@ -115,7 +116,7 @@ namespace SmartKey.DataPersistence
                 //creo il tag blacklist
                 XmlElement blacklist = xdocument.CreateElement("blacklist");
                 //metto l'attributo per il proprietario
-                blacklist.SetAttribute("proprietario", Utente.GetUtente().NomeHost);
+                blacklist.SetAttribute("proprietario", Utente.GetNomeUtente());
                 //Aggiungo l'utente al dom
 
                 var utentexml = xdocument.CreateElement("utente");
@@ -136,14 +137,14 @@ namespace SmartKey.DataPersistence
                 };
                 //Aggiungo il writer
                 XmlWriter writer = XmlWriter.Create(Filename, settings);
-                XmlSchemaSet schemas = new XmlSchemaSet();
+                //XmlSchemaSet schemas = new XmlSchemaSet();
                 //Bisogna trovare una LLLLLLOCATION per tutte queste impostazioni
-                schemas.Add("", @"C:\Users\massi\Desktop\blacklist.xsd");
-                xdocument.Schemas = schemas;
+                //chemas.Add("", @"C:\Users\massi\Desktop\blacklist.xsd");
+                //xdocument.Schemas = schemas;
                 try
                 {
                     //Scrivo il file
-                    xdocument.Validate((oggetto, handler) => { });
+                  //  xdocument.Validate((oggetto, handler) => { });
                     xdocument.Save(writer);
                     writer.Close();
                 }catch(Exception ex)

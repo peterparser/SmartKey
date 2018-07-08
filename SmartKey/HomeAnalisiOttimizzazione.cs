@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SmartKey
 {
-    public partial class Form1 : Form
+    public partial class HomeAnalisiOttimizzazione : SmartKey.BaseForm
     {
-        public Form1()
+        public HomeAnalisiOttimizzazione()
         {
             InitializeComponent();
         }
 
-        private void bottone_Click(object sender, EventArgs e)
+        public Button ButtonToLogAnalisi
         {
-            Console.WriteLine("WORK");
+            get
+            {
+                return buttonLogCompressione;
+            }
         }
     }
 }

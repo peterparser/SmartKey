@@ -11,7 +11,7 @@ namespace SmartKey.Log.ControllerLog
     //Itnerfaccia
     public interface IObserver
     {
-        void UpdateLog(object sender, EventArgs e);
+        void Update(object sender, EventArgs e);
         IList<Entry> Entries { get; }
     }
 }

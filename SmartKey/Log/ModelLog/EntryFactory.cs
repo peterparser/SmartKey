@@ -6,7 +6,7 @@ namespace SmartKey.Log.ModelLog
 {
     public class EntryFactory
     {
-        public static Entry GetEntry(IController controller, string operazione, 
+        public static Entry CreateEntry(IController controller, string operazione, 
             string utenteMalevolo="" ,string sorgente="", string destinazione="")
         {
             
@@ -16,7 +16,9 @@ namespace SmartKey.Log.ModelLog
                 case ("ImpostazioneTrasferimentoController"):
                     return new EntryImpostazione(operazione, sorgente, destinazione);
                 case ("BlackListController"):
-                    return new EntryBlacklist(operazione, Utente.GetUtente().NomeHost, utenteMalevolo);
+                    return new EntryBlacklist(operazione, Utente.GetNomeUtente(), utenteMalevolo);
+                case ("GestoreSincronizzazioneController"):
+                    return new EntrySincronizzazione(operazione, sorgente, destinazione);
                 default:
                     return null;
             }
@@ -25,7 +27,7 @@ namespace SmartKey.Log.ModelLog
             
         }
         //Metodo da usare per ricostruire le entry dal file di log
-        public static Entry GetEntry(string entryType, string operazione,
+        public static Entry CreateEntry(string entryType, string operazione,
             string dataString, string oraString,
             string utenteMalevolo="",string utenteProprietario="", string sorgente="", string destinazione = "")
         {
@@ -48,6 +50,8 @@ namespace SmartKey.Log.ModelLog
                     return new EntryBlacklist(entryTime, operazione, utenteProprietario, utenteMalevolo);
                 case ("Impostazione"):
                     return new EntryImpostazione(entryTime, operazione, sorgente, destinazione);
+                case ("Sincronizzazione"):
+                    return new EntrySincronizzazione(entryTime, operazione, sorgente, destinazione);
                 default:
                     return null;
             }

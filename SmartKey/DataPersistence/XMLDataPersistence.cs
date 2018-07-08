@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SmartKey.ModelGestione;
 
 namespace SmartKey.DataPersistence
 {
@@ -17,9 +16,11 @@ namespace SmartKey.DataPersistence
                 return _filename;
             }
         }
-        public XMLDataPersistence(string filename)
+        public XMLDataPersistence(string fileName)
         {
-            _filename = filename;
+           string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+           string path = string.Join("\\", desktop, fileName);
+            _filename = path;
         }
         public abstract object Carica();
         public abstract void Salva(object o, PersistEvent e);

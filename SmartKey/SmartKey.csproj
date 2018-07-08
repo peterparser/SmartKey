@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B026F77B-9666-4CA6-8FB1-88F535C7CAE6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>SmartKey</RootNamespace>
     <AssemblyName>SmartKey</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -59,10 +59,43 @@
     <Compile Include="BlackList\BlackListController.cs" />
     <Compile Include="Controller\Controller.Interfaces\IController.cs" />
     <Compile Include="BlackList\IGestoreBlacklist.cs" />
+    <Compile Include="Controller\Controller.Interfaces\IGestoreSincronizzazione.cs" />
+    <Compile Include="Controller\GestoreSincronizzazioneController.cs" />
+    <Compile Include="Controller\InitControllers.cs" />
+    <Compile Include="Controller\TestController\TestSincronizzazione.cs" />
+    <Compile Include="HomeAnalisiOttimizzazione.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeAnalisiOttimizzazione.Designer.cs">
+      <DependentUpon>HomeAnalisiOttimizzazione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeBlacklist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeBlacklist.Designer.cs">
+      <DependentUpon>HomeBlacklist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeImpostazioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeImpostazioni.Designer.cs">
+      <DependentUpon>HomeImpostazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeLog.Designer.cs">
+      <DependentUpon>HomeLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeSmartKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeSmartKey.Designer.cs">
+      <DependentUpon>HomeSmartKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImpostazioneTrasferimento\IGestoreImpostazione.cs" />
     <Compile Include="Controller\Controller.Interfaces\IPersistActions.cs" />
     <Compile Include="ImpostazioneTrasferimento\ImpostazioneTrasferimentoController.cs" />
-    <Compile Include="Controller\SincronizzazioneController.cs" />
     <Compile Include="Controller\TestController\LogControllerTest.cs" />
     <Compile Include="Log\ControllerLog\IObserver.cs" />
     <Compile Include="Log\ControllerLog\LogController.cs" />
@@ -75,11 +108,11 @@
     <Compile Include="DataPersistence\XMLBlacklistPersistence.cs" />
     <Compile Include="DataPersistence\XMLDataPersistence.cs" />
     <Compile Include="DataPersistence\XMLImpostazioniPersistence.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Log\LogPersistence\ILogPersistence.cs" />
     <Compile Include="Log\LogPersistence\ConcreteLogPersistence.cs" />
@@ -88,6 +121,7 @@
     <Compile Include="ModelGestione\ChiaveUSB.cs" />
     <Compile Include="ModelGestione\Filesystem\Cartella.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Exceptions\PathNotValidException.cs" />
+    <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\CartellaSubtreeTest.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\CartellaTest.cs" />
     <Compile Include="ModelGestione\Filesystem\Filesystem.Tests\FileWrapperTest.cs" />
     <Compile Include="ModelGestione\Filesystem\FilesystemElement.cs" />
@@ -110,8 +144,25 @@
     <Compile Include="Log\ModelLog\TestLog\TestFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TestChiavetta.cs" />
+    <Compile Include="Utility\NavigationHelper.cs" />
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeAnalisiOttimizzazione.resx">
+      <DependentUpon>HomeAnalisiOttimizzazione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeBlacklist.resx">
+      <DependentUpon>HomeBlacklist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeImpostazioni.resx">
+      <DependentUpon>HomeImpostazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeLog.resx">
+      <DependentUpon>HomeLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeSmartKey.resx">
+      <DependentUpon>HomeSmartKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -6,19 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using SmartKey.Log.ModelLog;
 using SmartKey.ModelGestione;
-using SmartKey.ModelLog;
 
 namespace SmartKey.Log.LogPersistence
 {
     public class ConcreteLogPersistence : ILogPersistence
     {
         private readonly string _filename;
-        private readonly bool _append;
         
-        public ConcreteLogPersistence(string filename,bool append=false)
+        public ConcreteLogPersistence(string filename)
         {
             _filename = filename;
-            _append = true;
         }
         public ModelLog.Log LeggiLog()
         {
@@ -27,40 +24,53 @@ namespace SmartKey.Log.LogPersistence
             {
                 using (StreamReader readtext = new StreamReader(_filename))
                 {
-                    string readMeText = readtext.ReadLine();
-                    //  29 / 06 / 2018 09:14:20 Blacklist aggiunto DESKTOP-TF7TLNM\massi    riccardo 
-                    //  29 / 06 / 2018 09:14:20 Impostazione aggiunta    DESKTOP - TF7TLNM\massi mydir   yourDir
-                    //Esempio righe da parsare
+                    string readMeText = null;
+                    while ((readMeText = readtext.ReadLine()) != null)
+                    { 
+                        //  29 / 06 / 2018 09:14:20 Blacklist aggiunto DESKTOP-TF7TLNM\massi    riccardo 
+                        //  29 / 06 / 2018 09:14:20 Impostazione aggiunta    DESKTOP - TF7TLNM\massi mydir   yourDir
+                        //Esempio righe da parsare
 
-                    //Parsing della parte fissa.
-                    string[] fields = readMeText.Split('\t');
-                    string[] dateHour = fields[0].Split(' ');
-                    string date = dateHour[0];
-                    string hour = dateHour[1];
-                    string entryType = fields[1];
-                    string operazione = fields[2];
-                    string utente = fields[3];
+                        //Parsing della parte fissa.
+                        string[] fields = readMeText.Split('\t');
+                        string[] dateHour = fields[0].Split(' ');
+                        string date = dateHour[0];
+                        string hour = dateHour[1];
+                        string entryType = fields[1];
+                        string operazione = fields[2];
+                        string utente = fields[3];
 
-                    //Assegno i parametri che variano
-                    switch (entryType)
-                    {
-                        case ("Blacklist"):
-                            string badUser = fields[4];
-                            log.AddEntry(EntryFactory.GetEntry(entryType, operazione, date, hour,
-                                utenteMalevolo: badUser, utenteProprietario: "daaggiungere"));
-                            break;
-                        case ("Impostazione"):
-                            string sorgente = fields[4];
-                            string destinazione = fields[5];
-                            log.AddEntry(EntryFactory.GetEntry(entryType, operazione, date, hour,
-                                sorgente: sorgente, destinazione: destinazione));
-                            break;
+                        //Assegno i parametri che variano
+                        switch (entryType)
+                        {
+                            case ("Blacklist"):
+                                string badUser = fields[4];
+                                log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                    utenteMalevolo: badUser, utenteProprietario: Utente.GetNomeUtente()));
+                                break;
+                            case ("Impostazione"):
+                                string sorgente = fields[4];
+                                string destinazione = fields[5];
+                                log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                    sorgente: sorgente, destinazione: destinazione));
+                                break;
+                            case ("Sincronizzazione"):
+                                string source = fields[4];
+                                if(operazione.Equals("file eliminato"))
+                                {
+                                    log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                        sorgente:source));
+                                }
+                                else
+                                {
+                                    string dst = fields[5];
+                                    log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,
+                                        sorgente:source, destinazione:dst));
+                                }
+                                break;
+                        }
+
                     }
-
-
-                    //Parte variabile Se impostazione ci sono le cartelle
-                    //Se blacklist è finita
-
                 }
             }catch(Exception e)
             {
@@ -71,12 +81,9 @@ namespace SmartKey.Log.LogPersistence
 
         public void ScriviLog(ModelLog.Log log)
         {
-            using (StreamWriter writer = new StreamWriter(_filename, append:_append))
+            using (StreamWriter writer = new StreamWriter(_filename, append:true))
             {
-                foreach (Entry entry in log.Entries)
-                {
-                    writer.WriteLine(entry.ToString());
-                }
+                writer.WriteLine(log.Entries.Last());
             }
         }
     }

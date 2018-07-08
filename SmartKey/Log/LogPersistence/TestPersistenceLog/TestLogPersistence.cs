@@ -21,11 +21,11 @@ namespace SmartKey.Log.LogPersistence.TestPersistenceLog
 
         private void Init()
         {
-            blacklistController = new BlackListController();
+            blacklistController = new BlackListController(new HomeBlacklist());
             impostazioneController = new ImpostazioneTrasferimentoController();
-            logController = new LogController();
-            impostazioneController.ToLog += logController.UpdateLog;
-            blacklistController.ToLog += logController.UpdateLog;
+            logController = new LogController(new HomeLog());
+            impostazioneController.ToLog += logController.Update;
+            blacklistController.ToLog += logController.Update;
 
         }
 

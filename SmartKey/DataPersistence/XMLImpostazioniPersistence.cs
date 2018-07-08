@@ -10,7 +10,7 @@ namespace SmartKey.DataPersistence
 {
     public class XMLImpostazioniPersistence : XMLDataPersistence
     {
-        public XMLImpostazioniPersistence(string filename) : base(filename)
+        public XMLImpostazioniPersistence() : base("impostazioni.xml")
         {
         }
 
@@ -24,7 +24,7 @@ namespace SmartKey.DataPersistence
                 ISet<ImpostazioneTrasferimento.ImpostazioneTrasferimento> settings = new HashSet<ImpostazioneTrasferimento.ImpostazioneTrasferimento>();
                 foreach(XmlNode node in nodelist)
                 {
-                    if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
+                    if (node.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetNomeUtente()))
                     {
                         string cartellaSorgente, cartellaDestinazione;
                         cartellaSorgente = null;
@@ -50,7 +50,6 @@ namespace SmartKey.DataPersistence
 
         public override void Salva(object o, PersistEvent param)
         {
-            //TODO Bel controllo sul tipo con la reflection
             ImpostazioneTrasferimento.ImpostazioneTrasferimento toPut = (ImpostazioneTrasferimento.ImpostazioneTrasferimento)param.ToPersist;
             XmlDocument xdocument = new XmlDocument();
             try
@@ -63,11 +62,11 @@ namespace SmartKey.DataPersistence
                 {
                     //Caso di aggiunta si veda sotto nel catch per commenti dettagliati
                     XmlElement xImpostazione = xdocument.CreateElement("impostazione");
-                    xImpostazione.SetAttribute("utente", Utente.GetUtente().NomeHost);
+                    xImpostazione.SetAttribute("utente", Utente.GetNomeUtente());
                     XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
                     cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
                     XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
-                    cartellaDestinazione.InnerText = toPut.CartellaDestinazione.Path;
+                    cartellaDestinazione.InnerText = toPut.CartellaDestinazione;
                     XmlElement verso = xdocument.CreateElement("verso");
                     verso.InnerText = toPut.Verso;
                     xImpostazione.AppendChild(cartellaSorgente);
@@ -82,7 +81,7 @@ namespace SmartKey.DataPersistence
                     //E tutti amici come prima
                     foreach(XmlNode impostazioneNode in impostazioniMainNode.ChildNodes)
                     {
-                        if (impostazioneNode.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetUtente().NomeHost))
+                        if (impostazioneNode.Attributes.GetNamedItem("utente").Value.Equals(Utente.GetNomeUtente()))
                         {
                             //Controllo il contenuto
                             bool found = true;
@@ -93,7 +92,7 @@ namespace SmartKey.DataPersistence
                                     ((valueImpostazione.Name.Equals("cartella-sorgente") &&
                                     valueImpostazione.InnerText.Equals(toPut.CartellaSorgente.Path)) )||
                                     (valueImpostazione.Name.Equals("cartella-destinazione") && 
-                                    valueImpostazione.InnerText.Equals(toPut.CartellaDestinazione.Path)));
+                                    valueImpostazione.InnerText.Equals(toPut.CartellaDestinazione)));
                             }
                             if (found) impostazioniMainNode.RemoveChild(impostazioneNode);
                         }
@@ -118,13 +117,13 @@ namespace SmartKey.DataPersistence
                 //Creo il tag per la mia impostazione
                 XmlElement impostazione = xdocument.CreateElement("impostazione");
                 //Imposto l'attributo utente in modo consono
-                impostazione.SetAttribute("utente", Utente.GetUtente().NomeHost);
+                impostazione.SetAttribute("utente", Utente.GetNomeUtente());
                 
                 //Creo gli i figli che compongono il tag impostazione e gli do il valore che devo inserire
                 XmlElement cartellaSorgente = xdocument.CreateElement("cartella-sorgente");
                 cartellaSorgente.InnerText = toPut.CartellaSorgente.Path;
                 XmlElement cartellaDestinazione = xdocument.CreateElement("cartella-destinazione");
-                cartellaDestinazione.InnerText = toPut.CartellaDestinazione.Path;
+                cartellaDestinazione.InnerText = toPut.CartellaDestinazione;
                 XmlElement verso = xdocument.CreateElement("verso");
                 verso.InnerText = toPut.Verso;
                 

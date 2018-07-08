@@ -11,56 +11,18 @@ namespace SmartKey.ModelGestione
     //Non può essere singleton
     //Va cambiato in modo che non sia singleton
     //Va fatto mettere in un controller poi farlo condividere.
-    public sealed class Utente
+    public class Utente
     {
-        private static Utente _instance = null;
-        private string _nomeHost = WindowsIdentity.GetCurrent().Name.ToString();
-        private string _nomeUtente = WindowsIdentity.GetCurrent().User.ToString();
-        private IDispositivo _dispositivo;
-
-        private Utente()
+        public static string GetNomeUtente()
         {
-
+            return Environment.UserName;
         }
 
-        public static Utente GetUtente()
+        public static string GetNomeHost()
         {
-            if(_instance == null)
-            {
-                _instance = new Utente();
-
-            }
-            return _instance;
+            return Environment.MachineName;
         }
 
-        public string NomeUtente
-        {
-            get
-            {
-                return _nomeUtente;
-            }
-        }
-
-        public string NomeHost
-        {
-            get
-            {
-                return _nomeHost;
-            }
-        }
-
-        public IDispositivo Dispositivo
-        {
-            get
-            {
-                return _dispositivo;
-            }
-            set
-            {
-                _dispositivo = value;
-            }
-        }
-
-    
+        public static IList<IDispositivo> Dispositivo { get; } = new List<IDispositivo>();
     }
 }
