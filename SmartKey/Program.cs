@@ -40,8 +40,9 @@ namespace SmartKey
                 Directory.CreateDirectory(path);
             }
 
-            NavigationHelper helper = new NavigationHelper();
             ChiaveUSB chiavetta = new ChiaveUSB();
+            NavigationHelper helper = new NavigationHelper();
+           
             helper.AgganciaHandlers();
             IGestoreImpostazione impostazioniController = 
                 new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));

@@ -12,7 +12,7 @@ namespace SmartKey.Log.ModelLog
         {
         }
 
-        public EntrySistema(string operazione, DateTime date) : base(operazione, date)
+        public EntrySistema( DateTime date, string operazione) : base(operazione, date)
         {
         }
 
