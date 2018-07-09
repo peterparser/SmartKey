@@ -38,11 +38,16 @@ namespace SmartKey.Log.LogPersistence
                         string hour = dateHour[1];
                         string entryType = fields[1];
                         string operazione = fields[2];
-                        string utente = fields[3];
-
+                        if(fields.Length > 2)
+                        {
+                            string utente = fields[3];
+                        }  
                         //Assegno i parametri che variano
                         switch (entryType)
                         {
+                            case ("Sistema"):
+                                log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour));
+                                break;
                             case ("Blacklist"):
                                 string badUser = fields[4];
                                 log.AddEntry(EntryFactory.CreateEntry(entryType, operazione, date, hour,

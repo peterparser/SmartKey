@@ -19,6 +19,8 @@ namespace SmartKey.Log.ModelLog
                     return new EntryBlacklist(operazione, Utente.GetNomeUtente(), utenteMalevolo);
                 case ("GestoreSincronizzazioneController"):
                     return new EntrySincronizzazione(operazione, sorgente, destinazione);
+                case ("ProtezioneDatiController"):
+                    return new EntrySistema(operazione);
                 default:
                     return null;
             }
@@ -46,6 +48,8 @@ namespace SmartKey.Log.ModelLog
             //TODO da implementare il parsing del log
             switch (entryType)
             {
+                case ("Sistema"):
+                    return new EntrySistema(entryTime, operazione);
                 case ("Blacklist"):
                     return new EntryBlacklist(entryTime, operazione, utenteProprietario, utenteMalevolo);
                 case ("Impostazione"):
