@@ -20,7 +20,7 @@ namespace SmartKey.Controller
 
                 ActionCompletedEvent args = new ActionCompletedEvent
                 {
-                    ToEntry = EntryFactory.CreateEntry(this, "protetta cartella")
+                    ToEntry = EntryFactory.CreateEntry(this, "protetta cartella "+path)
                 };
                 ToLog?.Invoke(this, args);
             }

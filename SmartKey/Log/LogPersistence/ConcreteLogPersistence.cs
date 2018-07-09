@@ -38,7 +38,7 @@ namespace SmartKey.Log.LogPersistence
                         string hour = dateHour[1];
                         string entryType = fields[1];
                         string operazione = fields[2];
-                        if(fields.Length > 2)
+                        if(fields.Length > 3)
                         {
                             string utente = fields[3];
                         }  
