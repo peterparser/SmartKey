@@ -81,6 +81,11 @@ namespace SmartKey.Controller
             fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
                 FileSystemRights.ReadData, AccessControlType.Allow));
             File.SetAccessControl(param.FullPath, fSecurity);
+            ActionCompletedEvent args = new ActionCompletedEvent
+            {
+                ToEntry = EntryFactory.CreateEntry(this, "protetto file " + param.FullPath)
+            };
+            ToLog?.Invoke(this, args);
         }
 
 
