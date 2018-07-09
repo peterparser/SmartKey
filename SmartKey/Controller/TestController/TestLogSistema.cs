@@ -17,7 +17,7 @@ namespace SmartKey.Controller.TestController
 
         public void Init()
         {
-            _protec = new ProtezioneDatiController();
+            _protec = new ProtezioneDatiController("F:\\Prova");
             _controller = new LogController(new HomeLog());
             _protec.ToLog += _controller.Update;
 
@@ -27,8 +27,8 @@ namespace SmartKey.Controller.TestController
         public void TestLog()
         {
             Init();
-            _protec.ProteggiCartella("F:\\Prova");
-
+            _protec.ProteggiCartella();
+            Console.ReadLine();
         }
     }
 }

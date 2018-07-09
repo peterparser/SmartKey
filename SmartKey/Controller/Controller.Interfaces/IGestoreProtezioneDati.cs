@@ -8,6 +8,6 @@ namespace SmartKey.Controller.Controller.Interfaces
 {
     public interface IGestoreProtezioneDati : IController
     {
-        void ProteggiCartella(string path);
+        void ProteggiCartella();
     }
 }

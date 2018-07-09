@@ -14,15 +14,27 @@ namespace SmartKey.Controller
     public class ProtezioneDatiController : IGestoreProtezioneDati
     {
         public event EventHandler<ActionCompletedEvent> ToLog;
+        private FileSystemWatcher _watcher;
 
-        public void ProteggiCartella(string path)
+        private string _path;
+        public ProtezioneDatiController(string path)
         {
-            if (!Directory.Exists(path))
+            _path = path;
+            _watcher = new FileSystemWatcher(path);
+            _watcher.NotifyFilter = NotifyFilters.LastWrite;
+            _watcher.EnableRaisingEvents = true;
+            // watcher.Filter = "*.*";
+            _watcher.Created += ProteggiFile;
+            _watcher.Changed += ProteggiFile;
+        }
+        public void ProteggiCartella()
+        {
+            if (!Directory.Exists(_path))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(_path);
             }
             
-            DirectoryInfo dInfo = new DirectoryInfo(path);
+            DirectoryInfo dInfo = new DirectoryInfo(_path);
             DirectorySecurity security = dInfo.GetAccessControl();
 
             // Bisogna rimuovere una regola protetta, quindi bisogna anche rimuovere l'ereditarietà, da qui true e false
@@ -35,12 +47,14 @@ namespace SmartKey.Controller
             {
                 security.RemoveAccessRule(rule);
             }
+            
             // security.RemoveAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, AccessControlType.Allow));
 
             //Inserisco la regola che consente il full control al proprietario
           //  Console.WriteLine(WindowsIdentity.GetCurrent().Name);
             security.AddAccessRule(new FileSystemAccessRule(WindowsIdentity.GetCurrent().Name, FileSystemRights.FullControl, AccessControlType.Allow));
-            security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.ReadAndExecute, AccessControlType.Allow));
+            security.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null)
+                , FileSystemRights.ReadAndExecute, AccessControlType.Allow));
 
             /* security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.Delete, AccessControlType.Deny));
              security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.DeleteSubdirectoriesAndFiles, AccessControlType.Allow));
@@ -52,14 +66,24 @@ namespace SmartKey.Controller
 
 
             //Applico le regole alla cartella
-            Directory.SetAccessControl(path, security);
+            Directory.SetAccessControl(_path, security);
 
             ActionCompletedEvent args = new ActionCompletedEvent
             {
-                ToEntry = EntryFactory.CreateEntry(this, "protetta cartella "+path)
+                ToEntry = EntryFactory.CreateEntry(this, "protetta cartella "+_path)
             };
             ToLog?.Invoke(this, args);
-
         }
+
+        private void ProteggiFile(object o, FileSystemEventArgs param)
+        {
+            FileSecurity fSecurity = File.GetAccessControl(param.FullPath);
+            fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
+                FileSystemRights.ReadData, AccessControlType.Allow));
+            File.SetAccessControl(param.FullPath, fSecurity);
+        }
+
+
+
     }
 }
