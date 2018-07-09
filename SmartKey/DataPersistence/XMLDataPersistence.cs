@@ -19,7 +19,7 @@ namespace SmartKey.DataPersistence
         public XMLDataPersistence(string fileName)
         {
            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-           string path = string.Join("\\", desktop, fileName);
+           string path = string.Join("\\", desktop,"Smartkey" ,fileName);
             _filename = path;
         }
         public abstract object Carica();

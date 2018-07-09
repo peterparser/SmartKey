@@ -28,10 +28,20 @@ namespace SmartKey
         static void Main()
         {
             // Creo subito all'inizio un'istanza così l'utente ha già tutto
-            ChiaveUSB chiavetta = new ChiaveUSB();
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            //Creazione cartella dove depositiamo le impostazioni
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string path = string.Join("\\", desktop, "Smartkey");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             NavigationHelper helper = new NavigationHelper();
+            ChiaveUSB chiavetta = new ChiaveUSB();
             helper.AgganciaHandlers();
             IGestoreImpostazione impostazioniController = 
                 new ImpostazioneTrasferimentoController((HomeImpostazioni)(helper.GetForm("HomeImpostazioni")));

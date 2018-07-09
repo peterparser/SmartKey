@@ -20,7 +20,7 @@ namespace SmartKey.Log.ControllerLog
         public LogController(HomeLog _view)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            _logPersistence = new ConcreteLogPersistence(string.Join("\\",path,"log.txt"));
+            _logPersistence = new ConcreteLogPersistence(string.Join("\\",path,"Smartkey","log.txt"));
             _log = _logPersistence.LeggiLog();
             _logView = _view;
             //Assegnamento degli event handlers
