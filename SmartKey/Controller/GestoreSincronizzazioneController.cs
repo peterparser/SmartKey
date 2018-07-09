@@ -152,7 +152,7 @@ namespace SmartKey.Controller
                     {
                         _blacklistController.AggiungiUtente(author);
                         //Elimino il file
-                        File.Delete(file.Path);
+                       // File.Delete(file.Path);
                         ActionCompletedEvent args = new ActionCompletedEvent
                         {
                             ToEntry = EntryFactory.CreateEntry(this, "file eliminato", sorgente: file.Path)
