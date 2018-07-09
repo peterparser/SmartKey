@@ -66,6 +66,7 @@
     <Compile Include="Controller\GestoreSincronizzazioneController.cs" />
     <Compile Include="Controller\InitControllers.cs" />
     <Compile Include="Controller\ProtezioneDatiController.cs" />
+    <Compile Include="Controller\TestController\TestLogSistema.cs" />
     <Compile Include="Controller\TestController\TestSincronizzazione.cs" />
     <Compile Include="HomeAnalisiOttimizzazione.cs">
       <SubType>Form</SubType>

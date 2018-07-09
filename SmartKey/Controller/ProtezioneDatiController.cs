@@ -15,7 +15,7 @@ namespace SmartKey.Controller
 
         public void ProteggiCartella(string path)
         {
-            if (Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
 
                 ActionCompletedEvent args = new ActionCompletedEvent
