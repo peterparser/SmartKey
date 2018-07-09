@@ -27,7 +27,7 @@ namespace SmartKey.Controller.TestController
         public void TestLog()
         {
             Init();
-            _protec.ProteggiCartella("C:\\Users\\massi\\Desktop\\sistem");
+            _protec.ProteggiCartella("F:\\Prova");
 
         }
     }

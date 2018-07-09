@@ -38,14 +38,17 @@ namespace SmartKey.Controller
             // security.RemoveAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, AccessControlType.Allow));
 
             //Inserisco la regola che consente il full control al proprietario
-            Console.WriteLine(WindowsIdentity.GetCurrent().Name);
-            security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.Delete, AccessControlType.Deny));
-            security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.DeleteSubdirectoriesAndFiles, AccessControlType.Allow));
-            security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.CreateDirectories, AccessControlType.Allow));
-            security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.CreateFiles, AccessControlType.Allow));
+          //  Console.WriteLine(WindowsIdentity.GetCurrent().Name);
+            security.AddAccessRule(new FileSystemAccessRule(WindowsIdentity.GetCurrent().Name, FileSystemRights.FullControl, AccessControlType.Allow));
             security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.ReadAndExecute, AccessControlType.Allow));
-            security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.Modify, AccessControlType.Allow));
 
+            /* security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.Delete, AccessControlType.Deny));
+             security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.DeleteSubdirectoriesAndFiles, AccessControlType.Allow));
+             security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.CreateDirectories, AccessControlType.Allow));
+             security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.CreateFiles, AccessControlType.Allow));
+             security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.ReadAndExecute, AccessControlType.Allow));
+             security.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.Modify, AccessControlType.Allow));
+             */
 
 
             //Applico le regole alla cartella
