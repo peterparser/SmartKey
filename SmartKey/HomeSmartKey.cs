@@ -15,6 +15,8 @@ namespace SmartKey
         {
             InitializeComponent();
 
+            textBoxUtente.Text = Utente.GetNomeUtente();
+
             if (Utente.Dispositivo.Count < 1)
             {
                 this.textBoxDispositivo.Text = "Nessun Dispositivo Collegato";
