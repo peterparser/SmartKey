@@ -54,14 +54,19 @@ namespace SmartKey
             IGestoreSincronizzazione sincroController = new GestoreSincronizzazioneController(blacklistController,
                 impostazioniController,(HomeSmartKey) helper.GetForm("HomeSmartKey"));
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
-            ProtezioneDatiController protect = new ProtezioneDatiController(chiavetta.OttieniCartellaPrivata());
-            
-            protect.ToLog += logController.Update;
+            if(Utente.Dispositivo.Count > 0)
+            {
+                ProtezioneDatiController _protect = new ProtezioneDatiController(chiavetta.OttieniCartellaPrivata());
+                _protect.ToLog += logController.Update;
+                _protect.ProteggiCartella();
+
+            }
+
+
             blacklistController.ToLog += logController.Update;
             impostazioniController.ToLog += logController.Update;
             sincroController.ToLog += logController.Update;
 
-            protect.ProteggiCartella();
 
             Application.Run(helper.GetForm("HomeSmartKey"));
           
