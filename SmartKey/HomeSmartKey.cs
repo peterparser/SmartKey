@@ -96,11 +96,6 @@ namespace SmartKey
                     ButtonSincronizza.Show();
                 }));
             }
-        }
-
-        private void textBoxUtente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        }    
     }
 }
