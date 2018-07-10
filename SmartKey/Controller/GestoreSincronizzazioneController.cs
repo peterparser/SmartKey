@@ -75,6 +75,7 @@ namespace SmartKey.Controller
                 if (!Directory.Exists(dirToSync))
                 {
                     Directory.CreateDirectory(dirToSync);
+                    ProtezioneDatiController.ProteggiDir(dirToSync);
                     ActionCompletedEvent args = new ActionCompletedEvent
                     {
                         ToEntry = EntryFactory.CreateEntry(this, "creata cartella",
@@ -130,6 +131,7 @@ namespace SmartKey.Controller
                             if (!srcSum.Equals(dstSum))
                             {
                                 File.Copy(file.Path, fileDstPath);
+                                ProtezioneDatiController.ProteggiFile(fileDstPath);
                                 ActionCompletedEvent args = new ActionCompletedEvent
                                 {
                                     ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
@@ -141,6 +143,7 @@ namespace SmartKey.Controller
                         else
                         {
                             File.Copy(file.Path, fileDstPath);
+                            ProtezioneDatiController.ProteggiFile(fileDstPath);
                             ActionCompletedEvent args = new ActionCompletedEvent
                             {
                                 ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
@@ -180,6 +183,7 @@ namespace SmartKey.Controller
                         };
                         ToLog?.Invoke(this, args);
                         File.Copy(file.Path, fileDstPath);
+                        ProtezioneDatiController.ProteggiFile(fileDstPath);
                     }
                 }
                 //Copio diretto
@@ -191,6 +195,7 @@ namespace SmartKey.Controller
                     };
                     ToLog?.Invoke(this, args);
                     File.Copy(file.Path, fileDstPath);
+                    ProtezioneDatiController.ProteggiFile(fileDstPath);
                 }
             }
         }

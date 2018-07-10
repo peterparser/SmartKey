@@ -23,8 +23,8 @@ namespace SmartKey.Controller
             _watcher = new FileSystemWatcher(path);
             _watcher.NotifyFilter = NotifyFilters.LastWrite;
             _watcher.EnableRaisingEvents = true;
-            // watcher.Filter = "*.*";
-            _watcher.Created += ProteggiFile;
+          //  _watcher.Filter = "*.*";
+          //  _watcher.Created += ProteggiFile;
             _watcher.Changed += ProteggiFile;
         }
         public void ProteggiCartella()
@@ -75,17 +75,51 @@ namespace SmartKey.Controller
             ToLog?.Invoke(this, args);
         }
 
+        public static void ProteggiDir(string path)
+        {
+            DirectoryInfo dInfo = new DirectoryInfo(path);
+            DirectorySecurity security = dInfo.GetAccessControl();
+
+            // Bisogna rimuovere una regola protetta, quindi bisogna anche rimuovere l'ereditarietà, da qui true e false
+            security.SetAccessRuleProtection(true, false);
+
+            // Prendo tutte le regole presenti.
+            AuthorizationRuleCollection rules = security.GetAccessRules(true, true, typeof(System.Security.Principal.NTAccount));
+            //Ciclo sulle regole e le rimuovo tutte
+            foreach (FileSystemAccessRule rule in rules)
+            {
+                security.RemoveAccessRule(rule);
+            }
+            security.AddAccessRule(new FileSystemAccessRule(WindowsIdentity.GetCurrent().Name, FileSystemRights.FullControl, AccessControlType.Allow));
+            security.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null)
+                , FileSystemRights.ReadAndExecute, AccessControlType.Allow));
+
+            Directory.SetAccessControl(path, security);
+        }
         private void ProteggiFile(object o, FileSystemEventArgs param)
         {
-            FileSecurity fSecurity = File.GetAccessControl(param.FullPath);
-            fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
-                FileSystemRights.ReadData, AccessControlType.Allow));
-            File.SetAccessControl(param.FullPath, fSecurity);
-            ActionCompletedEvent args = new ActionCompletedEvent
+            //Se è un file
+            FileAttributes attr = File.GetAttributes(param.FullPath);
+            if (!attr.HasFlag(FileAttributes.Directory))
             {
-                ToEntry = EntryFactory.CreateEntry(this, "protetto file " + param.FullPath)
-            };
-            ToLog?.Invoke(this, args);
+                FileSecurity fSecurity = File.GetAccessControl(param.FullPath);
+                fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
+                    FileSystemRights.Read, AccessControlType.Allow));
+                File.SetAccessControl(param.FullPath, fSecurity);
+                ActionCompletedEvent args = new ActionCompletedEvent
+                {
+                    ToEntry = EntryFactory.CreateEntry(this, "protetto file " + param.FullPath)
+                };
+                ToLog?.Invoke(this, args);
+            }
+        }
+
+        public static void ProteggiFile(string path)
+        {
+            FileSecurity fSecurity = File.GetAccessControl(path);
+            fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
+                FileSystemRights.Read, AccessControlType.Allow));
+            File.SetAccessControl(path, fSecurity);
         }
     }
 }
