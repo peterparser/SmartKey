@@ -146,7 +146,7 @@ namespace SmartKey
             this.textBoxUtente.ReadOnly = true;
             this.textBoxUtente.Size = new System.Drawing.Size(180, 21);
             this.textBoxUtente.TabIndex = 3;
-            this.textBoxUtente.Text = "Riccardo Vasumini";
+            this.textBoxUtente.Text = Utente.GetNomeUtente();
             this.textBoxUtente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxDispositivo
