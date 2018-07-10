@@ -12,7 +12,7 @@ namespace SmartKey.Log.LogPersistence
     public class ConcreteLogPersistence : ILogPersistence
     {
         private readonly string _filename;
-        private Object thisLock = new Object();
+        
 
         public ConcreteLogPersistence(string filename)
         {
@@ -87,13 +87,11 @@ namespace SmartKey.Log.LogPersistence
 
         public void ScriviLog(ModelLog.Log log)
         {
-            lock (thisLock)
-            {
                 using (StreamWriter writer = new StreamWriter(_filename, append: true))
                 {
                     writer.WriteLine(log.Entries.Last());
                 }
-            }
+            
         }
     }
 }

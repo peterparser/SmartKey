@@ -14,6 +14,7 @@ namespace SmartKey.Log.ControllerLog
         private ILogPersistence _logPersistence;
         private ModelLog.Log _log;
         private HomeLog _logView;
+        private object thisLock = new Object();
 
         //Per i test
 
@@ -90,10 +91,13 @@ namespace SmartKey.Log.ControllerLog
 
         public void Update(object sender, EventArgs e)
         {
-
-            ActionCompletedEvent param = (ActionCompletedEvent)e;
-            ScriviEntry(param.ToEntry);
-            _logPersistence.ScriviLog(_log);
+            lock (thisLock)
+            {
+                ActionCompletedEvent param = (ActionCompletedEvent)e;
+                ScriviEntry(param.ToEntry);
+                _logPersistence.ScriviLog(_log);
+            }
+           
         }
         private void ScriviEntry(Entry e)
         {
