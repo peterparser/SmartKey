@@ -18,7 +18,7 @@ namespace SmartKey.ModelGestione
         {
             foreach (DriveInfo mydrive in mydrives)
             {
-                if (mydrive.DriveType == DriveType.Removable)
+                if (mydrive.DriveType == DriveType.Removable && mydrive.IsReady)
                     Utente.Dispositivo.Add(new ChiaveUSB(mydrive.Name));
             }
         }
@@ -34,21 +34,21 @@ namespace SmartKey.ModelGestione
         public string OttieniCartellaPrivata()
         {
             DirectoryInfo dirInfoPrivata = null;
-           
+
             foreach (DriveInfo mydrive in mydrives)
             {
-                    dirInfoPrivata = new DirectoryInfo(mydrive.RootDirectory.ToString() + Utente.GetNomeUtente());
-                if (mydrive.DriveType == DriveType.Removable)
+                dirInfoPrivata = new DirectoryInfo(mydrive.RootDirectory.ToString() + Utente.GetNomeUtente());
+                if (mydrive.DriveType == DriveType.Removable && mydrive.IsReady)
                 {
 
                     if (!dirInfoPrivata.Exists)
                     {
                         dirInfoPrivata.Create();
                     }
-
+                    return dirInfoPrivata.ToString();
                 }
             }
-            return dirInfoPrivata.ToString();
+            return "";
         }
 
         public String OttieniCartellaPubblica()
