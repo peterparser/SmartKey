@@ -14,18 +14,11 @@ namespace SmartKey.Controller
     public class ProtezioneDatiController : IGestoreProtezioneDati
     {
         public event EventHandler<ActionCompletedEvent> ToLog;
-        private FileSystemWatcher _watcher;
 
         private string _path;
         public ProtezioneDatiController(string path)
         {
             _path = path;
-            _watcher = new FileSystemWatcher(path);
-            _watcher.NotifyFilter = NotifyFilters.LastWrite;
-            _watcher.EnableRaisingEvents = true;
-          //  _watcher.Filter = "*.*";
-          //  _watcher.Created += ProteggiFile;
-            _watcher.Changed += ProteggiFile;
         }
         public void ProteggiCartella()
         {
@@ -95,23 +88,6 @@ namespace SmartKey.Controller
                 , FileSystemRights.ReadAndExecute, AccessControlType.Allow));
 
             Directory.SetAccessControl(path, security);
-        }
-        private void ProteggiFile(object o, FileSystemEventArgs param)
-        {
-            //Se è un file
-            FileAttributes attr = File.GetAttributes(param.FullPath);
-            if (!attr.HasFlag(FileAttributes.Directory))
-            {
-                FileSecurity fSecurity = File.GetAccessControl(param.FullPath);
-                fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
-                    FileSystemRights.Read, AccessControlType.Allow));
-                File.SetAccessControl(param.FullPath, fSecurity);
-                ActionCompletedEvent args = new ActionCompletedEvent
-                {
-                    ToEntry = EntryFactory.CreateEntry(this, "protetto file " + param.FullPath)
-                };
-                ToLog?.Invoke(this, args);
-            }
         }
 
         public static void ProteggiFile(string path)
