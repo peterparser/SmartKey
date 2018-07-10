@@ -60,7 +60,7 @@ namespace SmartKey.Controller
         }
         public void Sincronizza(object sender, EventArgs args)
         {
-
+            _viewHome.StatusAndHide();
             syncWorker.RunWorkerAsync();
         }
 

@@ -38,6 +38,8 @@ namespace SmartKey
             this.textBoxUtente = new System.Windows.Forms.TextBox();
             this.textBoxDispositivo = new System.Windows.Forms.TextBox();
             this.textBoxCartellaPrivata = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.buttonLogSincro = new System.Windows.Forms.Button();
             this.buttonSincronizza = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -48,6 +50,7 @@ namespace SmartKey
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -70,6 +73,7 @@ namespace SmartKey
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer2.Panel2.Controls.Add(this.buttonLogSincro);
             this.splitContainer2.Panel2.Controls.Add(this.buttonSincronizza);
             this.splitContainer2.Size = new System.Drawing.Size(371, 372);
@@ -142,7 +146,7 @@ namespace SmartKey
             this.textBoxUtente.ReadOnly = true;
             this.textBoxUtente.Size = new System.Drawing.Size(180, 21);
             this.textBoxUtente.TabIndex = 3;
-            this.textBoxUtente.Text = Utente.GetNomeUtente();
+            this.textBoxUtente.Text = "Riccardo Vasumini";
             this.textBoxUtente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxDispositivo
@@ -154,14 +158,6 @@ namespace SmartKey
             this.textBoxDispositivo.ReadOnly = true;
             this.textBoxDispositivo.Size = new System.Drawing.Size(180, 21);
             this.textBoxDispositivo.TabIndex = 4;
-            if (Utente.Dispositivo.Count < 1)
-            {
-                this.textBoxDispositivo.Text = "Nessun Dispositivo Collegato";
-            }
-            else
-            {
-                this.textBoxDispositivo.Text = Utente.Dispositivo[0].OttieniNomeDispositivo();
-            }
             this.textBoxDispositivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCartellaPrivata
@@ -173,17 +169,25 @@ namespace SmartKey
             this.textBoxCartellaPrivata.ReadOnly = true;
             this.textBoxCartellaPrivata.Size = new System.Drawing.Size(180, 21);
             this.textBoxCartellaPrivata.TabIndex = 5;
-            if (Utente.Dispositivo.Count < 1)
-            {
-                this.textBoxCartellaPrivata.Text = "No USB no party...";
-            }
-            else
-            {
-                // qui invoco entrambi i metodi per la creazione dello spazio
-                this.textBoxCartellaPrivata.Text = Utente.Dispositivo[0].OttieniCartellaPrivata();
-                Utente.Dispositivo[0].OttieniCartellaPubblica();
-            }
             this.textBoxCartellaPrivata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 223);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(371, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.statusLabel.Size = new System.Drawing.Size(46, 17);
+            this.statusLabel.Text = "Pronto!";
             // 
             // buttonLogSincro
             // 
@@ -219,10 +223,13 @@ namespace SmartKey
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -239,5 +246,7 @@ namespace SmartKey
         protected System.Windows.Forms.TextBox textBoxUtente;
         protected System.Windows.Forms.TextBox textBoxDispositivo;
         protected System.Windows.Forms.TextBox textBoxCartellaPrivata;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }

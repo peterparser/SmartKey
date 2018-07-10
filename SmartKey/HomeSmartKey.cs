@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartKey.ModelGestione;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,43 @@ namespace SmartKey
         public HomeSmartKey()
         {
             InitializeComponent();
+
+            if (Utente.Dispositivo.Count < 1)
+            {
+                this.textBoxDispositivo.Text = "Nessun Dispositivo Collegato";
+            }
+            else
+            {
+                this.textBoxDispositivo.Text = Utente.Dispositivo[0].OttieniNomeDispositivo();
+            }
+
+            if (Utente.Dispositivo.Count < 1)
+            {
+                this.textBoxCartellaPrivata.Text = "No USB no party...";
+            }
+            else
+            {
+                // qui invoco entrambi i metodi per la creazione dello spazio
+                this.textBoxCartellaPrivata.Text = Utente.Dispositivo[0].OttieniCartellaPrivata();
+                Utente.Dispositivo[0].OttieniCartellaPubblica();
+            }
+        }
+
+        public void StatusAndHide()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate ()
+                {
+                    statusLabel.Text = "Sto sincronizzando...";
+                    ButtonSincronizza.Hide();
+                }));
+            }
+            else
+            {
+                statusLabel.Text = "Sto sincronizzando...";
+                ButtonSincronizza.Hide();
+            }
         }
 
         public bool ChiediScelta(string badUser)
@@ -52,6 +90,8 @@ namespace SmartKey
                 {
                     MessageBox.Show("Sincronizzazione terminata", "Sincronizzazione",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    statusLabel.Text = "Pronto!";
+                    ButtonSincronizza.Show();
                 }));
             }
         }
