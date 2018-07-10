@@ -182,7 +182,8 @@ namespace SmartKey.Controller
                             ToEntry = EntryFactory.CreateEntry(this, "file copiato", sorgente: file.Path, destinazione: fileDstPath)
                         };
                         ToLog?.Invoke(this, args);
-                        File.Copy(file.Path, fileDstPath);
+                        //Bisogna utilizzare questa signature di File.Copy per specificare che il file venga sovrascritto
+                        File.Copy(file.Path, fileDstPath, true);
                         ProtezioneDatiController.ProteggiFile(fileDstPath);
                     }
                 }
