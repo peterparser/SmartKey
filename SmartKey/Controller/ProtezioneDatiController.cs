@@ -87,8 +87,5 @@ namespace SmartKey.Controller
             };
             ToLog?.Invoke(this, args);
         }
-
-
-
     }
 }

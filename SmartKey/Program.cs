@@ -55,12 +55,13 @@ namespace SmartKey
                 impostazioniController,(HomeSmartKey) helper.GetForm("HomeSmartKey"));
             LogController logController = new LogController((HomeLog)(helper.GetForm("HomeLog")));
             ProtezioneDatiController protect = new ProtezioneDatiController(chiavetta.OttieniCartellaPrivata());
-            protect.ProteggiCartella();
-
+            
             protect.ToLog += logController.Update;
             blacklistController.ToLog += logController.Update;
             impostazioniController.ToLog += logController.Update;
             sincroController.ToLog += logController.Update;
+
+            protect.ProteggiCartella();
 
             Application.Run(helper.GetForm("HomeSmartKey"));
           
