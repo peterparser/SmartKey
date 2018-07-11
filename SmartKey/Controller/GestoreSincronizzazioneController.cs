@@ -130,7 +130,7 @@ namespace SmartKey.Controller
                             //Se gli hash non sono uguali
                             if (!srcSum.Equals(dstSum))
                             {
-                                File.Copy(file.Path, fileDstPath);
+                                File.Copy(file.Path, fileDstPath, true);
                                 ProtezioneDatiController.ProteggiFile(fileDstPath);
                                 ActionCompletedEvent args = new ActionCompletedEvent
                                 {
