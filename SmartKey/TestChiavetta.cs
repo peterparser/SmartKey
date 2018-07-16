@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//Da spostare in ChiaveUSBTest
+//Da spostare in ChiaveUSBTest ed eliminare
 namespace SmartKey
 {
     [TestFixture]
